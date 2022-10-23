@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="InicioSesion" Height="450" Width="800"
 
-    WindowStyle="None"
-        ResizeMode="NoResize"
-        MouseDown="Windows_MouseDown"
+        WindowStyle="None"
+        
+        
         
         Background="Transparent"
         AllowsTransparency="True">
 
     <Grid>
-        <Border Background="#2A0993"
+        <Border Background="DarkSlateGray"
                 CornerRadius="30" Margin="3,0,-3,0"  >
 
         </Border>
@@ -40,17 +40,6 @@
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            Margin="20,0,0,0"/>
-
-                <Button
-                    x:Name="btnMinimizar"
-                    Content="-"
-                    FontSize="19"
-                    Foreground="White"
-                    Background="Black"
-                    Grid.Column="1"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="btnMinimizar_Click"/>
                 <Button
                     x:Name="btnCerrar"
                     Content="x"
@@ -61,6 +50,10 @@
                     BorderThickness="0"
                     Cursor="Hand"
                     Click="btnCerrar_Click"/>
+
+              
+                    
+                
             </Grid>
 
             <StackPanel Height="400"
@@ -76,32 +69,29 @@
         <Grid Name="Imagen" Height="430" Width="400" HorizontalAlignment="Right" >
             <Border Background="White"
                 CornerRadius="10"
-                Margin="20,130,20,35">
+                Margin="20,30,20,20">
             </Border>
-
+            
+            
+            
             <StackPanel Width="350"
-                        Margin="22,0,22,0"
+                        Margin="25,61,25,66"
                         Orientation="Vertical">
                 
-                <TextBlock Text="UNIVERSIDAD VERACRUZANA"
-                           FontSize="12"
-                           Foreground="White"
+                <TextBlock Text="Inicio de Sesion"
+                           FontSize="26"
+                           Foreground="Black"
                            HorizontalAlignment="Center"/>
 
-                <TextBlock Text="Inicie sesion con su cuenta UV"
-                           FontSize="17"
-                           Foreground="Black"
-                           FontFamily="Tahoma"
-                           HorizontalAlignment="Center"
-                           Margin="0,20,0,0"/>
+                
 
-                <TextBlock Text="Matricula:"
-                           FontSize="12"
+                <TextBlock Text="Email:"
+                           FontSize="16"
                            Foreground="Black"
                            FontFamily="Tahoma"
                            HorizontalAlignment="Left"
-                           Margin="20,20,0,0"/>
-                <TextBox x:Name="txtMatricula"
+                           Margin="20,40,0,0"/>
+                <TextBox x:Name="txtEmail"
                          FontSize="16"
                          Foreground="Black"
                          FontFamily="Tahoma"
@@ -110,13 +100,35 @@
                          CaretBrush="AliceBlue"
                          BorderThickness="0,0,0,1"
                          VerticalContentAlignment="Center">
+                 </TextBox>
+                <TextBlock Text="Password:"
+                           FontSize="16"
+                           Foreground="Black"
+                           FontFamily="Tahoma"
+                           HorizontalAlignment="Left"
+                           Margin="20,20,0,0"/>
+                <PasswordBox x:Name="txtPass"
+                         FontSize="16"
+                         Foreground="Black"
+                         FontFamily="Tahoma"
+                         Margin="20,5,20,0"
+                         
+                         
+                         CaretBrush="AliceBlue"
+                         BorderThickness="0,0,0,1"
+                         VerticalContentAlignment="Center">
+                </PasswordBox>
+                
 
-
-                </TextBox>
 
 
 
             </StackPanel>
         </Grid>
+        <Button x:Name="btnIniciarSesion" Margin="542,276,142,138" Click="btnIniciarSesion_Click"   >"Iniciar Sesion"</Button>
+        <Button x:Name="btnCrearCuenta" Margin="524,342,124,72" Click="btnCrearCuenta_Click" 
+                Content="Nuevo usuario? Registrate" Background="Transparent" BorderBrush="Transparent"
+                Foreground="CadetBlue"/>
+        <Button x:Name="btnRecuperarPass" Margin="537,388,137,39" Click="btnRecuperarPass_Click"   Content="Recuperar contrasenia"   />
     </Grid>
 </Window>

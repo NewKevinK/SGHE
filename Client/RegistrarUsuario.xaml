@@ -8,7 +8,11 @@
         Title="RegistrarUsuario" Height="450" Width="800"
         Background="#9e9e9e">
     <Grid>
-        <Grid x:Name="inicio">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="inicio" Visibility="Visible" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="500"/>
@@ -26,26 +30,87 @@
                        FontFamily="SourceSans Pro"
                        HorizontalAlignment="Center"
                            Margin="0,90,0,0"/>
-                
+
                 <TextBlock Text="Seleccione a que tipo de usuario pertenece..."
                        FontSize="16"
                        Foreground="Black"
                        FontFamily="SourceSans Pro"
                        HorizontalAlignment="Center"
                            Margin="0,40,0,10"/>
-                
+
                 <ComboBox x:Name="cbTipoUsuario" Width="280">
                     <ComboBoxItem>Docente</ComboBoxItem>
                     <ComboBoxItem>Estudiante</ComboBoxItem>
                     <ComboBoxItem>Estudiante Intercambio</ComboBoxItem>
                 </ComboBox>
-                
+
             </StackPanel>
-            
-
-
         </Grid>
 
-        <Grid x:Name="Formulario Profesor" Visibility="Hidden" ></Grid>
+        <Grid x:Name="FormularioProfesor" Visibility="Hidden" Grid.RowSpan="2"  >
+            <Grid Margin="172,91,192,14" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Nombre(s):" Grid.Column="0"
+                           Grid.Row="1" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbNombre" Grid.Column="1"
+                         Grid.Row="1"
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Apellido Paterno:" Grid.Column="0"
+                           Grid.Row="2" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbApellidoPaterno" Grid.Column="1"
+                         Grid.Row="2"
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Apellido Materno:" Grid.Column="0"
+                           Grid.Row="3" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbApellidoMaterno" Grid.Column="1"
+                         Grid.Row="3"
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Telefono:" Grid.Column="0"
+                           Grid.Row="4" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbTelefono" Grid.Column="1"
+                         Grid.Row="4"
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Email:" Grid.Column="0"
+                           Grid.Row="5" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbEmail" Grid.Column="1"
+                         Grid.Row="5" 
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Fecha de Nacimiento: " Grid.Column="0"
+                           Grid.Row="6" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <DatePicker x:Name="dpFechaNacimiento"
+                            Grid.Row="5" Grid.ColumnSpan="2" Margin="156,41,27,20" Grid.RowSpan="2" RenderTransformOrigin="0.626,0.664"
+                            />
+
+
+
+
+            </Grid>
+            <TextBlock Text="Registro de Docente"
+                       FontSize="28"
+                       Foreground="Black"
+                       FontFamily="SourceSans Pro"
+                       HorizontalAlignment="Center" Margin="0,37,0,343"/>
+            <Button x:Name="btnCancelar"  Margin="60,357,633,27" >"Cancelar"</Button>
+            <Button x:Name="btnRegistrar"  Margin="628,357,65,27" >"Registrar"</Button>
+        </Grid>
     </Grid>
 </Window>

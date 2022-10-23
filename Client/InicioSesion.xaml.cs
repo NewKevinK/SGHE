@@ -21,5 +21,27 @@ namespace SGHE.Client
         {
             InitializeComponent();
         }
+
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            string email = txtEmail.Text;
+            string password = txtPass.Password.ToString();
+
+        }
+
+        private void btnCrearCuenta_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRecuperarPass_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
