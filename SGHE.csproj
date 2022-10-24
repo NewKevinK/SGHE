@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Client\Resources\" />
+    <None Remove="Client\IconoIr.png" />
+    <None Remove="Client\IconoRegresar.png" />
+    <None Remove="Client\Resources\Icons\IconoIr.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Logic\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Client\IconoIr.png" />
+    <Resource Include="Client\IconoRegresar.png" />
+    <Resource Include="Client\Resources\Icons\IconoIr.png" />
   </ItemGroup>
 
 </Project>
