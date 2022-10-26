@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Client\IconoIr.png" />
-    <None Remove="Client\IconoPerfil.png" />
-    <None Remove="Client\IconoRegresar.png" />
-    <None Remove="Client\Resources\Icons\IconoIr.png" />
+    <None Remove="Cliente\IconoIr.png" />
+    <None Remove="Cliente\IconoPerfil.png" />
+    <None Remove="Cliente\IconoRegresar.png" />
+    <None Remove="Cliente\Recursos\Iconos\IconoIr.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Client\IconoIr.png" />
-    <Resource Include="Client\IconoPerfil.png" />
-    <Resource Include="Client\IconoRegresar.png" />
-    <Resource Include="Client\Resources\Icons\IconoIr.png" />
+    <Resource Include="Cliente\IconoIr.png" />
+    <Resource Include="Cliente\IconoPerfil.png" />
+    <Resource Include="Cliente\IconoRegresar.png" />
+    <Resource Include="Cliente\Recursos\Iconos\IconoIr.png" />
   </ItemGroup>
 
 </Project>

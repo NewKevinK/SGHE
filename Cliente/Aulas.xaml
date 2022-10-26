@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SGHE.Client"
         mc:Ignorable="d"
         
-        Title="Aulas" Height="450" Width="800" Background="CornflowerBlue">
+        Title="Aulas" Height="450" Width="800" Background="White">
     <Grid>
 
         <Line X1="800" Y1="35" X2="0" Y2="35" Stroke="Black" StrokeThickness="5" Grid.ColumnSpan="2"/>
@@ -28,8 +28,8 @@
         <Label Content="AULA-01" HorizontalAlignment="Left" Margin="76,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="AULA-02" HorizontalAlignment="Left" Margin="281,52,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="AULA-03" HorizontalAlignment="Left" Margin="484,47,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-04" HorizontalAlignment="Left" Margin="691,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-05" HorizontalAlignment="Left" Margin="691,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="AULA-04" HorizontalAlignment="Left" Margin="674,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="AULA-05" HorizontalAlignment="Left" Margin="674,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="AULA-06" HorizontalAlignment="Left" Margin="484,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="AULA-07" HorizontalAlignment="Left" Margin="281,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="AULA-08" HorizontalAlignment="Left" Margin="76,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
