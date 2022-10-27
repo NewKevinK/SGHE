@@ -16,7 +16,7 @@
 
     <Grid>
         <Border Background="DarkSlateGray"
-                CornerRadius="30" Margin="3,0,-3,0"  >
+                CornerRadius="0"   >
 
         </Border>
         <Grid>

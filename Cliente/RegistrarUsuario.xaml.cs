@@ -17,9 +17,54 @@ namespace SGHE.Client
     /// </summary>
     public partial class RegistrarUsuario : Window
     {
+        string seleccion;
         public RegistrarUsuario()
         {
             InitializeComponent();
         }
+
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbTipoUsuario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                seleccion = cbTipoUsuario.Text;
+                if (seleccion.Equals("Docente"))
+                {
+                    FormularioDocente.Visibility = Visibility.Visible;
+                    inicio.Visibility = Visibility.Hidden;   
+
+
+                }  
+                
+               // cbTipoUsuario_Selected();
+                
+            }
+            catch (SystemException)
+            {
+
+            }
+            
+
+        }
+
+        private void btnCancelarDocente_Click(object sender, RoutedEventArgs e)
+        {
+            inicio.Visibility = Visibility.Visible;
+            FormularioDocente.Visibility = Visibility.Hidden;
+        }
+
+        private void btnRegistrarDocente_Click(object sender, RoutedEventArgs e)
+        {
+            Inicio inicio = new Inicio();
+            inicio.Show();
+            this.Hide();
+        }
+
+        
     }
 }

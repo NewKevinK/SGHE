@@ -8,22 +8,18 @@
         Title="RegistrarUsuario" Height="450" Width="800"
         Background="#9e9e9e">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
+
         <Grid x:Name="inicio" Visibility="Visible" Grid.RowSpan="2">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition/>
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions >
                 <RowDefinition/>
-                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="0" Margin="0,0,0,87">
                 <TextBlock Text="Registrar Usuario"
                        FontSize="28"
                        Foreground="Black"
@@ -38,17 +34,18 @@
                        HorizontalAlignment="Center"
                            Margin="0,40,0,10"/>
 
-                <ComboBox x:Name="cbTipoUsuario" Width="280">
+                <ComboBox x:Name="cbTipoUsuario" Width="280"  SelectionChanged="cbTipoUsuario_SelectionChanged"   >
                     <ComboBoxItem>Docente</ComboBoxItem>
                     <ComboBoxItem>Estudiante</ComboBoxItem>
                     <ComboBoxItem>Estudiante Intercambio</ComboBoxItem>
                 </ComboBox>
 
             </StackPanel>
+            <Button x:Name="btnRegresar"  Margin="51,388,657,19" Click="btnRegresar_Click" >"Regresar"</Button>
         </Grid>
 
-        <Grid x:Name="FormularioProfesor" Visibility="Hidden" Grid.RowSpan="2"  >
-            <Grid Margin="172,91,192,14" >
+        <Grid x:Name="FormularioDocente" Visibility="Hidden" Grid.RowSpan="2"  >
+            <Grid x:Name="CredencialesDocente" Visibility="Visible" Margin="172,51,192,54" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="300" />
@@ -62,45 +59,57 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Nombre(s):" Grid.Column="0"
                            Grid.Row="1" FontSize="16"
                            Margin="0,0,0,20"/>
-                <TextBox x:Name="tbNombre" Grid.Column="1"
+                <TextBox x:Name="tbNombreDocente" Grid.Column="1"
                          Grid.Row="1"
                          Margin="0,0,0,16"/>
                 <TextBlock Text="Apellido Paterno:" Grid.Column="0"
                            Grid.Row="2" FontSize="16"
                            Margin="0,0,0,20"/>
-                <TextBox x:Name="tbApellidoPaterno" Grid.Column="1"
+                <TextBox x:Name="tbApellidoPaternoDocente" Grid.Column="1"
                          Grid.Row="2"
                          Margin="0,0,0,16"/>
                 <TextBlock Text="Apellido Materno:" Grid.Column="0"
                            Grid.Row="3" FontSize="16"
                            Margin="0,0,0,20"/>
-                <TextBox x:Name="tbApellidoMaterno" Grid.Column="1"
+                <TextBox x:Name="tbApellidoMaternoDocente" Grid.Column="1"
                          Grid.Row="3"
                          Margin="0,0,0,16"/>
                 <TextBlock Text="Telefono:" Grid.Column="0"
                            Grid.Row="4" FontSize="16"
                            Margin="0,0,0,20"/>
-                <TextBox x:Name="tbTelefono" Grid.Column="1"
+                <TextBox x:Name="tbTelefonoDocente" Grid.Column="1"
                          Grid.Row="4"
                          Margin="0,0,0,16"/>
-                <TextBlock Text="Email:" Grid.Column="0"
+                <TextBlock Text="Direccion: " Grid.Column="0"
                            Grid.Row="5" FontSize="16"
                            Margin="0,0,0,20"/>
-                <TextBox x:Name="tbEmail" Grid.Column="1"
+                <TextBox x:Name="tbDireccionDocente" Grid.Column="1"
                          Grid.Row="5" 
                          Margin="0,0,0,16"/>
                 <TextBlock Text="Fecha de Nacimiento: " Grid.Column="0"
                            Grid.Row="6" FontSize="16"
                            Margin="0,0,0,20"/>
-                <DatePicker x:Name="dpFechaNacimiento"
-                            Grid.Row="5" Grid.ColumnSpan="2" Margin="156,41,27,20" Grid.RowSpan="2" RenderTransformOrigin="0.626,0.664"
-                            />
-
-
+                <DatePicker x:Name="dpFechaNacimientoDocente"
+                            Grid.Row="5" Grid.ColumnSpan="2" Margin="156,41,27,20" Grid.RowSpan="2" RenderTransformOrigin="0.626,0.664"    />
+                <TextBlock Text="Email:" Grid.Column="0"
+                           Grid.Row="7" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <TextBox x:Name="tbEmailDocente" Grid.Column="1"
+                         Grid.Row="7"
+                         Margin="0,0,0,16"/>
+                <TextBlock Text="Password:" Grid.Column="0"
+                           Grid.Row="8" FontSize="16"
+                           Margin="0,0,0,20"/>
+                <PasswordBox x:Name="tbPasswordDocente" Grid.Column="1"
+                         Grid.Row="8"
+                         Margin="0,0,0,16"/>
 
 
             </Grid>
@@ -108,9 +117,13 @@
                        FontSize="28"
                        Foreground="Black"
                        FontFamily="SourceSans Pro"
-                       HorizontalAlignment="Center" Margin="0,37,0,343"/>
-            <Button x:Name="btnCancelar"  Margin="60,357,633,27" >"Cancelar"</Button>
-            <Button x:Name="btnRegistrar"  Margin="628,357,65,27" >"Registrar"</Button>
+                       HorizontalAlignment="Center" Margin="0,10,0,370"/>
+            <Button x:Name="btnCancelarDocente"  Margin="38,382,655,27" Click="btnCancelarDocente_Click" >"Cancelar"</Button>
+            <Button x:Name="btnRegistrarDocente"  Margin="654,382,39,27" Click="btnRegistrarDocente_Click" >"Registrar"</Button>
+
         </Grid>
+
+
+
     </Grid>
 </Window>
