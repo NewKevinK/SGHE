@@ -14,12 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Resource Include="Client\IconoIr.png" />
-    <Resource Include="Client\IconoRegresar.png" />
-    <Resource Include="Client\Resources\Icons\IconoIr.png" />
-=======
     <Folder Include="Logic\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
     <Resource Include="Cliente\IconoPerfil.png" />
     <Resource Include="Cliente\IconoRegresar.png" />
     <Resource Include="Cliente\Recursos\Iconos\IconoIr.png" />
->>>>>>> 5b3fdf38d19a91461e058d149eaba08b6fccb48a
   </ItemGroup>
 
 </Project>
