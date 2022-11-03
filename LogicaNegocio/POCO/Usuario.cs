@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SGHE.LogicaNegocio
+namespace SGHE.LogicaNegocio.POCO
 {
     public abstract class Usuario
     {
