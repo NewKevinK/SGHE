@@ -22,5 +22,34 @@ namespace SGHE.Client
             InitializeComponent();
         }
 
+        private void Button_table_Asunto(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Manager_table(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_room_table(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Buttom_group_table(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_cancel(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Accept(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
