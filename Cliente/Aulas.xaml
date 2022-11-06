@@ -25,14 +25,14 @@
                 <ImageBrush ImageSource="/Client/IconoRegresar.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Label Content="AULA-01" HorizontalAlignment="Left" Margin="76,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-02" HorizontalAlignment="Left" Margin="281,52,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-03" HorizontalAlignment="Left" Margin="484,47,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-04" HorizontalAlignment="Left" Margin="674,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-05" HorizontalAlignment="Left" Margin="674,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-06" HorizontalAlignment="Left" Margin="484,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-07" HorizontalAlignment="Left" Margin="281,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="AULA-08" HorizontalAlignment="Left" Margin="76,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula01" Content="AULA-01" HorizontalAlignment="Left" Margin="76,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula02" Content="AULA-02" HorizontalAlignment="Left" Margin="281,52,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula03" Content="AULA-03" HorizontalAlignment="Left" Margin="484,47,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula04" Content="AULA-04" HorizontalAlignment="Left" Margin="674,44,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula08" Content="AULA-08" HorizontalAlignment="Left" Margin="674,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula07" Content="AULA-07" HorizontalAlignment="Left" Margin="484,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula06" Content="AULA-06" HorizontalAlignment="Left" Margin="281,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lbAula05" Content="AULA-05" HorizontalAlignment="Left" Margin="76,238,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
 
 

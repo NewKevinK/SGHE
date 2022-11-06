@@ -1,21 +1,20 @@
 ﻿using MySql.Data.MySqlClient;
-using SGHE.ConexionBD;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SGHE.ConexionBaseDatos
 {
-    public class ConexionBD : IConexionBD
+    public class ConexionBD
     {
-        private string SERVIDOR = "mysql-flexible-service.mysql.database.azure.com";
-        private string PUERTO = "3306";
-        private string BASE_DATOS = "sghe";
-        private string USUARIO_BD = "s19isof";
-        private string PASSWORD = "mysql-isof2022";
-
+        private static string SERVIDOR = "mysql-flexible-service.mysql.database.azure.com";
+        private static string PUERTO = "3306";
+        private static string BASE_DATOS = "sghe";
+        private static string USUARIO_BD = "s19isof";
+        private static string PASSWORD = "mysql-isof2022";
         
-        MySqlConnection IConexionBD.ObtenerConexion()
+
+        public static MySqlConnection ObtenerConexion()
         {
             MySqlConnection conexion;
             try
