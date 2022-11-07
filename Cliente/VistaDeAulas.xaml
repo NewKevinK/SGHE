@@ -12,7 +12,7 @@
         <Label Content="Aldo Marquez" HorizontalAlignment="Left" Margin="68,38,0,0" VerticalAlignment="Top" Height="36" Width="182" FontSize="16"/>
         <Label Content="Asulto/Materia" HorizontalAlignment="Left" Margin="312,7,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Matematicas III" HorizontalAlignment="Left" Margin="312,38,0,0" VerticalAlignment="Top" Height="36" Width="224" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="603,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="8" HorizontalContentAlignment="Center" FontSize="18"/>
+        <!--<TextBox HorizontalAlignment="Left" Margin="603,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="8" HorizontalContentAlignment="Center" FontSize="18"/>-->
         <ComboBox HorizontalAlignment="Left" Margin="715,30,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Height="26">
             <ComboBox.RenderTransform>
                 <TransformGroup>
@@ -33,9 +33,9 @@
                 </TransformGroup>
             </ComboBox.RenderTransform>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" Margin="603,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="10" HorizontalContentAlignment="Center" FontSize="18"/>
+        <!--<TextBox HorizontalAlignment="Left" Margin="603,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="10" HorizontalContentAlignment="Center" FontSize="18"/>
         <TextBox HorizontalAlignment="Left" Margin="659,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="00" HorizontalContentAlignment="Center" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="659,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="59" HorizontalContentAlignment="Center" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="659,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="59" HorizontalContentAlignment="Center" FontSize="18"/>-->
         <Label Content="Hora fin" HorizontalAlignment="Left" Margin="603,66,0,0" VerticalAlignment="Top"/>
         <Label Content="Hora Inicio" HorizontalAlignment="Left" Margin="603,4,0,0" VerticalAlignment="Top"/>
         <Rectangle HorizontalAlignment="Left" Height="282" Margin="37,117,0,0" Stroke="Black" VerticalAlignment="Top" Width="549"/>
