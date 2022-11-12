@@ -38,15 +38,45 @@ namespace SGHE.Client
 
         public void MostrarAulas()
         {
-            lbAula01.Content = aulas[0].CodigoAula;
-            lbAula02.Content = aulas[1].CodigoAula;
-            lbAula03.Content = aulas[2].CodigoAula;
-            lbAula04.Content = aulas[3].CodigoAula;
-            lbAula05.Content = aulas[4].CodigoAula;
-            lbAula06.Content = aulas[5].CodigoAula;
-            lbAula07.Content = aulas[6].CodigoAula;
-            lbAula08.Content = aulas[7].CodigoAula;
+            lbAula01.Content = VerificarAula();
+            lbAula02.Content = VerificarAula();
+            lbAula03.Content = VerificarAula();
+            lbAula04.Content = VerificarAula();
+            lbAula05.Content = VerificarAula();
+            lbAula06.Content = VerificarAula();
+            lbAula07.Content = VerificarAula();
+            lbAula08.Content = VerificarAula();
             
+        }
+
+        private void MostrarAulasSiguientes(object sender, RoutedEventArgs e)
+        {
+            MostrarAulas();
+        }
+
+        private void MostrarAulasAnteriores(object sender, RoutedEventArgs e)
+        {
+            contadorAula -= 16;
+            if (contadorAula < 0)
+            {
+                contadorAula = 0;
+            }
+            MostrarAulas();
+        }
+
+        public string VerificarAula()
+        {
+            string codigoAula = "";
+            if (aulas.Count==contadorAula)
+            {
+                codigoAula = "Esta Aula No existe";
+            }
+            else
+            {
+                codigoAula = string.Format("Aulas: {1}{0}Estado: {2}{0}", Environment.NewLine, aulas[contadorAula].CodigoAula, aulas[contadorAula].Estado);
+                contadorAula++;
+            }
+            return codigoAula;
         }
     }
 }
