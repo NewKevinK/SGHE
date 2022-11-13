@@ -41,5 +41,40 @@ namespace SGHE.LogicaNegocio.DAO
             }
             return listaAulas;
         }
+
+        public string AgregarAula(Aula aula)
+        {
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            string mensaje = "";
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "INSERT INTO aula(codigoAula,estado,idEdificio,tipoAula) VALUES (@codigoAula,@estado,@idEdificio,@tipoAula)";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
+                    mySqlCommand.Parameters.AddWithValue("@estado", "Disponible");
+                    mySqlCommand.Parameters.AddWithValue("@idEdificio", aula.IdEdificio);
+                    mySqlCommand.Parameters.AddWithValue("@tipoAula", aula.TipoAula);
+                    mySqlCommand.Prepare();
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    {
+                        mensaje = "La aula se ha registrado con éxito";
+                    }
+                    else
+                    {
+                        mensaje = "La aula no ha podido registrarse";
+                    }
+
+                }
+                catch(Exception e)
+                {
+                    mensaje = "La aula no ha podido registrarse";
+                }
+            }
+
+            return mensaje;
+                
+        }
     }
 }

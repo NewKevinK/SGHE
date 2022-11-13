@@ -1,0 +1,21 @@
+﻿<Window x:Class="SGHE.Cliente.RegistrarAula"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SGHE.Cliente"
+        mc:Ignorable="d"
+        Title="" Height="300" Width="410">
+    <Grid>
+        <Button Content="Registrar" HorizontalAlignment="Left" Margin="302,233,0,0" VerticalAlignment="Top" Width="68" Click="RegistroAula"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="67" Click="CancelarRegistroAula"/>
+        <Label Content="Código de Aula:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Edificio Asociado:" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tipo de Aula:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbCodigoAula" HorizontalAlignment="Left" Margin="190,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+        <ComboBox x:Name="cbEdificioAula" HorizontalAlignment="Left" Margin="190,105,0,0" VerticalAlignment="Top" Width="180"/>
+        <ComboBox x:Name="cbTipoAula" HorizontalAlignment="Left" Margin="190,174,0,0" VerticalAlignment="Top" Width="180"/>
+        <Label Content="Registro de Nueva Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

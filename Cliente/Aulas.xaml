@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SGHE.Cliente"
         mc:Ignorable="d"
         
-        Title="Aulas" Height="450" Width="800" Background="White">
+        Title="" Height="450" Width="800" Background="White">
     <Grid>
 
         <Line X1="800" Y1="35" X2="0" Y2="35" Stroke="Black" StrokeThickness="5" Grid.ColumnSpan="2"/>
