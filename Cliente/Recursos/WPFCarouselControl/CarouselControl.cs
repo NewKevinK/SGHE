@@ -20,7 +20,7 @@ namespace SGHE.Cliente.Recursos.WPFCarouselControl
 
             _canvas = new Canvas();
             _canvas.HorizontalAlignment = HorizontalAlignment.Stretch;
-            _canvas.VerticalAlignment = VerticalAlignment.Stretch;
+            _canvas.VerticalAlignment = VerticalAlignment.Center;
 
             Children.Add(_canvas);
         }

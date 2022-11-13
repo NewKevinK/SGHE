@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SGHE.Cliente
 {
@@ -26,6 +27,18 @@ namespace SGHE.Cliente
             DataContext = new ActividadesDiariasViewModel();
 
             _carouselDABExperienciasEducativas.SelectionChanged += _carouselDABEE_SelectionChanged;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            String [] conectoresFecha = {"de","del"};
+            lblTime.Content = DateTime.Now.ToString("hh:mm tt");
+            lblFechaActual.Content = DateTime.Now.ToString("dddd dd MMMM yyyy");
         }
 
         private void _carouselDABEE_SelectionChanged(FrameworkElement selectedElement)

@@ -9,7 +9,7 @@
         Title="ActividadesDiarias" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="60"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="70" />
@@ -22,7 +22,7 @@
                HorizontalContentAlignment="Left"
                VerticalAlignment="Center"
                Margin="20,0"/>
-        <Label Grid.Row="0" Name="_fechaActualLabel" Content="{Binding FechaActualLabel}" FontSize="20" Foreground="White"
+        <Label Grid.Row="0" Name="lblFechaActual" FontSize="20" Foreground="White"
                HorizontalContentAlignment="Right"
                VerticalContentAlignment="Center"
                Margin="30,0"/>
@@ -32,12 +32,13 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Line Stroke="Black"  Grid.Column="0" X1="270" VerticalAlignment="Center" HorizontalAlignment="Right"  StrokeThickness="1"/>
-            <Line Stroke="Black" Grid.Column="2" X1="270" VerticalAlignment="Center" HorizontalAlignment="Left" StrokeThickness="1"/>
-            <Label Grid.Column="1" HorizontalAlignment="Center" FontSize="40" Content="01:58 pm" />
+            <Line Stroke="Black" Grid.Column="0" X1="200" VerticalAlignment="Center" HorizontalAlignment="Right"  StrokeThickness="1"/>
+            <Label Name="lblTime" Grid.Column="1" HorizontalAlignment="Center" FontSize="40" FontFamily="Josefin Sans" />
+            <Line Stroke="Black" Grid.Column="2" X1="200" VerticalAlignment="Center" HorizontalAlignment="Left" StrokeThickness="1"/>
+            
         </Grid>
 
         <!--#endregion-->
@@ -55,7 +56,7 @@
             <!--#region Botones Izq - Der -->
 
             <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent" Name="_buttonLeftArrow" Click="_buttonLeftArrow_Click">
-                <Image Height="54" Stretch="Fill" Width="50" Source="/Cliente/left_arrow.png" />
+                <Image Height="54" Stretch="Fill" Width="50" Source="/Cliente/left_arrow.png"/>
             </Button>
             <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent" Name="_buttonRightArrow" Click="_buttonRightArrow_Click">
                 <Image Height="54" Stretch="Fill" Width="50" Source="/Cliente/right_arrow.png"/>
@@ -66,7 +67,7 @@
                                             ItemsSource="{Binding ExperienciasEducativasDAB}"
                                             SelectedItem="{Binding SelectedExperienciaEducativaDAB,Mode=TwoWay}"
                                             ShowRotation="True"
-                                            TiltInDegrees="10"
+                                            TiltInDegrees="0"
                                             AutoSizeToParent="true"
                                             RotationSpeed="200" 
                                             VerticalOrientation="False"
@@ -76,29 +77,42 @@
                         <Setter Property="CarouselItemTemplate" >
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border BorderThickness="1" BorderBrush="Gainsboro" Background="Transparent" Width="250" Height="150">
-                                        <Grid Background="Transparent">
+                                    <Border BorderThickness="2" BorderBrush="Black" Background="White" Width="260" Height="180">
+                                        <Grid Background="Transparent" Margin="5">
                                             <!--#region Datos Mostrados-->
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="40"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="30"/>
-                                                <RowDefinition Height="30"/>
-                                                <RowDefinition Height="30"/>
-                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="32"/>
+                                                <RowDefinition Height="32"/>
+                                                <RowDefinition Height="32"/>
+                                                <RowDefinition Height="32"/>
+                                                <RowDefinition Height="32"/>
                                             </Grid.RowDefinitions>
+                                            
+                                            <!--#region Iconos-->
 
+                                            <Image Grid.Row="0" Grid.Column="0" Source="/Cliente/book.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Image Grid.Row="1" Grid.Column="0" Source="/Cliente/clock-nine.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Image Grid.Row="2" Grid.Column="0" Source="/Cliente/graduation-cap.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="3" Grid.Column="0" Content="NRC" Foreground="Black" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Image Grid.Row="4" Grid.Column="0" Source="/Cliente/building.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            
+                                            <!--#endregion-->
+                                            
+                                            <!--#region Datos-->
 
-
-                                            <Label Grid.Row="0" Grid.Column="1" Content="{Binding nombre}" />
-                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding profesor}" />
-                                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding aula}"/>
-                                            <Label Grid.Row="3" Grid.Column="1" Content="{Binding nrc}"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding nombre}"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding horario}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding profesor}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="3" Grid.Column="1" Content="{Binding nrc}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="4" Grid.Column="1" Content="{Binding aula}" VerticalAlignment="Center"/>
+                                            
+                                            <!--#endregion-->
 
                                             <!--endregion-->
-
                                         </Grid>
                                         <!--#endregion-->
                                     </Border>

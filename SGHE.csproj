@@ -15,10 +15,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Cliente\book.png" />
+    <None Remove="Cliente\building.png" />
+    <None Remove="Cliente\clock-nine.png" />
+    <None Remove="Cliente\graduation-cap.png" />
     <None Remove="Cliente\IconoIr.png" />
     <None Remove="Cliente\IconoPerfil.png" />
     <None Remove="Cliente\IconoRegresar.png" />
+    <None Remove="Cliente\left_arrow.png" />
     <None Remove="Cliente\Recursos\Iconos\IconoIr.png" />
+    <None Remove="Cliente\right_arrow.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +36,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Cliente\book.png" />
+    <Resource Include="Cliente\building.png" />
+    <Resource Include="Cliente\clock-nine.png" />
+    <Resource Include="Cliente\graduation-cap.png" />
     <Resource Include="Cliente\IconoIr.png" />
     <Resource Include="Cliente\IconoPerfil.png" />
     <Resource Include="Cliente\IconoRegresar.png" />
+    <Resource Include="Cliente\left_arrow.png" />
     <Resource Include="Cliente\Recursos\Iconos\IconoIr.png" />
+    <Resource Include="Cliente\right_arrow.png" />
   </ItemGroup>
 
 </Project>
