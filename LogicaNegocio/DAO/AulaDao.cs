@@ -76,5 +76,69 @@ namespace SGHE.LogicaNegocio.DAO
             return mensaje;
                 
         }
+
+        public int ActualizarEstadoAula(string idAula)
+        {
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            int confirmacion = 0 ;
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "UPDATE aula set estado=@estado where idAula=@idAula";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@estado", idAula);
+                    int filasAfectadas = mySqlCommand.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        confirmacion = 1;
+                    }
+                    else
+                    {
+                        confirmacion = 2;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    confirmacion = 3;
+                }
+                
+            }
+            return confirmacion;
+        }
+
+        public int ActualizarAula(string idAula, Aula aula)
+        {
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            int confirmacion = 0;
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "UPDATE aula set codigoAula=codigoAula@, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("codigoAula", aula.CodigoAula);
+                    mySqlCommand.Parameters.AddWithValue("estado", aula.Estado);
+                    mySqlCommand.Parameters.AddWithValue("idEdificio", aula.IdEdificio);
+                    mySqlCommand.Parameters.AddWithValue("tipoAula", aula.TipoAula);
+                    mySqlCommand.Parameters.AddWithValue("idAula", idAula);
+                    int filasAfectadas = mySqlCommand.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        confirmacion = 1;
+                    }
+                    else
+                    {
+                        confirmacion = 2;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    confirmacion = 3;
+                }
+
+            }
+            return confirmacion;
+        }
     }
 }

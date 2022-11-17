@@ -69,7 +69,7 @@ namespace SGHE.Client
             string codigoAula = "";
             if (aulas.Count==contadorAula)
             {
-                codigoAula = "Esta Aula No existe";
+                codigoAula = "No hay más aulas";
             }
             else
             {
