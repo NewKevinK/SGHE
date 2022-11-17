@@ -22,6 +22,9 @@ namespace SGHE.Cliente
         public ActualizarAula()
         {
             InitializeComponent();
+            DatosComboBoxEdificio();
+            DatosComboBoxEstadoAula();
+            DatosComboBoxTipoAula();
         }
 
 

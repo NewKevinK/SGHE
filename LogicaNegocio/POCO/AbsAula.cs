@@ -23,7 +23,6 @@ namespace SGHE.LogicaNegocio.POCO
         }
         public AbsAula( string codigoAula, string estado, int idEdificio, string tipoAula)
         {
-            this.idAula = idAula;
             this.codigoAula = codigoAula;
             this.estado = estado;
             this.idEdificio = idEdificio;

@@ -115,13 +115,13 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "UPDATE aula set codigoAula=codigoAula@, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+                    string sql = "UPDATE aula set codigoAula=@codigoAula, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("codigoAula", aula.CodigoAula);
-                    mySqlCommand.Parameters.AddWithValue("estado", aula.Estado);
-                    mySqlCommand.Parameters.AddWithValue("idEdificio", aula.IdEdificio);
-                    mySqlCommand.Parameters.AddWithValue("tipoAula", aula.TipoAula);
-                    mySqlCommand.Parameters.AddWithValue("idAula", idAula);
+                    mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
+                    mySqlCommand.Parameters.AddWithValue("@estado", aula.Estado);
+                    mySqlCommand.Parameters.AddWithValue("@idEdificio", aula.IdEdificio);
+                    mySqlCommand.Parameters.AddWithValue("@tipoAula", aula.TipoAula);
+                    mySqlCommand.Parameters.AddWithValue("@idAula", int.Parse(idAula));
                     int filasAfectadas = mySqlCommand.ExecuteNonQuery();
                     if (filasAfectadas > 0)
                     {
