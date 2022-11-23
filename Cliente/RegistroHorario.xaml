@@ -11,19 +11,18 @@
         <Label Content="Asunto" HorizontalAlignment="Left" Margin="35,18,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Right" Margin="0,0,492,364" TextWrapping="Wrap" Text="CLASE: Economia para la toma de decisiones" VerticalAlignment="Bottom" Width="273" Height="26"/>
         <Label Content="Encargado&#xD;&#xA;" HorizontalAlignment="Left" Margin="35,80,0,0" VerticalAlignment="Top"/>
-        <!--<TextBox HorizontalAlignment="Right" Margin="0,0,492,302" TextWrapping="Wrap" Text="PROFESOR:Jose Enrique Ramirez" VerticalAlignment="Bottom" Width="273" Height="26" TextChanged="TextBox_TextChanged"/>-->
+        <TextBox HorizontalAlignment="Right" Margin="0,0,492,302" TextWrapping="Wrap" Text="PROFESOR:Jose Enrique Ramirez" VerticalAlignment="Bottom" Width="273" Height="26" TextChanged="TextBox_TextChanged"/>
         <Label Content="AULA" HorizontalAlignment="Left" Margin="35,134,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Right" Margin="0,0,492,248" TextWrapping="Wrap" Text="F104 (Edificio Nuevo)" VerticalAlignment="Bottom" Width="273" Height="26"/>
         <Label Content="Grupo" HorizontalAlignment="Left" Margin="35,186,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="35,212,0,0" TextWrapping="Wrap" Text="Matutino" VerticalAlignment="Top" Width="273" Height="26"/>
         <TextBox HorizontalAlignment="Left" Margin="35,277,0,0" TextWrapping="Wrap" Text="Buscar" VerticalAlignment="Top" Width="304" Height="26"/>
         <Label Content="Participantes" HorizontalAlignment="Left" Margin="35,251,0,0" VerticalAlignment="Top"/>
-        <!--<ListBox d:ItemsSource="{d:SampleData ItemCount=4}" Margin="35,303,461,10" SelectionChanged="ListBox_SelectionChanged"/>-->
         <Button Content="" HorizontalAlignment="Left" Margin="313,44,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Button_table_Asunto"/>
         <Button Content="" HorizontalAlignment="Left" Margin="313,106,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Button_Manager_table"/>
         <Button Content="" HorizontalAlignment="Left" Margin="313,160,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Button_room_table"/>
         <Button Content="" HorizontalAlignment="Left" Margin="313,212,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Buttom_group_table"/>
-        <!--<TextBox HorizontalAlignment="Left" Margin="519,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="8" HorizontalContentAlignment="Center" FontSize="18"/>-->
+        <TextBox HorizontalAlignment="Left" Margin="519,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="8" HorizontalContentAlignment="Center" FontSize="18"/>
         <ComboBox HorizontalAlignment="Left" Margin="631,44,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Height="26">
             <ComboBox.RenderTransform>
                 <TransformGroup>
@@ -44,15 +43,54 @@
                 </TransformGroup>
             </ComboBox.RenderTransform>
         </ComboBox>
-        <!--<TextBox HorizontalAlignment="Left" Margin="519,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="10" HorizontalContentAlignment="Center" FontSize="18"/>-->
-        <!--<TextBox HorizontalAlignment="Left" Margin="575,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="00" HorizontalContentAlignment="Center" FontSize="18"/>-->
-        <!--<TextBox HorizontalAlignment="Left" Margin="575,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" TextChanged="TextBox_TextChanged" Text="59" HorizontalContentAlignment="Center" FontSize="18"/>-->
+        <TextBox HorizontalAlignment="Left" Margin="519,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="10" HorizontalContentAlignment="Center" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="575,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26"  Text="00" HorizontalContentAlignment="Center" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="575,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="59" HorizontalContentAlignment="Center" FontSize="18"/>
         <Label Content="Hora fin" HorizontalAlignment="Left" Margin="519,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Hora Inicio" HorizontalAlignment="Left" Margin="519,18,0,0" VerticalAlignment="Top"/>
-        <Calendar HorizontalAlignment="Left" Margin="521,168,0,0" VerticalAlignment="Top"/>
         <Label Content="Indique los dia de repeticion" HorizontalAlignment="Left" Margin="521,142,0,0" VerticalAlignment="Top"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Margin="521,375,0,0" VerticalAlignment="Top" Background="#FFFFFCFC" Height="30" Width="73" Click="Button_cancel"/>
         <Button Content="Aceptar" HorizontalAlignment="Left" Margin="619,375,0,0" VerticalAlignment="Top" Background="#FFFFFCFC" Height="30" Width="73" BorderBrush="#FF00FFF9" Click="Button_Accept"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,303,462,5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ComboBox HorizontalAlignment="Left" Margin="522,196,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5" Height="26">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.143"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="522,253,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5" Height="26">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.143"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="522,312,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5" Height="26">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.143"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <Label Content="Mes" HorizontalAlignment="Left" Margin="523,168,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dia" HorizontalAlignment="Left" Margin="525,225,0,0" VerticalAlignment="Top"/>
+        <Label Content="Periodo" HorizontalAlignment="Left" Margin="525,285,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
