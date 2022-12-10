@@ -11,7 +11,7 @@
         <Label Content="Asunto" HorizontalAlignment="Left" Margin="35,18,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Right" Margin="0,0,492,364" TextWrapping="Wrap" Text="CLASE: Economia para la toma de decisiones" VerticalAlignment="Bottom" Width="273" Height="26"/>
         <Label Content="Encargado&#xD;&#xA;" HorizontalAlignment="Left" Margin="35,80,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,492,302" TextWrapping="Wrap" Text="PROFESOR:Jose Enrique Ramirez" VerticalAlignment="Bottom" Width="273" Height="26" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Right" Margin="0,0,492,302" TextWrapping="Wrap" Text="PROFESOR:Jose Enrique Ramirez" VerticalAlignment="Bottom" Width="273" Height="26"/>
         <Label Content="AULA" HorizontalAlignment="Left" Margin="35,134,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Right" Margin="0,0,492,248" TextWrapping="Wrap" Text="F104 (Edificio Nuevo)" VerticalAlignment="Bottom" Width="273" Height="26"/>
         <Label Content="Grupo" HorizontalAlignment="Left" Margin="35,186,0,0" VerticalAlignment="Top"/>

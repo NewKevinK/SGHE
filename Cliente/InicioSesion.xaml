@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SGHE.Client"
         mc:Ignorable="d"
         Title="InicioSesion" Height="450" Width="800"
-
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         
         
@@ -85,7 +85,7 @@
 
                 
 
-                <TextBlock Text="Email:"
+                <TextBlock Text="Email o Matricula:"
                            FontSize="16"
                            Foreground="Black"
                            FontFamily="Tahoma"
@@ -97,11 +97,11 @@
                          FontFamily="Tahoma"
                          Margin="20,5,20,0"
                          
-                         CaretBrush="AliceBlue"
+                         CaretBrush="Black"
                          BorderThickness="0,0,0,1"
                          VerticalContentAlignment="Center">
                  </TextBox>
-                <TextBlock Text="Password:"
+                <TextBlock Text="Contraseña:"
                            FontSize="16"
                            Foreground="Black"
                            FontFamily="Tahoma"
@@ -114,7 +114,7 @@
                          Margin="20,5,20,0"
                          
                          
-                         CaretBrush="AliceBlue"
+                         CaretBrush="Black"
                          BorderThickness="0,0,0,1"
                          VerticalContentAlignment="Center">
                 </PasswordBox>
@@ -125,10 +125,10 @@
 
             </StackPanel>
         </Grid>
-        <Button x:Name="btnIniciarSesion" Margin="542,276,142,138" Click="btnIniciarSesion_Click"   >"Iniciar Sesion"</Button>
-        <Button x:Name="btnCrearCuenta" Margin="524,342,124,72" Click="btnCrearCuenta_Click" 
-                Content="Nuevo usuario? Registrate" Background="Transparent" BorderBrush="Transparent"
+        <Button x:Name="btnIniciarSesion" Margin="542,276,142,138" Click="btnIniciarSesion_Click" Content="Iniciar Sesión"/>
+        <Button x:Name="btnCrearCuenta" Margin="524,337,124,77" Click="btnCrearCuenta_Click" 
+                Content="¿Nuevo usuario? Registrate" Background="Transparent" BorderBrush="Transparent"
                 Foreground="CadetBlue"/>
-        <Button x:Name="btnRecuperarPass" Margin="537,388,137,39" Click="btnRecuperarPass_Click"   Content="Recuperar contrasenia"   />
+        <Button x:Name="btnRecuperarPass" Margin="524,374,124,48" Click="btnRecuperarPass_Click"   Content="Recuperar Contraseña"   />
     </Grid>
 </Window>

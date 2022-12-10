@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SGHE.Cliente"
         mc:Ignorable="d"
-        Title="" Height="300" Width="410">
+        Title="" Height="300" Width="410"
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
         <Button Content="Registrar" HorizontalAlignment="Left" Margin="302,233,0,0" VerticalAlignment="Top" Width="68" Click="RegistroAula"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="67" Click="CancelarRegistroAula"/>

@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:SGHE.Cliente"
         xmlns:WPFCarouselControl="clr-namespace:SGHE.Cliente.Recursos.WPFCarouselControl"
         mc:Ignorable="d"
-        Title="ActividadesDiarias" Height="450" Width="800">
+        Title="ActividadesDiarias" Height="450" Width="800"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="70" />
+            <RowDefinition />
             <RowDefinition Height="70" />
         </Grid.RowDefinitions>
 
@@ -38,11 +40,10 @@
             <Line Stroke="Black" Grid.Column="0" X1="200" VerticalAlignment="Center" HorizontalAlignment="Right"  StrokeThickness="1"/>
             <Label Name="lblTime" Grid.Column="1" HorizontalAlignment="Center" FontSize="40" FontFamily="Josefin Sans" />
             <Line Stroke="Black" Grid.Column="2" X1="200" VerticalAlignment="Center" HorizontalAlignment="Left" StrokeThickness="1"/>
-            
+
         </Grid>
 
         <!--#endregion-->
-
 
         <!--#region Horario-->
 
@@ -91,7 +92,7 @@
                                                 <RowDefinition Height="32"/>
                                                 <RowDefinition Height="32"/>
                                             </Grid.RowDefinitions>
-                                            
+
                                             <!--#region Iconos-->
 
                                             <Image Grid.Row="0" Grid.Column="0" Source="/Cliente/book.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -99,17 +100,17 @@
                                             <Image Grid.Row="2" Grid.Column="0" Source="/Cliente/graduation-cap.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             <Label Grid.Row="3" Grid.Column="0" Content="NRC" Foreground="Black" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             <Image Grid.Row="4" Grid.Column="0" Source="/Cliente/building.png" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            
+
                                             <!--#endregion-->
-                                            
+
                                             <!--#region Datos-->
 
                                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding nombre}"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" />
-                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding horario}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding hora}" VerticalAlignment="Center"/>
                                             <Label Grid.Row="2" Grid.Column="1" Content="{Binding profesor}" VerticalAlignment="Center"/>
                                             <Label Grid.Row="3" Grid.Column="1" Content="{Binding nrc}" VerticalAlignment="Center"/>
                                             <Label Grid.Row="4" Grid.Column="1" Content="{Binding aula}" VerticalAlignment="Center"/>
-                                            
+
                                             <!--#endregion-->
 
                                             <!--endregion-->
@@ -130,20 +131,20 @@
 
 
         <!--#region Scroll-->
-        <Slider HorizontalAlignment="Center" Grid.Row="3"
-                VerticalAlignment="Top" Width="676" Foreground="#FF988484" Margin="0,22,0,0"/>
-        <Label Content="    7am   |    8am   |    9am    |    10am    |    11am    |    12pm    |    1pm    |    2pm    |    3pm    |    4pm    |    5pm    |    6pm    |    7pm    |    8pm    |    9pm   "
-               FontSize="11"
-               
-               Grid.Row="3"
-               HorizontalAlignment="Center" Margin="0,46,0,0" Width="736" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <!--#endregion-->
 
         <!--#region Botones-->
-        <Button Grid.Row="4" Content="Volver" FontSize="15" FontWeight="Bold" Foreground="White" Background="Black"
+        <Button Grid.Row="3" Content="Volver" FontSize="15" FontWeight="SemiBold" Foreground="White" Background="Black"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Margin="20,20" Height="30" Width="90"
+               Margin="20,20" Height="30" Width="90" Click="Click_Volver"
+               
+               />
+        <Button Grid.Row="3" Content="Horario Completo" FontSize="15" FontWeight="SemiBold" Foreground="White" Background="Black"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="623,0,0,0" Height="30" Width="157" Click="Click_HorarioCompleto"
+               
                />
 
         <!--#endregion-->

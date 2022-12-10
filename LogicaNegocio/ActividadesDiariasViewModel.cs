@@ -13,14 +13,10 @@ namespace SGHE.LogicaNegocio
         {
             ExperienciasEducativasDAB = new ObservableCollection<ExperienciaEducativa1>();
             
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Software", profesor = "Garcia Trujillo Carlos", aula = "112", nrc = "83501" });
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Sistemas en Red", profesor = "Dominguez Isidro Saul", aula = "113", nrc = "87276" });
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Diseño de Interfaces de Usuario", profesor = "Reyes Flores Itzel Alessandra", aula = "113", nrc = "87275" });
-            
-            //SelectedExperienciaEducativaDAB = ExperienciasEducativasDAB[0];
-
-            DateTime FechaActualLabel = DateTime.Today;
-
+            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Software", hora="5:00 pm - 8:00 pm", profesor = "Garcia Trujillo Carlos", aula = "112", nrc = "83501" });
+            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Sistemas en Red", hora = "3:00 pm - 5:00 pm", profesor = "Dominguez Isidro Saul", aula = "113", nrc = "87276" });
+            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Diseño de Interfaces de Usuario", hora = "1:00 pm - 3:00 pm", profesor = "Reyes Flores Itzel Alessandra", aula = "113", nrc = "87275" });
+            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Paradigmas de la Programación", hora = "11:00 am - 1:00 pm", profesor = "Oscar Alonso Ramirez", aula = "CC2", nrc = "85012" });
 
         }
 
@@ -61,9 +57,6 @@ namespace SGHE.LogicaNegocio
         // Delete the selected item
         public void Delete()
         {
-            //System.Collections.Generic.List<ExperienciaEducativa> newItems = ExperienciasEducativasDAB.ToList();
-            //newItems.Remove(SelectedExperienciaEducativaDAB);
-            //ExperienciasEducativasDAB = new ObservableCollection<ExperienciaEducativa>(newItems);
             ExperienciasEducativasDAB.Remove(SelectedExperienciaEducativaDAB);
             SelectedExperienciaEducativaDAB = ExperienciasEducativasDAB[0];
         }

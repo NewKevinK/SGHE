@@ -36,7 +36,6 @@ namespace SGHE.Cliente
 
         void timer_Tick(object sender, EventArgs e)
         {
-            String [] conectoresFecha = {"de","del"};
             lblTime.Content = DateTime.Now.ToString("hh:mm tt");
             lblFechaActual.Content = DateTime.Now.ToString("dddd dd MMMM yyyy");
         }
@@ -62,5 +61,14 @@ namespace SGHE.Cliente
             _carouselDABExperienciasEducativas.RotateLeft();
         }
 
+        private void Click_Volver(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
