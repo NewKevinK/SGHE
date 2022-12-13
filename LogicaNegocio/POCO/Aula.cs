@@ -22,5 +22,13 @@ namespace SGHE.LogicaNegocio.POCO
             this.IdEdificio = idEdificio;
             this.TipoAula = tipoAula;
         }
+
+        public Aula(string codigoAula, string estado, int idEdificio, string tipoAula)
+        {
+            this.CodigoAula = codigoAula;
+            this.Estado = estado;
+            this.IdEdificio = idEdificio;
+            this.TipoAula = tipoAula;
+        }
     }
 }

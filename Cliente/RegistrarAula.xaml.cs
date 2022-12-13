@@ -48,7 +48,7 @@ namespace SGHE.Cliente
 
             if (ValidarDatos())
             {
-                Aula aula = new Aula(tbCodigoAula.Text, int.Parse(cbEdificioAula.Text),cbTipoAula.Text);
+                Aula aula = new Aula(tbCodigoAula.Text, ObtenerEdificio(cbEdificioAula.Text),cbTipoAula.Text);
                 GuardarAula(aula);
                 registro = true;
             }
@@ -85,10 +85,10 @@ namespace SGHE.Cliente
 
         public void DatosComboBoxEdificio()
         {
-            cbEdificioAula.Items.Add("1");
-            cbEdificioAula.Items.Add("2");
-            cbEdificioAula.Items.Add("3");
-            cbEdificioAula.Items.Add("4");
+            cbEdificioAula.Items.Add("CD-EX"); 
+            cbEdificioAula.Items.Add("ECONEX");
+            cbEdificioAula.Items.Add("C-CIX");
+            cbEdificioAula.Items.Add("FEI");
         }
 
         public void DatosComboBoxTipoAula()
@@ -96,6 +96,29 @@ namespace SGHE.Cliente
             cbTipoAula.Items.Add("Presencial");
             cbTipoAula.Items.Add("Mixta");
             cbTipoAula.Items.Add("Virtual");
+        }
+
+        public int ObtenerEdificio(String edificio)
+        {
+            int idEdifico = 0;
+            if (edificio.Equals("CD-EX"))
+            {
+                idEdifico = 1;
+            }
+            if (edificio.Equals("ECONEX"))
+            {
+                idEdifico = 2;
+            }
+            if (edificio.Equals("C-CIX"))
+            {
+                idEdifico = 3;
+            }
+            if (edificio.Equals("FEI"))
+            {
+                idEdifico = 4;
+            }
+
+            return idEdifico;
         }
     }
 }

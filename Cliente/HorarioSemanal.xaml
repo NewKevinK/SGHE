@@ -1,0 +1,92 @@
+﻿<Window x:Class="SGHE.Cliente.HorarioSemanal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SGHE.Cliente" xmlns:WPFCarouselControl="clr-namespace:SGHE.Cliente.Recursos.WPFCarouselControl"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="HorarioSemanal" Height="600" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <!--#region Encabezado-->
+        <Label Grid.Row="0" Content="Horario Semanal" FontSize="20" Foreground="White"
+               Background="Black"
+               HorizontalContentAlignment="Left"
+               VerticalAlignment="Center"
+               Margin="20,0"/>
+        <Label Grid.Row="0" Name="lblFechaActual" FontSize="20" Foreground="White"
+               HorizontalContentAlignment="Right"
+               VerticalContentAlignment="Center"
+               Margin="255,0,30,0"/>
+        <!--#endregion-->
+
+        <!--#region Reloj-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Line Stroke="Black" Grid.Column="0"  X1="300" Stretch="Fill" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"  StrokeThickness="1"/>
+            <Label Name="lblTime" Grid.Column="1" HorizontalAlignment="Center" FontSize="40" FontFamily="Josefin Sans" />
+            <Line Stroke="Black" Grid.Column="2" X1="300" Stretch="Fill" Margin="0,0,20,0"  VerticalAlignment="Center" HorizontalAlignment="Stretch" StrokeThickness="1"/>
+
+        </Grid>
+
+        <!--#endregion-->
+
+        <!--#region Horario-->
+
+        <Grid x:Name="GridHorario" Grid.Row="2" Margin="20" Background="WhiteSmoke" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="Horas"/>
+                <ColumnDefinition x:Name="Lunes"/>
+                <ColumnDefinition x:Name="Martes"/>
+                <ColumnDefinition x:Name="Miercoles"/>
+                <ColumnDefinition x:Name="Jueves"/>
+                <ColumnDefinition x:Name="Viernes"/>
+                <ColumnDefinition x:Name="Sabado" Width="0"/>
+                <ColumnDefinition x:Name="ColDomingo" Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--Titulos-->
+
+            <Label Grid.Row="0" Grid.Column="0" Content="HORA" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="LUNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="MARTES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="3" Content="MIERCOLES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="4" Content="JUEVES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="5" Content="VIERNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="6" Content="SABADO" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label Grid.Row="0" Grid.Column="7" Content="DOMINGO" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+
+        </Grid>
+
+        <!--#endregion-->
+
+
+        <!--#region Scroll-->
+        <!--#endregion-->
+
+        <!--#region Botones-->
+        <Button Grid.Row="3" Content="Volver" FontSize="15" FontWeight="SemiBold" Foreground="White" Background="Black"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0" Height="30" Width="110"
+               
+               />
+        <!--#endregion-->
+
+    </Grid>
+</Window>

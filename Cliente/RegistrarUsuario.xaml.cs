@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGHE.Cliente;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -65,6 +66,11 @@ namespace SGHE.Client
             this.Hide();
         }
 
-        
+        private void btnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            DatosUsuario datosUsuario = new DatosUsuario();
+            datosUsuario.Show();
+            this.Close();
+        }
     }
 }

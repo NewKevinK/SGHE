@@ -1,0 +1,23 @@
+﻿<Window x:Class="SGHE.Cliente.ActualizarAula"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SGHE.Cliente"
+        mc:Ignorable="d"
+        Title="" Height="425" Width="450">
+    <Grid Margin="0,0,0,-6">
+        <Label Content="Codigo Aula :" HorizontalAlignment="Left" Margin="48,35,0,0" VerticalAlignment="Top"/>
+        <Label Content="Estado Aula :" HorizontalAlignment="Left" Margin="48,92,0,0" VerticalAlignment="Top"/>
+        <Label Content="Identificador del Edificio :" HorizontalAlignment="Left" Margin="48,161,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tipo de Aula :" HorizontalAlignment="Left" Margin="48,232,0,0" VerticalAlignment="Top"/>
+        <Button Content="Guardar" HorizontalAlignment="Left" Margin="348,352,0,0" VerticalAlignment="Top" Width="72" Click="Actualizar"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="48,352,0,0" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="tbCodigoAula" HorizontalAlignment="Left" Margin="237,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <ComboBox x:Name="cbEstadoAula" HorizontalAlignment="Left" Margin="237,94,0,0" VerticalAlignment="Top" Width="183"/>
+        <ComboBox x:Name="cbEdificioAula" HorizontalAlignment="Left" Margin="237,161,0,0" VerticalAlignment="Top" Width="183"/>
+        <ComboBox x:Name="cbTipoAula" HorizontalAlignment="Left" Margin="237,234,0,0" VerticalAlignment="Top" Width="183"/>
+        <Label Content="Actualizar Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Margin="0,-3,0,0"/>
+
+    </Grid>
+</Window>
