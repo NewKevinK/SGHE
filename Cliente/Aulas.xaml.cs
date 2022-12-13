@@ -1,4 +1,5 @@
-﻿using SGHE.LogicaNegocio.DAO;
+﻿using SGHE.Cliente;
+using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,8 @@ namespace SGHE.Client
             lbAula06.Content = VerificarAula();
             lbAula07.Content = VerificarAula();
             lbAula08.Content = VerificarAula();
-            
+            BotonesVisibles();
+
         }
 
         private void MostrarAulasSiguientes(object sender, RoutedEventArgs e)
@@ -73,10 +75,118 @@ namespace SGHE.Client
             }
             else
             {
-                codigoAula = string.Format("Aulas: {1}{0}Estado: {2}{0}", Environment.NewLine, aulas[contadorAula].CodigoAula, aulas[contadorAula].Estado);
+                codigoAula = aulas[contadorAula].CodigoAula;
                 contadorAula++;
             }
             return codigoAula;
+        }
+
+        public void BotonesVisibles()
+        {
+            if (lbAula01.Content.Equals("No hay más aulas"))
+            {
+                btDetalles01.IsEnabled = false;
+            }
+            else
+            {
+                btDetalles01.IsEnabled = true;
+            }
+            if (lbAula02.Content.Equals("No hay más aulas"))
+            {
+                btDetalles02.IsEnabled = false;
+            }
+            else
+            {
+                btDetalles02.IsEnabled = true;
+            }
+            if (lbAula03.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles03.IsEnabled = false;
+            }
+            if (lbAula04.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles04.IsEnabled = false;
+            }
+            if (lbAula05.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles05.IsEnabled = false;
+            }
+            if (lbAula06.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles06.IsEnabled = false;
+            }
+            if (lbAula07.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles07.IsEnabled = false;
+            }
+            if (lbAula08.Content.Equals("No hay más aulas"))
+            {
+                    btDetalles08.IsEnabled = false; ;
+            }
+        }
+
+        public void btDetalles01_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula01.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles02_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula02.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles03_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula03.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles04_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula04.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles05_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula05.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles06_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula06.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles07_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula07.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
+
+        private void btDetalles08_Click(object sender, RoutedEventArgs e)
+        {
+            String codigoAula = lbAula08.Content.ToString();
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
         }
     }
 }
