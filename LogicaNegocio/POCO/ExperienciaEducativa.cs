@@ -10,5 +10,9 @@ namespace SGHE.LogicaNegocio.POCO
         {
 
         }
+        public ExperienciaEducativa()
+        {
+
+        }
     }
 }

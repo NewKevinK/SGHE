@@ -25,6 +25,11 @@ namespace SGHE.LogicaNegocio.POCO
             this.idDocente = idDocente;
         }
 
+        protected Actividad()
+        {
+            
+        }
+
         public int IdEE { get => idEE; set => idEE = value; }
         public string NRC1 { get => NRC; set => NRC = value; }
         public string Nombre { get => nombre; set => nombre = value; }
