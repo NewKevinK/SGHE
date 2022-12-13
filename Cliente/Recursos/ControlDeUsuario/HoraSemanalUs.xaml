@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="SGHE.Cliente.Recursos.ControlDeUsuario.HoraSemanalUs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SGHE.Cliente.Recursos.ControlDeUsuario"
+             mc:Ignorable="d" Height="54" Width="166">
+    <Grid Background="White">
+        <Grid Margin="2,5,5,5" Background="#FFADABAB">
+            <TextBlock x:Name="HoraInicio" Margin="15,0,102,0" TextWrapping="Wrap" Text="7:00" VerticalAlignment="Center"/>
+            <TextBlock x:Name="HoraFin" HorizontalAlignment="Left" Margin="105,0,0,0" TextWrapping="Wrap" Text="8:00" VerticalAlignment="Center" Width="40"/>
+            <TextBlock x:Name="guin" HorizontalAlignment="Left" TextWrapping="Wrap" Text="-----" VerticalAlignment="Top" Width="29" Height="19" Margin="61,10,0,0" FontSize="18"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -24,7 +24,7 @@ namespace SGHE.Cliente
         {
             InitializeComponent();
 
-            DataContext = new ActividadesDiariasViewModel();
+            //DataContext = new ActividadesDiariasViewModel();
 
             _carouselDABExperienciasEducativas.SelectionChanged += _carouselDABEE_SelectionChanged;
 
@@ -42,13 +42,13 @@ namespace SGHE.Cliente
 
         private void _carouselDABEE_SelectionChanged(FrameworkElement selectedElement)
         {
-            var viewModel = DataContext as ActividadesDiariasViewModel;
-            if (viewModel == null)
-            {
-                return;
-            }
+           // var viewModel = DataContext as ActividadesDiariasViewModel;
+           // if (viewModel == null)
+           // {
+          //      return;
+          //  }
 
-            viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as ExperienciaEducativa1;
+           // viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as ExperienciaEducativa1;
         }
 
         private void _buttonLeftArrow_Click(object sender, RoutedEventArgs e)

@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SGHE.Cliente" xmlns:WPFCarouselControl="clr-namespace:SGHE.Cliente.Recursos.WPFCarouselControl"
+        xmlns:local="clr-namespace:SGHE.Cliente" xmlns:WPFCarouselControl="clr-namespace:SGHE.Cliente.Recursos.WPFCarouselControl" xmlns:ControlDeUsuario="clr-namespace:SGHE.Cliente.Recursos.ControlDeUsuario"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="HorarioSemanal" Height="600" Width="1000">
+        Title="HorarioSemanal" Height="667" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -59,7 +59,45 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+            <!--Contenido-->
+            <StackPanel Margin="0,32,0,0" Grid.RowSpan="2">
+                <Grid>
+                    <StackPanel x:Name="GridElementosHora" Margin="0,0,0,-332">
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora7_9" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora9_11" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora11_13" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora13_15" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora15_17" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora17_19" Width="163" />
+                        <ControlDeUsuario:HoraSemanalUs x:Name="Hora19_21" Width="163" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="158,32,2,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Grid  Height="378">
+                    <StackPanel x:Name="GridElementoslunes"></StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="158,32,2,0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid  Height="380">
+                    <StackPanel x:Name="GridElementosMartes"></StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="0,30,0,2" Grid.RowSpan="2" Grid.Column="3">
+                <Grid  Height="380">
+                    <StackPanel x:Name="GridElementosMiercoles"></StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,-3" Grid.Column="4" Grid.Row="1">
+                <Grid  Height="381">
+                    <StackPanel x:Name="GridElementosJueves"></StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="0,30,0,2" Grid.Column="5" Grid.RowSpan="2">
+                <Grid  Height="378">
+                    <StackPanel x:Name="GridElementosViernes"></StackPanel>
+                </Grid>
+            </StackPanel>
             <!--Titulos-->
 
             <Label Grid.Row="0" Grid.Column="0" Content="HORA" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
