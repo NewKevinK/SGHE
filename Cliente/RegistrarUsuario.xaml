@@ -42,7 +42,6 @@
 
             </StackPanel>
             <Button x:Name="btnRegresar"  Margin="51,388,657,19" Click="btnRegresar_Click" >"Regresar"</Button>
-            <Button x:Name="btnSiguiente"  Margin="663,388,45,19" Click="btnSiguiente_Click" Content="Siguiente" />
         </Grid>
 
         <Grid x:Name="FormularioDocente" Visibility="Hidden" Grid.RowSpan="2"  >

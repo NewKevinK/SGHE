@@ -30,7 +30,7 @@ namespace SGHE.Cliente
 
         private void Click_ActividadesDiarias(object sender, RoutedEventArgs e)
         {
-            ActividadesDiarias actividadesDiarias = new ActividadesDiarias();
+            HorarioDelDia actividadesDiarias = new HorarioDelDia();
             actividadesDiarias.Show();
 
         }

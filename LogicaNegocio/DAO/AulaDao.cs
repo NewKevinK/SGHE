@@ -107,7 +107,7 @@ namespace SGHE.LogicaNegocio.DAO
             return confirmacion;
         }
 
-        public int ActualizarAula(int idAula, Aula aula)
+        public int ActualizarAula(string idAula, Aula aula)
         {
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
             int confirmacion = 0;
@@ -121,7 +121,7 @@ namespace SGHE.LogicaNegocio.DAO
                     mySqlCommand.Parameters.AddWithValue("@estado", aula.Estado);
                     mySqlCommand.Parameters.AddWithValue("@idEdificio", aula.IdEdificio);
                     mySqlCommand.Parameters.AddWithValue("@tipoAula", aula.TipoAula);
-                    mySqlCommand.Parameters.AddWithValue("@idAula", idAula);
+                    mySqlCommand.Parameters.AddWithValue("@idAula", int.Parse(idAula));
                     int filasAfectadas = mySqlCommand.ExecuteNonQuery();
                     if (filasAfectadas > 0)
                     {
@@ -139,36 +139,6 @@ namespace SGHE.LogicaNegocio.DAO
 
             }
             return confirmacion;
-        }
-
-
-        public Aula RecuperarAulaPorCodigo(String codigoAula)
-        {
-            Aula aula = new Aula();
-            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
-            if (conexionBD != null)
-            {
-                try
-                {
-                    string sql = "SELECT * FROM aula WHERE codigoAula=@codigoAula";
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@codigoAula",codigoAula);
-                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
-                    while (respuestaBD.Read())
-                    {
-                        aula.IdAula = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
-                        aula.CodigoAula = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
-                        aula.Estado = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
-                        aula.IdEdificio = ((respuestaBD.IsDBNull(3)) ? 0 : respuestaBD.GetInt32(3));
-                        aula.TipoAula = ((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            return aula;
         }
     }
 }

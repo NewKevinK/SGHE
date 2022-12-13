@@ -12,7 +12,7 @@
         <Label Content="Identificador del Edificio :" HorizontalAlignment="Left" Margin="48,161,0,0" VerticalAlignment="Top"/>
         <Label Content="Tipo de Aula :" HorizontalAlignment="Left" Margin="48,232,0,0" VerticalAlignment="Top"/>
         <Button Content="Guardar" HorizontalAlignment="Left" Margin="348,352,0,0" VerticalAlignment="Top" Width="72" Click="Actualizar"/>
-        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="48,352,0,0" VerticalAlignment="Top" Width="70" Click="Button_Click"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="48,352,0,0" VerticalAlignment="Top" Width="70"/>
         <TextBox x:Name="tbCodigoAula" HorizontalAlignment="Left" Margin="237,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
         <ComboBox x:Name="cbEstadoAula" HorizontalAlignment="Left" Margin="237,94,0,0" VerticalAlignment="Top" Width="183"/>
         <ComboBox x:Name="cbEdificioAula" HorizontalAlignment="Left" Margin="237,161,0,0" VerticalAlignment="Top" Width="183"/>

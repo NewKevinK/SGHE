@@ -42,7 +42,7 @@ namespace SGHE.Cliente
 
         private void _carouselCalificaciones_SelectionChanged(FrameworkElement selectedElement)
         {
-            var viewModel = DataContext as ActividadesDiariasViewModel;
+            var viewModel = DataContext as HorarioDelDiaViewModel;
             if (viewModel == null)
             {
                 return;
