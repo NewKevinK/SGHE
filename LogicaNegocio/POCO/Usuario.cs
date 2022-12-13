@@ -31,6 +31,11 @@ namespace SGHE.LogicaNegocio.POCO
             this.idTipoUsuario = idTipoUsuario;
         }
 
+        public Usuario()
+        {
+
+        }
+
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string ApellidoPaterno { get => apellidoPaterno; set => apellidoPaterno = value; }
