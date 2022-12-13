@@ -139,5 +139,65 @@ namespace SGHE.LogicaNegocio.DAO
             }
             return idUsuario;
         }
+
+        
+
+        public int Autenticacion(string password, string email)
+        {
+            int idUsuario=0;
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT idUsuario FROM usuario WHERE email = '@email' AND PASSWORD =@password";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@email",email);
+                    mySqlCommand.Parameters.AddWithValue("@password", password);
+
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return idUsuario;
+        }
+
+        public Usuario ObtenerUsuario(int id)
+        {
+            Aula aula = new Aula();
+            //Usuario usuario = new();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                   // mySqlCommand.Parameters.AddWithValue();
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            //return aula;
+
+            return null;
+        }
     }
 }
