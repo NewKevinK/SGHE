@@ -38,11 +38,7 @@ namespace SGHE.Client
                 {
                     FormularioDocente.Visibility = Visibility.Visible;
                     inicio.Visibility = Visibility.Hidden;   
-
-
                 }  
-                
-               // cbTipoUsuario_Selected();
                 
             }
             catch (SystemException)
@@ -68,9 +64,34 @@ namespace SGHE.Client
 
         private void btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
-            DatosUsuario datosUsuario = new DatosUsuario();
-            datosUsuario.Show();
-            this.Close();
+            if (VerificarComboBox())
+            {
+                string tipoUsuario = cbTipoUsuario.Text;
+                DatosUsuario datosUsuario = new DatosUsuario(tipoUsuario);
+                datosUsuario.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un tipo de usuario para continuar", "Seleccionar Tipo de usuario");
+            }
+            
         }
+
+        private bool VerificarComboBox()
+        {
+            bool validacion;
+
+            if (cbTipoUsuario.Text.Equals(""))
+            {
+                validacion = false;
+            }
+            else
+            {
+                validacion = true;
+            }
+            return validacion;
+        }
+
     }
 }

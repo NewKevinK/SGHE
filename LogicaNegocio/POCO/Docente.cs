@@ -15,11 +15,12 @@ namespace SGHE.LogicaNegocio.POCO
 
         }
 
-        public Docente(int idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, DateTime fechaNacimiento, string telefono, string email, string domicilio, string password, int idTipoUsuario, int idDocente, string numDocente) : base(idUsuario, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, email, domicilio, password, idTipoUsuario)
+        public Docente(int idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, DateTime fechaNacimiento, string telefono, string email, string domicilio, string password, int idTipoUsuario, string numDocente) : base(idUsuario, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, email, domicilio, password, idTipoUsuario)
         {
-            this.idDocente = idDocente;
             this.numDocente = numDocente;
             this.idUsuario = idUsuario;
         }
+
+        public string NumDocente { get; set; }
     }
 }

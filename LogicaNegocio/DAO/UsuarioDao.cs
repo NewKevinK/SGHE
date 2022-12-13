@@ -49,7 +49,7 @@ namespace SGHE.LogicaNegocio.DAO
             return mensaje;
         }
 
-        public string RegistrarDocente(int idUsuario,string numDocente)
+        public string RegistrarDocente(Docente docente)
         {
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
             string mensaje = "";
@@ -59,8 +59,8 @@ namespace SGHE.LogicaNegocio.DAO
                 {
                     string sql = "INSERT INTO docente(idUsuario,numDocente) VALUES (@idUsuario,@numDocente)";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
-                    mySqlCommand.Parameters.AddWithValue("@numDocente",numDocente);
+                    mySqlCommand.Parameters.AddWithValue("@idUsuario", docente.IdUsuario);
+                    mySqlCommand.Parameters.AddWithValue("@numDocente",docente.NumDocente);
                     mySqlCommand.Prepare();
                     if (mySqlCommand.ExecuteNonQuery() > 0)
                     {
@@ -81,7 +81,40 @@ namespace SGHE.LogicaNegocio.DAO
             return mensaje;
         }
 
-        public int RecuperarIdUsuario(Docente docente)
+        public string RegistrarAlumno(Alumno alumno)
+        {
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            string mensaje = "";
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "INSERT INTO alumno(idUsuario,matricula,idCarrera) VALUES (@idUsuario,@matricula,@idCarrera)";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idUsuario", alumno.IdUsuario);
+                    mySqlCommand.Parameters.AddWithValue("@matricula", alumno.Matricula);
+                    mySqlCommand.Parameters.AddWithValue("@idCarrera", alumno.IdCarrera);
+                    mySqlCommand.Prepare();
+                    if (mySqlCommand.ExecuteNonQuery() > 0)
+                    {
+                        mensaje = "Alumno se ha registrado con éxito";
+                    }
+                    else
+                    {
+                        mensaje = "El Alumno no ha podido registrarse";
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    mensaje = "Ha ocurrido un error, intentelo más tarde";
+                }
+            }
+
+            return mensaje;
+        }
+
+        public int RecuperarIdUsuario(Usuario usuario)
         {
             int idUsuario=0;
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
@@ -91,7 +124,7 @@ namespace SGHE.LogicaNegocio.DAO
                 {
                     string sql = "SELECT * FROM usuario WHERE nombre=@nombre";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@nombre", docente.Nombre);
+                    mySqlCommand.Parameters.AddWithValue("@nombre", usuario.Nombre);
                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
                     while (respuestaBD.Read())
                     {

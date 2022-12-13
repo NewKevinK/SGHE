@@ -24,10 +24,14 @@
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="502,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
         <TextBox x:Name="tbDomicilio" HorizontalAlignment="Left" Margin="502,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
         <PasswordBox x:Name="pbContrasena" HorizontalAlignment="Left" Margin="502,179,0,0" VerticalAlignment="Top" Width="168" Height="22"/>
-        <Label Content="Numero docente :" HorizontalAlignment="Left" Margin="378,235,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbNumeroDocente" Content="Numero docente :" HorizontalAlignment="Left" Margin="378,235,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbNumeroDocente" HorizontalAlignment="Left" Margin="502,244,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
         <Button x:Name="btGuardarUsuario" Content="Guardar Usuario" HorizontalAlignment="Left" Margin="630,369,0,0" VerticalAlignment="Top" Height="29" Width="119" Click="btGuardarUsuario_Click"/>
-        <Button x:Name="btRegresar" Content="Regresar" HorizontalAlignment="Left" Margin="44,369,0,0" VerticalAlignment="Top" Height="29" Width="119"/>
+        <Button x:Name="btRegresar" Content="Regresar" HorizontalAlignment="Left" Margin="44,369,0,0" VerticalAlignment="Top" Height="29" Width="119" Click="btRegresar_Click"/>
+        <Label x:Name="lbMatricula" Content="Matricula :" HorizontalAlignment="Left" Margin="379,235,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbMatriculaAlumno" HorizontalAlignment="Left" Margin="502,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <ComboBox x:Name="cbCarreraAlumno" HorizontalAlignment="Left" Margin="502,298,0,0" VerticalAlignment="Top" Width="168"/>
+        <Label x:Name="lbCarrera" Content="Carrera :" HorizontalAlignment="Left" Margin="383,294,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
