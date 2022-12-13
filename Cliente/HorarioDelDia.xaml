@@ -105,11 +105,13 @@
 
                                             <!--#region Datos-->
 
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding nombre}"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" />
-                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding hora}" VerticalAlignment="Center"/>
-                                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding profesor}" VerticalAlignment="Center"/>
-                                            <Label Grid.Row="3" Grid.Column="1" Content="{Binding nrc}" VerticalAlignment="Center"/>
-                                            <Label Grid.Row="4" Grid.Column="1" Content="{Binding aula}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding NombreEE}"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding HoraInicio}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Content=" - " VerticalAlignment="Center" Margin="50,0"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding HoraFin}" VerticalAlignment="Center" Margin="70,0" />
+                                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding NombreCompletoDocente}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="3" Grid.Column="1" Content="{Binding NRC}" VerticalAlignment="Center"/>
+                                            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CodigoAula}" VerticalAlignment="Center"/>
 
                                             <!--#endregion-->
 
