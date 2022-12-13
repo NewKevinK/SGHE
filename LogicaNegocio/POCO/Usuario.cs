@@ -15,21 +15,7 @@ namespace SGHE.LogicaNegocio.POCO
         private string email;
         private string domicilio;
         private string password;
-        private int idTipoUsuario;
-
-        public Usuario(int idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, DateTime fechaNacimiento, string telefono, string email, string domicilio, string password, int idTipoUsuario)
-        {
-            this.idUsuario = idUsuario;
-            this.nombre = nombre;
-            this.apellidoPaterno = apellidoPaterno;
-            this.apellidoMaterno = apellidoMaterno;
-            this.fechaNacimiento = fechaNacimiento;
-            this.telefono = telefono;
-            this.email = email;
-            this.domicilio = domicilio;
-            this.password = password;
-            this.idTipoUsuario = idTipoUsuario;
-        }
+        private int idTipoUusario;
 
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public string Nombre { get => nombre; set => nombre = value; }
@@ -40,6 +26,6 @@ namespace SGHE.LogicaNegocio.POCO
         public string Email { get => email; set => email = value; }
         public string Domicilio { get => domicilio; set => domicilio = value; }
         public string Password { get => password; set => password = value; }
-        public int IdTipoUusario { get => idTipoUusario; set => idTipoUusario = value; }
+        public int IdTipoUusario { get => idTipoUsuario; set => idTipoUsuario = value; }
     }
 }

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SGHE.LogicaNegocio
 {
-    public class ActividadesDiariasViewModel : INotifyPropertyChanged
+    public class HorarioDelDiaViewModel : INotifyPropertyChanged
     {
-        public ActividadesDiariasViewModel()
+        public HorarioDelDiaViewModel()
         {
             ExperienciasEducativasDAB = new ObservableCollection<ExperienciaEducativa1>();
             
