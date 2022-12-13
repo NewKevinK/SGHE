@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SGHE.Client"
+        xmlns:local="clr-namespace:SGHE.Client" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="RegistroHorario" Height="450" Width="800"
         Background="White">
@@ -22,7 +22,8 @@
         <Button Content="" HorizontalAlignment="Left" Margin="313,106,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Button_Manager_table"/>
         <Button Content="" HorizontalAlignment="Left" Margin="313,160,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Button_room_table"/>
         <Button Content="" HorizontalAlignment="Left" Margin="313,212,0,0" VerticalAlignment="Top" Height="26" Width="26" Click="Buttom_group_table"/>
-        <TextBox HorizontalAlignment="Left" Margin="519,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="8" HorizontalContentAlignment="Center" FontSize="18"/>
+
+        <!-->
         <ComboBox HorizontalAlignment="Left" Margin="631,44,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Height="26">
             <ComboBox.RenderTransform>
                 <TransformGroup>
@@ -42,10 +43,11 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </ComboBox.RenderTransform>
-        </ComboBox>
-        <TextBox HorizontalAlignment="Left" Margin="519,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="10" HorizontalContentAlignment="Center" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="575,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26"  Text="00" HorizontalContentAlignment="Center" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="575,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="26" Text="59" HorizontalContentAlignment="Center" FontSize="18"/>
+        </ComboBox>-->
+
+        <xctk:TimePicker Margin="521,44,118,364"/>
+        <xctk:TimePicker Margin="521,106,118,302"/>
+
         <Label Content="Hora fin" HorizontalAlignment="Left" Margin="519,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Hora Inicio" HorizontalAlignment="Left" Margin="519,18,0,0" VerticalAlignment="Top"/>
         <Label Content="Indique los dia de repeticion" HorizontalAlignment="Left" Margin="521,142,0,0" VerticalAlignment="Top"/>

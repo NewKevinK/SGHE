@@ -11,19 +11,19 @@ namespace SGHE.LogicaNegocio
     {
         public HorarioDelDiaViewModel()
         {
-            ExperienciasEducativasDAB = new ObservableCollection<ExperienciaEducativa1>();
+            ExperienciasEducativasDAB = new ObservableCollection<HorarioDiaEE>();
             
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Software", hora="5:00 pm - 8:00 pm", profesor = "Garcia Trujillo Carlos", aula = "112", nrc = "83501" });
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Desarrollo de Sistemas en Red", hora = "3:00 pm - 5:00 pm", profesor = "Dominguez Isidro Saul", aula = "113", nrc = "87276" });
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Diseño de Interfaces de Usuario", hora = "1:00 pm - 3:00 pm", profesor = "Reyes Flores Itzel Alessandra", aula = "113", nrc = "87275" });
-            ExperienciasEducativasDAB.Add(new ExperienciaEducativa1() { nombre = "Paradigmas de la Programación", hora = "11:00 am - 1:00 pm", profesor = "Oscar Alonso Ramirez", aula = "CC2", nrc = "85012" });
+            ExperienciasEducativasDAB.Add(new HorarioDiaEE() { NombreEE = "Desarrollo de Software", HoraInicio="5:00 pm", HoraFin="8:00 pm", NombreCompletoDocente = "Garcia Trujillo Carlos", CodigoAula = "112", NRC = "83501" });
+            ExperienciasEducativasDAB.Add(new HorarioDiaEE() { NombreEE = "Desarrollo de Sistemas en Red", HoraInicio = "3:00 pm", HoraFin="5:00 pm", NombreCompletoDocente = "Dominguez Isidro Saul", CodigoAula = "113", NRC = "87276" });
+            ExperienciasEducativasDAB.Add(new HorarioDiaEE() { NombreEE = "Diseño de Interfaces de Usuario", HoraInicio = "1:00 pm", HoraFin="3:00 pm", NombreCompletoDocente = "Reyes Flores Itzel Alessandra", CodigoAula = "113", NRC = "87275" });
+            ExperienciasEducativasDAB.Add(new HorarioDiaEE() { NombreEE = "Paradigmas de la Programación", HoraInicio = "11:00 am", HoraFin="1:00 pm", NombreCompletoDocente = "Oscar Alonso Ramirez", CodigoAula = "CC2", NRC = "85012" });
 
         }
 
         //Colección de Experiencias Educativas
 
-        private ObservableCollection<ExperienciaEducativa1> _experienciasEducativasDAB;
-        public ObservableCollection<ExperienciaEducativa1> ExperienciasEducativasDAB
+        private ObservableCollection<HorarioDiaEE> _experienciasEducativasDAB;
+        public ObservableCollection<HorarioDiaEE> ExperienciasEducativasDAB
         {
             get
             {
@@ -39,8 +39,8 @@ namespace SGHE.LogicaNegocio
         // Experiencia Educativa (Seleccionada)
 
 
-        private ExperienciaEducativa1 _selectedExperienciaEducativaDAB;
-        public ExperienciaEducativa1 SelectedExperienciaEducativaDAB
+        private HorarioDiaEE _selectedExperienciaEducativaDAB;
+        public HorarioDiaEE SelectedExperienciaEducativaDAB
         {
             get
             {

@@ -48,7 +48,7 @@ namespace SGHE.Cliente
                 return;
             }
 
-            viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as ExperienciaEducativa1;
+            viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as HorarioDiaEE;
         }
 
         private void _buttonLeftArrow_Click(object sender, RoutedEventArgs e)
