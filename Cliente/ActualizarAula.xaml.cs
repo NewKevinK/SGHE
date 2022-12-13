@@ -1,4 +1,5 @@
-﻿using SGHE.LogicaNegocio.DAO;
+﻿using SGHE.Client;
+using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class ActualizarAula : Window
     {
+        String codigoAula;
+        int idAula;
         public ActualizarAula()
         {
             InitializeComponent();
@@ -26,19 +29,30 @@ namespace SGHE.Cliente
             DatosComboBoxEstadoAula();
             DatosComboBoxTipoAula();
         }
+        public ActualizarAula(String codigoAula)
+        {
+            InitializeComponent();
+            DatosComboBoxEdificio();
+            DatosComboBoxEstadoAula();
+            DatosComboBoxTipoAula();
+            this.codigoAula = codigoAula;
+            MostrarDatos();
+        }
 
 
         private void Actualizar(object sender, RoutedEventArgs e)
         {
             if (RecuperarDatos() == 1)
             {
-                MessageBox.Show("Aula Actualizada", "Aula Actualizada con exíto");
+                MessageBox.Show("Aula Actualizada con exíto", "Aula Actualizada");
+                Aulas aulas = new Aulas();
+                aulas.Show();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Error", "La Aula no se ha podido actualizar");
+                MessageBox.Show("La Aula no se ha podido actualizar", "Error");
             }
-            RecuperarDatos();
         }
 
         public int RecuperarDatos()
@@ -76,11 +90,29 @@ namespace SGHE.Cliente
 
         public int GuardarAula(Aula aula)
         {
-            
             AulaDao aulaDao = new AulaDao();
-            int confirmacion = aulaDao.ActualizarAula("21", aula);
+            int confirmacion = aulaDao.ActualizarAula(idAula, aula);
 
             return confirmacion;
+        }
+
+        public void MostrarDatos()
+        {
+            Aula aula = new Aula();
+            AulaDao aulaDao = new AulaDao();
+            aula = aulaDao.RecuperarAulaPorCodigo(codigoAula);
+            tbCodigoAula.Text = aula.CodigoAula;
+            cbEstadoAula.Text = aula.Estado;
+            cbEdificioAula.Text = aula.IdEdificio.ToString();
+            cbTipoAula.Text = aula.TipoAula;
+            idAula = aula.IdAula;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
         }
     }
 }

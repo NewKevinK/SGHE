@@ -33,7 +33,13 @@
         <Label x:Name="lbAula07" Content="" HorizontalAlignment="Left" Margin="418,238,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="126"/>
         <Label x:Name="lbAula06" Content="" HorizontalAlignment="Left" Margin="213,238,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="167"/>
         <Label x:Name="lbAula05" Content="" HorizontalAlignment="Left" Margin="10,238,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="171"/>
-
-
+        <Button x:Name="btDetalles01" Content="Ver Detalles" HorizontalAlignment="Left" Margin="62,173,0,0" VerticalAlignment="Top" Click="btDetalles01_Click"/>
+        <Button x:Name="btDetalles02" Content="Ver Detalles" HorizontalAlignment="Left" Margin="263,173,0,0" VerticalAlignment="Top" Click="btDetalles02_Click"/>
+        <Button x:Name="btDetalles03" Content="Ver Detalles" HorizontalAlignment="Left" Margin="465,173,0,0" VerticalAlignment="Top" Click="btDetalles03_Click"/>
+        <Button x:Name="btDetalles04" Content="Ver Detalles" HorizontalAlignment="Left" Margin="671,173,0,0" VerticalAlignment="Top" Click="btDetalles04_Click"/>
+        <Button x:Name="btDetalles05" Content="Ver Detalles" HorizontalAlignment="Left" Margin="62,379,0,0" VerticalAlignment="Top" Click="btDetalles05_Click"/>
+        <Button x:Name="btDetalles06" Content="Ver Detalles" HorizontalAlignment="Left" Margin="263,379,0,0" VerticalAlignment="Top" Click="btDetalles06_Click"/>
+        <Button x:Name="btDetalles07" Content="Ver Detalles" HorizontalAlignment="Left" Margin="465,379,0,0" VerticalAlignment="Top" Click="btDetalles07_Click"/>
+        <Button x:Name="btDetalles08" Content="Ver Detalles" HorizontalAlignment="Left" Margin="671,379,0,0" VerticalAlignment="Top" Click="btDetalles08_Click"/>
     </Grid>
 </Window>
