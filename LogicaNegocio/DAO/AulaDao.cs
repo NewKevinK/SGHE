@@ -12,9 +12,10 @@ namespace SGHE.LogicaNegocio.DAO
     {
         public List<Aula> RecuperarAulas()
         {
+
             List<Aula> listaAulas = new List<Aula>();
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
-            if(conexionBD != null)
+            if (conexionBD != null)
             {
                 try
                 {
@@ -36,7 +37,7 @@ namespace SGHE.LogicaNegocio.DAO
                 {
                     Console.WriteLine(e.Message);
                 }
-                
+
             }
             return listaAulas;
         }
@@ -66,47 +67,17 @@ namespace SGHE.LogicaNegocio.DAO
                     }
 
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     mensaje = "La aula no ha podido registrarse";
                 }
             }
 
             return mensaje;
-                
+
         }
 
         public int ActualizarEstadoAula(string idAula)
-        {
-            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
-            int confirmacion = 0 ;
-            if (conexionBD != null)
-            {
-                try
-                {
-                    string sql = "UPDATE aula set estado=@estado where idAula=@idAula";
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@estado", idAula);
-                    int filasAfectadas = mySqlCommand.ExecuteNonQuery();
-                    if (filasAfectadas > 0)
-                    {
-                        confirmacion = 1;
-                    }
-                    else
-                    {
-                        confirmacion = 2;
-                    }
-                }
-                catch(Exception ex)
-                {
-                    confirmacion = 3;
-                }
-                
-            }
-            return confirmacion;
-        }
-
-        public int ActualizarAula(string idAula, Aula aula)
         {
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
             int confirmacion = 0;
@@ -114,13 +85,9 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "UPDATE aula set codigoAula=@codigoAula, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+                    string sql = "UPDATE aula set estado=@estado where idAula=@idAula";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
-                    mySqlCommand.Parameters.AddWithValue("@estado", aula.Estado);
-                    mySqlCommand.Parameters.AddWithValue("@idEdificio", aula.IdEdificio);
-                    mySqlCommand.Parameters.AddWithValue("@tipoAula", aula.TipoAula);
-                    mySqlCommand.Parameters.AddWithValue("@idAula", int.Parse(idAula));
+                    mySqlCommand.Parameters.AddWithValue("@estado", idAula);
                     int filasAfectadas = mySqlCommand.ExecuteNonQuery();
                     if (filasAfectadas > 0)
                     {
@@ -139,5 +106,70 @@ namespace SGHE.LogicaNegocio.DAO
             }
             return confirmacion;
         }
+
+        public int ActualizarAula(int idAula, Aula aula)
+        {
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            int confirmacion = 0;
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "UPDATE aula set codigoAula=@codigoAula, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
+                    mySqlCommand.Parameters.AddWithValue("@estado", aula.Estado);
+                    mySqlCommand.Parameters.AddWithValue("@idEdificio", aula.IdEdificio);
+                    mySqlCommand.Parameters.AddWithValue("@tipoAula", aula.TipoAula);
+                    mySqlCommand.Parameters.AddWithValue("@idAula", idAula);
+                    int filasAfectadas = mySqlCommand.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        confirmacion = 1;
+                    }
+                    else
+                    {
+                        confirmacion = 2;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    confirmacion = 3;
+                }
+
+            }
+            return confirmacion;
+        }
+
+
+        public Aula RecuperarAulaPorCodigo(String codigoAula)
+        {
+            Aula aula = new Aula();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT * FROM aula WHERE codigoAula=@codigoAula";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@codigoAula", codigoAula);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        aula.IdAula = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        aula.CodigoAula = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        aula.Estado = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
+                        aula.IdEdificio = ((respuestaBD.IsDBNull(3)) ? 0 : respuestaBD.GetInt32(3));
+                        aula.TipoAula = ((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return aula;
+        }
     }
 }
+
