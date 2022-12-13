@@ -18,13 +18,13 @@ namespace SGHE.Cliente
     /// <summary>
     /// Lógica de interacción para ActividadesDiarias.xaml
     /// </summary>
-    public partial class HorarioDelDia : Window
+    public partial class ActividadesDiarias : Window
     {
-        public HorarioDelDia()
+        public ActividadesDiarias()
         {
             InitializeComponent();
 
-            DataContext = new HorarioDelDiaViewModel();
+            DataContext = new ActividadesDiariasViewModel();
 
             _carouselDABExperienciasEducativas.SelectionChanged += _carouselDABEE_SelectionChanged;
 
@@ -42,7 +42,7 @@ namespace SGHE.Cliente
 
         private void _carouselDABEE_SelectionChanged(FrameworkElement selectedElement)
         {
-            var viewModel = DataContext as HorarioDelDiaViewModel;
+            var viewModel = DataContext as ActividadesDiariasViewModel;
             if (viewModel == null)
             {
                 return;

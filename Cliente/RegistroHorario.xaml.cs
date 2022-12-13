@@ -51,7 +51,5 @@ namespace SGHE.Client
         {
 
         }
-
-
     }
 }
