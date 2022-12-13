@@ -107,5 +107,12 @@ namespace SGHE.Cliente
             cbTipoAula.Text = aula.TipoAula;
             idAula = aula.IdAula;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DetallesAula detallesAula = new DetallesAula(codigoAula);
+            detallesAula.Show();
+            this.Close();
+        }
     }
 }
