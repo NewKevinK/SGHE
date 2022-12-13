@@ -1,8 +1,10 @@
 ﻿using SGHE.Cliente.Recursos.ControlDeUsuario;
+using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace SGHE.Cliente
@@ -23,6 +25,84 @@ namespace SGHE.Cliente
 
             IniciarGridHorario();
             cargarElementosHorario();
+            cargarClaseHorario();
+        }
+
+        private void cargarClaseHorario()
+        {
+            cargarLunes();
+            cargarMartes();
+            cargarMiercoles();
+            cargarJueves();
+            cargarViernes();
+
+        }
+
+        private void cargarViernes()
+        {
+            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                GridElementosViernes.Children.Add(crearElemento(i));
+            }
+        }
+
+        private void cargarJueves()
+        {
+            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                GridElementosJueves.Children.Add(crearElemento(i));
+            }
+        }
+
+        private void cargarMiercoles()
+        {
+            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                GridElementosMiercoles.Children.Add(crearElemento(i));
+            }
+        }
+
+        private void cargarMartes()
+        {
+            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                GridElementosMartes.Children.Add(crearElemento(i));
+            }
+        }
+
+        private void cargarLunes()
+        {
+            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+
+            for(int i = 0; i < listaArreglo.Count; i++)
+            {
+                GridElementoslunes.Children.Add(crearElemento(i));
+            }
+    
+        }
+
+        private HorarioDatos crearElemento(int i)
+        {
+            HorarioDatos horarioDatos = new HorarioDatos(); 
+            if((i % 2) == 0)
+            {
+                horarioDatos.cajadeDetalles.Background = Brushes.White;
+            }
+            else
+            {
+                horarioDatos.ExperienciaEducativa.Text = "CLASE DE PRUEBA";
+                horarioDatos.salonClases.Text = "SALON" + "201";
+            }
+            return horarioDatos;
+
         }
 
         private void cargarElementosHorario()

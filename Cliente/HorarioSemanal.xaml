@@ -74,38 +74,38 @@
                 </Grid>
             </StackPanel>
             <StackPanel Margin="158,32,2,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                <Grid  Height="378">
+                <Grid  Height="400">
                     <StackPanel x:Name="GridElementoslunes"></StackPanel>
                 </Grid>
             </StackPanel>
             <StackPanel Margin="158,32,2,0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
-                <Grid  Height="380">
+                <Grid  Height="399">
                     <StackPanel x:Name="GridElementosMartes"></StackPanel>
                 </Grid>
             </StackPanel>
             <StackPanel Margin="0,30,0,2" Grid.RowSpan="2" Grid.Column="3">
-                <Grid  Height="380">
+                <Grid  Height="398">
                     <StackPanel x:Name="GridElementosMiercoles"></StackPanel>
                 </Grid>
             </StackPanel>
             <StackPanel Margin="0,0,0,-3" Grid.Column="4" Grid.Row="1">
-                <Grid  Height="381">
+                <Grid  Height="398">
                     <StackPanel x:Name="GridElementosJueves"></StackPanel>
                 </Grid>
             </StackPanel>
             <StackPanel Margin="0,30,0,2" Grid.Column="5" Grid.RowSpan="2">
-                <Grid  Height="378">
+                <Grid  Height="399">
                     <StackPanel x:Name="GridElementosViernes"></StackPanel>
                 </Grid>
             </StackPanel>
             <!--Titulos-->
 
             <Label Grid.Row="0" Grid.Column="0" Content="HORA" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="LUNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
-            <Label Grid.Row="0" Grid.Column="2" Content="MARTES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
-            <Label Grid.Row="0" Grid.Column="3" Content="MIERCOLES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
-            <Label Grid.Row="0" Grid.Column="4" Content="JUEVES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
-            <Label Grid.Row="0" Grid.Column="5" Content="VIERNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label x:Name="LabelLunes" Grid.Row="0" Grid.Column="1" Content="LUNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label x:Name="LabelMartes" Grid.Row="0" Grid.Column="2" Content="MARTES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label x:Name="LabelMiercoles" Grid.Row="0" Grid.Column="3" Content="MIERCOLES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label x:Name="LabelJueves" Grid.Row="0" Grid.Column="4" Content="JUEVES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
+            <Label x:Name="LabelViernes" Grid.Row="0" Grid.Column="5" Content="VIERNES" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
             <Label Grid.Row="0" Grid.Column="6" Content="SABADO" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
             <Label Grid.Row="0" Grid.Column="7" Content="DOMINGO" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontWeight="Bold" Background="Black" Foreground="White"/>
 
