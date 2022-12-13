@@ -174,8 +174,8 @@ namespace SGHE.LogicaNegocio.DAO
 
         public Usuario ObtenerUsuario(int id)
         {
-            Aula aula = new Aula();
-            //Usuario usuario = new();
+            Persona persona = new Persona();
+           //Usuario usuario = new Usuario();
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
             if (conexionBD != null)
             {
