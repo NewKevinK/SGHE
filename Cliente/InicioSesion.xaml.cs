@@ -1,4 +1,5 @@
 ﻿using SGHE.Cliente;
+using SGHE.LogicaNegocio.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,8 +40,18 @@ namespace SGHE.Client
             string password = txtPass.Password.ToString();
 
             //Validación Usuario 1
-            if (email.Equals(EmailUsuario1) && password.Equals(ContraseñaUsuario1))
+            //email.Equals(EmailUsuario1) && password.Equals(ContraseñaUsuario1)
+            /*if (validarCorreo().tipoUsuario)
             {
+
+                InicioAlumno inicioAlumno = new InicioAlumno();
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                inicioAlumno.Show();
+            }*/
+            if (email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
+            {
+
                 InicioAlumno inicioAlumno = new InicioAlumno();
                 this.Close();
                 System.Threading.Thread.Sleep(1000);
@@ -65,7 +76,19 @@ namespace SGHE.Client
 
         }
 
-        private void btnCrearCuenta_Click(object sender, RoutedEventArgs e)
+        /*private Persona validarCorreo()
+        {
+            Persona respuest;
+             UsuarioDao usuarioValidacion=new UsuarioDao();
+
+            int idUsuarui=usuarioValidacion.Autenticacion(txtEmail.Text,txtPass.Password.ToString());
+            Persona UsuarioAutenticado = new Persona();
+            UsuarioAutenticado=usuarioValidacion.ObtenerUsuario(idUsuarui);
+            respuesta = UsuarioAutenticado.tipoUsuario;
+            return respuesta;
+        }*/
+        private void btnCrearCuenta_Click
+(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Aún en desarrollo...");
         }
