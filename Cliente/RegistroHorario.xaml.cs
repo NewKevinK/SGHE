@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGHE.LogicaNegocio;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,36 +21,7 @@ namespace SGHE.Client
         public RegistroHorario()
         {
             InitializeComponent();
-        }
-
-        private void Button_table_Asunto(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Manager_table(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_room_table(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Buttom_group_table(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_cancel(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Accept(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = new RegistroHorarioViewModel();
         }
     }
 }

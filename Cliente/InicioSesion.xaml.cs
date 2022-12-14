@@ -38,53 +38,6 @@ namespace SGHE.Client
         {
             string email = txtEmail.Text;
             string password = txtPass.Password.ToString();
-            UsuarioDao usuariodao = new UsuarioDao();
-            Persona personaAuthh = new Persona();
-            personaAuthh = usuariodao.Autenticacion(password, email);
-            //MessageBox.Show(personaAuthh.idUsuario + "y el otro es: "+personaAuthh.idTipoUsuario);
-
-            switch (personaAuthh.idTipoUsuario)
-            {
-                case 1 :
-                    //personaAuthh = usuariodao.ObtenerUsuario(personaAuthh);
-                    InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
-                    this.Close();
-                    inicioAdministrativo.Show();
-
-                    
-
-                    break;
-
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
-
-                case 4:
-
-                    InicioAlumno inicioAlumno = new InicioAlumno();
-                    this.Close();
-                    System.Threading.Thread.Sleep(1000);
-                    inicioAlumno.Show();
-
-                    break;
-
-                case 5:
-
-                    InicioAlumno inicioAlumnoo = new InicioAlumno();
-                    this.Close();
-                    System.Threading.Thread.Sleep(1000);
-                    inicioAlumnoo.Show();
-
-                    break;
-
-                default:
-                    MessageBox.Show("Credenciales Incorrectas");
-                    break;
-            }
 
             //Validación Usuario 1
             //email.Equals(EmailUsuario1) && password.Equals(ContraseñaUsuario1)
@@ -95,7 +48,7 @@ namespace SGHE.Client
                 this.Close();
                 System.Threading.Thread.Sleep(1000);
                 inicioAlumno.Show();
-            }
+            }*/
             if (email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
             {
 
@@ -118,7 +71,7 @@ namespace SGHE.Client
                     MessageBox.Show("Credenciales Incorrectas");
                 }
             }
-            */
+
             
 
         }

@@ -7,20 +7,23 @@ namespace SGHE.LogicaNegocio.DAO
     public class Persona
     {
         public int idUsuario;
-        public int idTipoUsuario;
-        public string tipoUsuario;
-        public int idPersona;
         public string nombre;
+        public string apellidoPaterno;
+        public string apellidoMaterno;
+        public DateTime fechaNacimiento;
+        public string domicilio;
+        public string telefono;
+        public int tipoUsuario;
 
-        
-
-        public Persona(int idUsuario, int idTipoUsuario, string tipoUsuario, int idPersona, string nombre)
+        public Persona(int idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, DateTime fechaNacimiento, string domicilio, string telefono, int tipoUsuario)
         {
             this.idUsuario = idUsuario;
-            this.idTipoUsuario = idTipoUsuario;
-            this.tipoUsuario = tipoUsuario;
-            this.idPersona = idPersona;
             this.nombre = nombre;
+            this.apellidoPaterno = apellidoPaterno;
+            this.fechaNacimiento = fechaNacimiento;
+            this.domicilio = domicilio;
+            this.telefono = telefono;
+            this.tipoUsuario = tipoUsuario;
         }
         public Persona()
         {

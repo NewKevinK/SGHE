@@ -10,10 +10,20 @@ namespace SGHE.LogicaNegocio
 {
     public class HorarioDelDiaViewModel : INotifyPropertyChanged
     {
+        #region CONSTRUCTOR
         public HorarioDelDiaViewModel()
         {
 
             RecuperarHorariosAlumno();
+        }
+
+        public HorarioDelDiaViewModel(int idPeriodo, Persona alumnoActual, int diaSemanaActual)
+        {
+            RecuperarHorariosAlumno();
+
+            this.idPeriodoActual = idPeriodo;
+            this.alumnoActual = alumnoActual;
+            this.diaSemanaActual = diaSemanaActual;
         }
 
         private void RecuperarHorariosAlumno()
@@ -29,6 +39,19 @@ namespace SGHE.LogicaNegocio
 
 
         }
+
+        #endregion CONSTRUCTOR
+
+        #region ATTRIBUTES
+
+        #endregion ATTRIBUTES
+
+        private Persona alumnoActual;
+        private int idPeriodoActual;
+        private int diaSemanaActual;
+
+        #region PROPERTIES
+
 
         //Colección de Experiencias Educativas
 
@@ -63,16 +86,20 @@ namespace SGHE.LogicaNegocio
             }
         }
 
+        #endregion PROPERTIES
 
-        // Delete the selected item
+
+
+        #region Otros Delete the selected item
+
+        //Metodo Delete para eliminar items del carrucel
         public void Delete()
         {
             ExperienciasEducativasDAB.Remove(SelectedExperienciaEducativaDAB);
             SelectedExperienciaEducativaDAB = ExperienciasEducativasDAB[0];
         }
 
-        #region INotifyPropertyChanged
-
+        //Manejador de eventos para los cambios en el carrucel - Sustituir por BaseViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(string propertyName)
@@ -83,6 +110,6 @@ namespace SGHE.LogicaNegocio
             }
         }
 
-        #endregion INotifyPropertyChanged
+        #endregion Otros
     }
 }

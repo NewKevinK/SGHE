@@ -1,4 +1,5 @@
 ﻿using SGHE.LogicaNegocio;
+using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class HorarioDelDia : Window
     {
+
+        #region CONSTRUCTOR
+
         public HorarioDelDia()
         {
             InitializeComponent();
@@ -33,6 +37,29 @@ namespace SGHE.Cliente
             timer.Tick += timer_Tick;
             timer.Start();
         }
+
+        public HorarioDelDia(int idPeriodo, Persona alumnoActual, int diaSemanaActual)
+        {
+            InitializeComponent();
+
+            DataContext = new HorarioDelDiaViewModel(idPeriodo, alumnoActual, diaSemanaActual);
+
+            _carouselDABExperienciasEducativas.SelectionChanged += _carouselDABEE_SelectionChanged;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        #endregion CONSTRUCTOR
+
+        #region ATTRIBUTES
+
+
+        #endregion ATTRIBUTES
+
+        #region TIMER
 
         void timer_Tick(object sender, EventArgs e)
         {
@@ -51,6 +78,10 @@ namespace SGHE.Cliente
             //viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as ExperienciaEducativa1;
         }
 
+        #endregion 
+
+        #region BUTTONS
+
         private void _buttonLeftArrow_Click(object sender, RoutedEventArgs e)
         {
             _carouselDABExperienciasEducativas.RotateRight();
@@ -68,7 +99,9 @@ namespace SGHE.Cliente
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("En desarrollo...", "Aviso");
         }
+
+        #endregion BUTTONS
     }
 }

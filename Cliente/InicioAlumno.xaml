@@ -28,8 +28,8 @@
         <Label Grid.Row="1" Content="Bienvenido Usuario A" VerticalContentAlignment="Bottom" FontSize="15" Margin="20,0,110,0" FontWeight="Bold" Grid.ColumnSpan="2" />
 
         <Button Grid.Row="2" Grid.Column="0" Margin="25,25,25,25" Content="Mi Perfil" FontSize="20" Click="Click_MiPerfil"/>
-        <Button Grid.Row="2" Grid.Column="1" Margin="25,25,25,25" Click="Click_ActividadesDiarias">
-            <TextBlock Text="Actividades Diarias" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+        <Button Grid.Row="2" Grid.Column="1" Margin="25,25,25,25" Click="Click_HorarioDelDia">
+            <TextBlock Text="Horario de Hoy" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
         <Button Grid.Row="2" Grid.Column="2" Margin="25,25,25,25" Click="Click_HorarioCompleto">
             <TextBlock Text="Horario Completo" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>

@@ -1,4 +1,6 @@
 ﻿using SGHE.Client;
+using SGHE.LogicaNegocio.DAO;
+using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,19 +20,40 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class InicioAlumno : Window
     {
+
+        #region CONSTRUCTOR
+
         public InicioAlumno()
         {
             InitializeComponent();
         }
+
+        public InicioAlumno(Persona alumno)
+        {
+            InitializeComponent();
+            this.alumnoActual = alumno;
+            this.diaSemanaActual = (int)DateTime.Now.DayOfWeek;
+        }
+
+        #endregion CONSTRUCTOR
+
+        #region ATTRIBUTES
+
+        private Persona alumnoActual;
+        private int diaSemanaActual;
+
+        #endregion ATTRIBUTES
+
+        #region BOTONES
 
         private void Click_MiPerfil(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("En Desarrollo...", "Aviso");
         }
 
-        private void Click_ActividadesDiarias(object sender, RoutedEventArgs e)
+        private void Click_HorarioDelDia(object sender, RoutedEventArgs e)
         {
-            HorarioDelDia actividadesDiarias = new HorarioDelDia();
+            HorarioDelDia actividadesDiarias = new HorarioDelDia(1, alumnoActual, diaSemanaActual);
             actividadesDiarias.Show();
 
         }
@@ -72,5 +95,7 @@ namespace SGHE.Cliente
             this.Close();
             inicioSesion.Show();
         }
+
+        #endregion BOTONES
     }
 }
