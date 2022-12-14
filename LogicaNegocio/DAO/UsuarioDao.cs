@@ -5,6 +5,7 @@ using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace SGHE.LogicaNegocio.DAO
 {
@@ -146,11 +147,12 @@ namespace SGHE.LogicaNegocio.DAO
         {
             Persona personaAuth = new Persona();
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            MessageBox.Show(password + email);
             if (conexionBD != null)
             {
                 try
                 {
-                    string sql = "SELECT idUsuario, idTipoUsuario FROM usuario WHERE email = '@email' AND PASSWORD =@password";
+                    string sql = "SELECT idUsuario, idTipoUsuario FROM usuario WHERE email = @email AND PASSWORD =@password";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@email",email);
                     mySqlCommand.Parameters.AddWithValue("@password", password);
@@ -197,9 +199,10 @@ namespace SGHE.LogicaNegocio.DAO
                     }
                     else
                     {
-                        string sqll = "SELECT usuario.idUsuario, tipousuario, idAlumno FROM usuario" +
-                        " LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario " +
-                        "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario WHERE usuario.idUsuario = @id";
+                        string sqll = "SELECT  tipousuario, alumno.idAlumno, usuario.nombre FROM usuario " +
+                            "LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario" +
+                            "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario " +
+                            "WHERE usuario.idUsuario = @id";
                         MySqlCommand mySqlCommandd = new MySqlCommand(sqll, conexionBD);
                         mySqlCommandd.Parameters.AddWithValue("@id", id);
                         MySqlDataReader respuestaBDD = mySqlCommandd.ExecuteReader();
