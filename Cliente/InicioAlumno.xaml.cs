@@ -48,19 +48,84 @@ namespace SGHE.Cliente
 
         private void Click_MiPerfil(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("En Desarrollo...", "Aviso");
+            //string identificador=Persona.tipoUsuario;
+            /*if (identificador = "ADMINISTRADOR")
+            {
+                DatosUsuario datosAdministrativo= new DatosUsuario(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                datosAdministrativo.Show();
+            }
+            if(identificador = "DOCENTE"){
+                InicioDocente datosDocente= new DatosUsuario(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                datosDocente.Show();
+            }
+            if (identificador = "ALUMNO")
+            {
+                DatosUsuario datosAlumno= new DatosUsuario(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                datosAlumno.Show();
+            }*/
         }
 
         private void Click_HorarioDelDia(object sender, RoutedEventArgs e)
         {
             HorarioDelDia actividadesDiarias = new HorarioDelDia(1, alumnoActual, diaSemanaActual);
             actividadesDiarias.Show();
+            /*if (identificador = "ADMINISTRADOR")
+            {
+                HorarioDelDia horarioAdministrativo= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioAdministrativo.Show();
+            }
+            if(identificador = "DOCENTE"){
+                HorarioDelDia horarioDocente= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioDocente.Show();
+            }
+            if (identificador = "ALUMNO")
+            {
+                HorarioDelDia horarioAlumno= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioAlumno.Show();
+            }*/
 
         }
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("En Desarrollo...", "Aviso");
+            /*if (identificador = "ADMINISTRADOR")
+            {
+                HorarioDelDia horarioAdministrativo= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioAdministrativo.Show();
+            }
+            if(identificador = "DOCENTE"){
+                HorarioDelDia horarioDocente= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioDocente.Show();
+            }
+            if (identificador = "ALUMNO")
+            {
+                HorarioDelDia horarioAlumno= new HorarioDelDia(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                horarioAlumno.Show();
+            }*/
+            //MessageBox.Show("En Desarrollo...", "Aviso");
+
+            HorarioSemanal horarioSemanal = new HorarioSemanal();
+            this.Close();
+            System.Threading.Thread.Sleep(1000);
+            horarioSemanal.Show();
         }
 
         private void Click_Calificaciones(object sender, RoutedEventArgs e)

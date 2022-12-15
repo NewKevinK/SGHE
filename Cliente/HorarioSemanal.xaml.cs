@@ -1,4 +1,5 @@
 ﻿using SGHE.Cliente.Recursos.ControlDeUsuario;
+using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,18 @@ namespace SGHE.Cliente
     public partial class HorarioSemanal : Window
     {
         List<HoraSemanalUs> listaArreglo = new List<HoraSemanalUs>();
+        public HorarioSemanal(Persona datospersona)
+        {
+            InitializeComponent();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+            IniciarGridHorario();
+            cargarElementosHorario();
+            cargarClaseHorario();
+        }
         public HorarioSemanal()
         {
             InitializeComponent();

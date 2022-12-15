@@ -31,7 +31,7 @@ namespace SGHE.Client
         public InicioSesion()
         {
             InitializeComponent();
-            
+
         }
 
         private async void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
@@ -59,22 +59,34 @@ namespace SGHE.Client
             }
             else
             {
-                //Validación Usuario 2
-                if(email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
-                {
-                    InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
-                    this.Close();
-                    inicioAdministrativo.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Credenciales Incorrectas");
-                }
+                MessageBox.Show("Credenciales Incorrectas");
             }
-
-            
-
+            //Validación Usuario 2
+            if (email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
+            {
+                InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
+                this.Close();
+                inicioAdministrativo.Show();
+            }
+            else
+            {
+                MessageBox.Show("Credenciales Incorrectas");
+            }
+            /*if (email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
+            {
+                InicioDocente inicioDocente= new InicioDocente();
+                this.Close();
+                inicioDocente.Show();
+            }
+            else
+            {
+                MessageBox.Show("Credenciales Incorrectas");
+            }*/
         }
+
+
+
+
 
         /*private Persona validarCorreo()
         {
@@ -104,3 +116,4 @@ namespace SGHE.Client
         }
     }
 }
+

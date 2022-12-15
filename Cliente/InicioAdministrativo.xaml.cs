@@ -1,4 +1,5 @@
 ﻿using SGHE.Client;
+using SGHE.LogicaNegocio.DAO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,12 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class InicioAdministrativo : Window
     {
+        //Inicio Con datos
+        public InicioAdministrativo(Persona datosPersona)
+        {
+            InitializeComponent();
+        }
+
         public InicioAdministrativo()
         {
             InitializeComponent();

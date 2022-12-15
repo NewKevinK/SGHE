@@ -94,12 +94,45 @@ namespace SGHE.Cliente
 
         private void Click_Volver(object sender, RoutedEventArgs e)
         {
+            //string identificador=Persona.tipoUsuario;
+            /*if (identificador = "ADMINISTRADOR")
+            {
+                InicioAdministrativo inicioAdministrativo= new InicioAdministrativo(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                inicioAdministrativo.Show();
+            }
+            if(identificador = "DOCENTE"){
+                InicioDocente inicioDocente= new InicioDocente(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                inicioDocente.Show();
+            }
+            if (identificador = "ALUMNO")
+            {
+                InicioAlumno inicioAlumno= new InicioAlumno(datospersona);
+                this.Close();
+                System.Threading.Thread.Sleep(1000);
+                inicioAlumno.Show();
+            }*/
+
+            InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
             this.Close();
+            System.Threading.Thread.Sleep(1000);
+            inicioAdministrativo.Show();
         }
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("En desarrollo...", "Aviso");
+            /*HorarioSemanal horarioSemanal = new HorarioSemanal(datospersona);
+            this.Close();
+            System.Threading.Thread.Sleep(1000);
+            horarioSemanal.Show();*/
+
+            HorarioSemanal horarioSemanal=new HorarioSemanal();
+            this.Close();
+            System.Threading.Thread.Sleep(1000);
+            horarioSemanal.Show();
         }
 
         #endregion BUTTONS
