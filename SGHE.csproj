@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
   </ItemGroup>
@@ -47,12 +48,6 @@
     <Resource Include="Cliente\left_arrow.png" />
     <Resource Include="Cliente\Recursos\Iconos\IconoIr.png" />
     <Resource Include="Cliente\right_arrow.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Cliente\PerfilUsuario.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,7 @@ namespace SGHE.LogicaNegocio.DAO
         #region QUERYS
 
         private static readonly string QUERY_RECUPERAR_PERIODOS = "SELECT idPeriodo, nombrePeriodo, fechaInicio, fechaFin, estado FROM periodo";
+        private static readonly string QUERY_RECUPERAR_PERIODO_ACTUAL = "SELECT idPeriodo, nombrePeriodo, fechaInicio, fechaFin, estado FROM periodo WHERE estado = \"En Curso\"";
 
         #endregion QUERYS
 
@@ -43,6 +44,34 @@ namespace SGHE.LogicaNegocio.DAO
                 }
             }
             return listaPeriodos;
+        }
+
+        public Periodo RecuperarPeriodoActual()
+        {
+            Periodo periodo = null;
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_PERIODO_ACTUAL, conexionBD);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    periodo = new Periodo();
+                    while (respuestaBD.Read())
+                    {
+                        periodo.IdPeriodo = respuestaBD.GetInt32(0);
+                        periodo.NombrePeriodo = respuestaBD.GetString(1);
+                        periodo.FechaInicio = respuestaBD.GetDateTime(2);
+                        periodo.FechaFin = respuestaBD.GetDateTime(3);
+                        periodo.Estado = respuestaBD.GetString(4);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return periodo;
         }
     }
 }

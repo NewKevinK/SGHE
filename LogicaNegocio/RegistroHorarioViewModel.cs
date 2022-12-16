@@ -1,10 +1,12 @@
-﻿using SGHE.LogicaNegocio.DAO;
+﻿using CommunityToolkit.Mvvm.Input;
+using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SGHE.LogicaNegocio
 {
@@ -498,7 +500,12 @@ namespace SGHE.LogicaNegocio
 
         #region COMMANDS
 
-
+        public ICommand ClickRegistrar
+        {
+            get { return new RelayCommand(Registrar); }
+            set { }
+        }
+        
 
         #endregion COMMANDS
 
@@ -564,7 +571,6 @@ namespace SGHE.LogicaNegocio
             }
             this.GridHorarioEnabled = true; //Activando Grid para configurar los horarios
         }
-
 
         #endregion Datos Iniciales
 
@@ -672,6 +678,50 @@ namespace SGHE.LogicaNegocio
         }
 
         #endregion Activar y Desactivar Dias
+
+        #region Registrar Datos
+
+        public void Registrar()
+        {
+            if (this.ChkBox_Lunes == true) { RegistrarHorarioLunes(); }
+            if (this.ChkBox_Martes == true) { RegistrarHorarioMartes(); }
+            if (this.ChkBox_Miercoles == true) { RegistrarHorarioMiercoles(); }
+            if (this.ChkBox_Jueves == true) { RegistrarHorarioJueves(); }
+            if (this.ChkBox_Viernes == true) { RegistrarHorarioViernes(); }
+            if (this.ChkBox_Sabado == true) { RegistrarHorarioViernes(); }
+        }
+
+        private void RegistrarHorarioLunes()
+        {
+            Horario horarioLunes = new();
+        }
+
+        private void RegistrarHorarioMartes() 
+        { 
+
+        }
+
+        private void RegistrarHorarioMiercoles() 
+        { 
+
+        }
+
+        private void RegistrarHorarioJueves() 
+        { 
+
+        }
+
+        private void RegistrarHorarioViernes() 
+        { 
+
+        }
+
+        private void RegistrarHorarioSabado()
+        { 
+
+        }
+
+        #endregion Registrar Datos
 
         #endregion METHODS
     }
