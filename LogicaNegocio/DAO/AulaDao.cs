@@ -10,6 +10,27 @@ namespace SGHE.LogicaNegocio.DAO
 {
     public class AulaDao
     {
+
+        #region QUERYS
+
+        private static readonly string QUERY_INSERTAR_AULA = "INSERT INTO aula(codigoAula,estado,idEdificio,tipoAula) VALUES (@codigoAula,@estado,@idEdificio,@tipoAula)";
+
+        private static readonly string QUERY_ACTUALIZAR_ESTADO_AULA = "UPDATE aula set estado=@estado where idAula=@idAula";
+
+        private static readonly string QUERY_ACTUALIZAR_AULA = "UPDATE aula set codigoAula=@codigoAula, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+
+        private static readonly string QUERY_RECUPERAR_AULA_X_CODIGO = "SELECT * FROM aula WHERE codigoAula=@codigoAula";
+
+        private static readonly string QUERY_AULAS_POR_INSTITUCION = "SELECT idAula, codigoAula, estado, edificio.idEdificio, tipoAula " +
+            "FROM aula " +
+            "INNER JOIN edificio " +
+            "ON aula.idEdificio = edificio.idEdificio " +
+            "INNER JOIN institucion " +
+            "ON edificio.idInstitucion = institucion.idInstitucion " +
+            "WHERE institucion.idInstitucion = @idInstitucion";
+
+        #endregion QUERYS
+
         public List<Aula> RecuperarAulas()
         {
 
@@ -50,7 +71,7 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "INSERT INTO aula(codigoAula,estado,idEdificio,tipoAula) VALUES (@codigoAula,@estado,@idEdificio,@tipoAula)";
+                    string sql = QUERY_INSERTAR_AULA;
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
                     mySqlCommand.Parameters.AddWithValue("@estado", "Disponible");
@@ -85,7 +106,7 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "UPDATE aula set estado=@estado where idAula=@idAula";
+                    string sql = QUERY_ACTUALIZAR_ESTADO_AULA;
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@estado", idAula);
                     int filasAfectadas = mySqlCommand.ExecuteNonQuery();
@@ -115,7 +136,7 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "UPDATE aula set codigoAula=@codigoAula, estado=@estado, idEdificio=@idEdificio, tipoAula=@tipoAula where idAula=@idAula";
+                    string sql = QUERY_ACTUALIZAR_AULA;
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@codigoAula", aula.CodigoAula);
                     mySqlCommand.Parameters.AddWithValue("@estado", aula.Estado);
@@ -141,7 +162,6 @@ namespace SGHE.LogicaNegocio.DAO
             return confirmacion;
         }
 
-
         public Aula RecuperarAulaPorCodigo(String codigoAula)
         {
             Aula aula = new Aula();
@@ -150,7 +170,7 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "SELECT * FROM aula WHERE codigoAula=@codigoAula";
+                    string sql = QUERY_RECUPERAR_AULA_X_CODIGO;
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@codigoAula", codigoAula);
                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
@@ -169,6 +189,38 @@ namespace SGHE.LogicaNegocio.DAO
                 }
             }
             return aula;
+        }
+
+        public List<Aula> RecuperarAulasPorInstitucion(int idInstitucion)
+        {
+            List<Aula> listaAulas = null;
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = QUERY_AULAS_POR_INSTITUCION;
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idInstitucion", idInstitucion);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    listaAulas = new List<Aula>();
+                    while (respuestaBD.Read())
+                    {
+                        Aula recuperarAula = new Aula();
+                        recuperarAula.IdAula = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        recuperarAula.CodigoAula = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        recuperarAula.Estado = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
+                        recuperarAula.IdEdificio = ((respuestaBD.IsDBNull(3)) ? 0 : respuestaBD.GetInt32(3));
+                        recuperarAula.TipoAula = ((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
+                        listaAulas.Add(recuperarAula);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return listaAulas;
         }
     }
 }

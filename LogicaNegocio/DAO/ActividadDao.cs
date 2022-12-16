@@ -9,6 +9,21 @@ namespace SGHE.LogicaNegocio.DAO
 {
     public class ActividadDao
     {
+
+        #region QUERYS
+
+        private static readonly string QUERY_RECUPERAR_EXPERIENCIAS_EDUCATIVAS = "SELECT * FROM experienciaeducativa";
+
+        private static readonly string QUERY_RECUPERAR_EE_PERIODO_CARRERA = 
+            "SELECT idEE, NRC, nombre, creditos, modalidad, idPeriodo, idDocente, idCarrera " +
+            "FROM experienciaeducativa WHERE idPeriodo = @idPeriodo AND idCarrera = @idCarrera";
+
+        private static readonly string QUERY_REGISTRAR_EE = 
+            "INSERT INTO experienciaeducativa(nRC, nombre, creditos, modalidad, idPeriodo, idDocente) " +
+            "VALUES (@idEE, @nRC, @nombre, @creditos, @modalidad, @idPeriodo, @idDocente)";
+
+        #endregion QUERYS
+
         public List<ExperienciaEducativa> RecuperarExperienciasEducativas()
         {
             List<ExperienciaEducativa> listaExperiencias = new List<ExperienciaEducativa>();
@@ -17,14 +32,13 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "SELECT * FROM experienciaeducativa";
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_EXPERIENCIAS_EDUCATIVAS, conexionBD);
                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
                     while (respuestaBD.Read())
                     {
                         ExperienciaEducativa experiencia = new ExperienciaEducativa();
                         experiencia.IdEE = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
-                        experiencia.NRC1 = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        experiencia.NRC = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
                         experiencia.Nombre = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
                         experiencia.Creditos = ((respuestaBD.IsDBNull(3)) ? 0 : respuestaBD.GetInt32(3));
                         experiencia.Modalidad = ((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
@@ -42,6 +56,7 @@ namespace SGHE.LogicaNegocio.DAO
             }
             return listaExperiencias;
         }
+
         public string RegistrarExperienciaEducativa(Actividad actividad)
         {
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
@@ -50,9 +65,8 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    string sql = "INSERT INTO experienciaeducativa(nRC, nombre, creditos, modalidad, idPeriodo, idDocente) VALUES (@idEE, @nRC, @nombre, @creditos, @modalidad, @idPeriodo, @idDocente)";
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@nRC", actividad.NRC1);
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_REGISTRAR_EE, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@nRC", actividad.NRC);
                     mySqlCommand.Parameters.AddWithValue("@nombre", actividad.Nombre);
                     mySqlCommand.Parameters.AddWithValue("@creditos", actividad.Creditos);
                     mySqlCommand.Parameters.AddWithValue("@modalidad", actividad.Modalidad);
@@ -76,6 +90,41 @@ namespace SGHE.LogicaNegocio.DAO
             }
 
             return mensaje;
+        }
+
+        public List<ExperienciaEducativa> RecuperarExperienciasEducativasPorPeriodoCarrera(int idPeriodo, int idCarrera)
+        {
+            List<ExperienciaEducativa> listaEEs = new List<ExperienciaEducativa>();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_EE_PERIODO_CARRERA, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idPeriodo", idPeriodo);
+                    mySqlCommand.Parameters.AddWithValue("@idCarrera", idCarrera);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        ExperienciaEducativa ee = new();
+                        ee.IdEE = respuestaBD.GetInt32(0);
+                        ee.NRC = respuestaBD.GetString(1);
+                        ee.Nombre = respuestaBD.GetString(2);
+                        ee.Creditos = respuestaBD.GetInt32(3);
+                        ee.Modalidad = respuestaBD.GetString(4);
+                        ee.IdPeriodo = respuestaBD.GetInt32(5);
+                        ee.IdDocente = respuestaBD.GetInt32(6);
+                        ee.IdCarrera = respuestaBD.GetInt32(7);
+
+                        listaEEs.Add(ee);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return listaEEs;
         }
     }
 }
