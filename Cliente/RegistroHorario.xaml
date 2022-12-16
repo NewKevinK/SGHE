@@ -146,36 +146,40 @@
 
             <!--AULAS-->
             <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbxAula_Lunes" Margin="5"
-                      IsEnabled="{Binding CBox_Aula_Lunes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Lunes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
                       SelectedItem="{Binding CBox_Aula_Lunes_Selected}"
-                      SelectedIndex="{Binding CBox_Aula_Lunes_Index}"
-                      />
+                      SelectedIndex="{Binding CBox_Aula_Lunes_Index}"/>
             
             <ComboBox Grid.Row="2" Grid.Column="3" x:Name="cbxAula_Martes" Margin="5"
-                      IsEnabled="{Binding CBox_Aula_Martes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Martes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Martes_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Martes_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Martes_Index}"/>
             
             <ComboBox Grid.Row="3" Grid.Column="3" x:Name="cbxAula_Miercoles" Margin="5"
-                      IsEnabled="{Binding CBox_Aula_Miercoles_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Miercoles_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Miercoles_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Miercoles_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Miercoles_Index}"/>
             
             <ComboBox Grid.Row="4" Grid.Column="3" x:Name="cbxAula_Jueves" Margin="5"
-                      IsEnabled="{Binding CBox_Aula_Jueves_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Jueves_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Jueves_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Jueves_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Jueves_Index}"/>
             
             <ComboBox Grid.Row="5" Grid.Column="3" x:Name="cbxAula_Viernes" Margin="5" 
-                      IsEnabled="{Binding CBox_Aula_Viernes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Viernes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Viernes_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Viernes_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Viernes_Index}"/>
             
             <ComboBox Grid.Row="6" Grid.Column="3" x:Name="cbxAula_Sabado" Margin="5" 
-                      IsEnabled="{Binding CBox_Aula_Sabado_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
+                      IsEnabled="{Binding CBox_Aula_Sabado_Enabled}" DisplayMemberPath="CodigoAula" FontSize="20" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Sabado_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Sabado_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Sabado_Index}"/>
 
         </Grid>
 

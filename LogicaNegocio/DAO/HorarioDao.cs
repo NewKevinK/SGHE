@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509;
+using SGHE.Client;
 using SGHE.ConexionBaseDatos;
 using SGHE.LogicaNegocio.POCO;
 using System;
@@ -91,6 +92,20 @@ namespace SGHE.LogicaNegocio.DAO
             "ON horario.idEE = experienciaeducativa.idEE " +
             "WHERE idPeriodo = @idPeriodo AND diaSemana = @diaSemana AND horario.idEE = @idEE";
         #endregion QUERY_RECUPERAR_HORARIO_EXACTO
+
+        private static readonly string QUERY_REGISTRAR_HORARIO =
+            "INSERT INTO" +
+            " horario(horaInicio, horaFin, diaSemana, idEE, idAula)" +
+            " VALUES(@horaInicio, @horaFin, @diaSemana, @idEE, @idAula)";
+
+        private static readonly string QUERY_ACTUALIZAR_HORARIO =
+            "UPDATE horario" +
+            " SET horaInicio = @horaInicio," +
+            " horaFin = @horaFin," +
+            " diaSemana = @diaSemana," +
+            " idEE = @idEE," +
+            " idAula = @idAula" +
+            " WHERE idHorario = @idHorario;";
 
         #endregion QUERYS
 
@@ -209,6 +224,60 @@ namespace SGHE.LogicaNegocio.DAO
                 }
             }
             return horario;
+        }
+
+        public static bool ActualizarHorario(HorarioEE horario)
+        {
+            bool respuesta = false;
+
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_ACTUALIZAR_HORARIO, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@horaInicio", horario.HoraInicio);
+                    mySqlCommand.Parameters.AddWithValue("@horaFin", horario.HoraFin);
+                    mySqlCommand.Parameters.AddWithValue("@diaSemana", horario.DiaSemana);
+                    mySqlCommand.Parameters.AddWithValue("@idEE", horario.IdEE);
+                    mySqlCommand.Parameters.AddWithValue("@idAula", horario.IdAula);
+                    mySqlCommand.Parameters.AddWithValue("@idHorario", horario.IdHorario);
+                    int response = mySqlCommand.ExecuteNonQuery();
+                    respuesta = (response > 0);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return respuesta;
+        }
+
+        public static bool RegistrarHorario(HorarioEE horario)
+        {
+            bool respuesta = false;
+
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_REGISTRAR_HORARIO, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@horaInicio", horario.HoraInicio);
+                    mySqlCommand.Parameters.AddWithValue("@horaFin", horario.HoraFin);
+                    mySqlCommand.Parameters.AddWithValue("@diaSemana", horario.DiaSemana);
+                    mySqlCommand.Parameters.AddWithValue("@idEE", horario.IdEE);
+                    mySqlCommand.Parameters.AddWithValue("@idAula", horario.IdAula);
+                    int response = mySqlCommand.ExecuteNonQuery();
+                    respuesta = (response > 0);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return respuesta;
         }
     }
 }

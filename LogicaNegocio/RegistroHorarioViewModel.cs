@@ -5,6 +5,7 @@ using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -40,7 +41,7 @@ namespace SGHE.LogicaNegocio
         private ObservableCollection<Periodo> periodos = new ObservableCollection<Periodo>();
         private ObservableCollection<Carrera> carreras = new ObservableCollection<Carrera>();
         private ObservableCollection<ExperienciaEducativa> experienciasEducativas = new ObservableCollection<ExperienciaEducativa>();
-        private List<Aula> aulasInstitucion = new List<Aula>();
+        private ObservableCollection<Aula> aulasInstitucion = new ObservableCollection<Aula>();
 
         private Periodo periodoSeleccionado = null;
         private Carrera carreraSeleccionada = null;
@@ -74,6 +75,14 @@ namespace SGHE.LogicaNegocio
         private Aula aulaViernes = null;
         private Aula aulaSabado = null;
 
+        //Aula index
+        private int cBox_Aula_Lunes_Index = -1;
+        private int cBox_Aula_Martes_Index = -1;
+        private int cBox_Aula_Miercoles_Index = -1;
+        private int cBox_Aula_Jueves_Index = -1;
+        private int cBox_Aula_Viernes_Index = -1;
+        private int cBox_Aula_Sabado_Index = -1;
+
         #endregion Datos Ingresados y Seleccionados
 
         #region Datos Recuperados
@@ -84,6 +93,13 @@ namespace SGHE.LogicaNegocio
         private bool ExisteHorario_Jueves = false;
         private bool ExisteHorario_Viernes = false;
         private bool ExisteHorario_Sabado = false;
+
+        private HorarioEE HorarioEELunes = null;
+        private HorarioEE HorarioEEMartes = null;
+        private HorarioEE HorarioEEMiercoles = null;
+        private HorarioEE HorarioEEJueves = null;
+        private HorarioEE HorarioEEViernes = null;
+        private HorarioEE HorarioEESabado = null;
 
         #endregion Datos Recuperados
 
@@ -130,19 +146,6 @@ namespace SGHE.LogicaNegocio
         #endregion Enabled
 
         #endregion ATRIBUTES
-        private int cBox_Aula_Lunes_Index = 0;
-        private int cBox_Aula_Martes_Index = 0;
-        public int CBox_Aula_Lunes_Index
-        {
-            get { return this.cBox_Aula_Lunes_Index; }
-            set { SetValue(ref this.cBox_Aula_Lunes_Index, value); }
-        }
-
-        public int CBox_Aula_Martes_Index
-        {
-            get { return this.cBox_Aula_Martes_Index; }
-            set { SetValue(ref this.cBox_Aula_Martes_Index, value); }
-        }
 
         #region PROPERTIES
 
@@ -229,7 +232,7 @@ namespace SGHE.LogicaNegocio
 
         #endregion Valores en TimePicker Hora Fin
 
-        #region ComboBox Aulas
+        #region ComboBox Aulas Selected
 
         public Aula CBox_Aula_Lunes_Selected
         {
@@ -267,7 +270,47 @@ namespace SGHE.LogicaNegocio
             set { SetValue(ref this.aulaSabado, value); }
         }
 
-        #endregion ComboBox Aulas
+        #endregion ComboBox Aulas Selected
+
+        #region ComboBox Aulas Index
+
+        public int CBox_Aula_Lunes_Index
+        {
+            get { return this.cBox_Aula_Lunes_Index; }
+            set { SetValue(ref this.cBox_Aula_Lunes_Index, value); }
+        }
+
+        public int CBox_Aula_Martes_Index
+        {
+            get { return this.cBox_Aula_Martes_Index; }
+            set { SetValue(ref this.cBox_Aula_Martes_Index, value); }
+        }
+
+        public int CBox_Aula_Miercoles_Index
+        {
+            get { return this.cBox_Aula_Miercoles_Index; }
+            set { SetValue(ref this.cBox_Aula_Miercoles_Index, value); }
+        }
+
+        public int CBox_Aula_Jueves_Index
+        {
+            get { return this.cBox_Aula_Jueves_Index; }
+            set { SetValue(ref this.cBox_Aula_Jueves_Index, value); }
+        }
+
+        public int CBox_Aula_Viernes_Index
+        {
+            get { return this.cBox_Aula_Viernes_Index; }
+            set { SetValue(ref this.cBox_Aula_Viernes_Index, value); }
+        }
+
+        public int CBox_Aula_Sabado_Index
+        {
+            get { return this.cBox_Aula_Sabado_Index; }
+            set { SetValue(ref this.cBox_Aula_Sabado_Index, value); }
+        }
+
+        #endregion ComboBox Aulas Index
 
         #endregion Datos Ingresados y Seleccionados
 
@@ -322,7 +365,7 @@ namespace SGHE.LogicaNegocio
             }
         }
 
-        public List<Aula> CBox_Aula_Items
+        public ObservableCollection<Aula> CBox_Aula_Items
         {
             get { return this.aulasInstitucion; }
             set { SetValue(ref this.aulasInstitucion, value); }
@@ -546,7 +589,6 @@ namespace SGHE.LogicaNegocio
             get { return new RelayCommand(Registrar); }
             set { }
         }
-        
 
         #endregion COMMANDS
 
@@ -639,7 +681,7 @@ namespace SGHE.LogicaNegocio
 
         private void RecuperarHorarios()
         {
-            MessageBox.Show("Recuperando Horarios Por favor espere...", "Aviso");
+            MessageBox.Show("Recuperando Horarios\nPor favor de clic en Aceptar para continuar", "Aviso");
             RecuperarHorarioLunes();
             RecuperarHorarioMartes();
             RecuperarHorarioMiercoles();
@@ -654,13 +696,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEELunes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, LUNES, eeSeleccionada.IdEE);
-                if(horarioEELunes.IdEE != 0)
+                HorarioEELunes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, LUNES, eeSeleccionada.IdEE);
+                if(HorarioEELunes.IdEE != 0)
                 {
                     this.ExisteHorario_Lunes = true;
-                    this.Value_HoraInicio_Lunes = horarioEELunes.HoraInicio;
-                    this.Value_HoraFin_Lunes = horarioEELunes.HoraFin;
-                    this.CBox_Aula_Lunes_Index = horarioEELunes.IdAula;
+                    this.ChkBox_Lunes = true;
+                    this.Value_HoraInicio_Lunes = HorarioEELunes.HoraInicio;
+                    this.Value_HoraFin_Lunes = HorarioEELunes.HoraFin;
+                    this.CBox_Aula_Lunes_Index = ObtenerIndexCBoxAulas(HorarioEELunes.IdAula);
                 }
                 else { this.ExisteHorario_Lunes = false; }
             }
@@ -670,13 +713,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEEMartes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MARTES, eeSeleccionada.IdEE);
-                if (horarioEEMartes.IdEE != 0)
+                HorarioEEMartes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MARTES, eeSeleccionada.IdEE);
+                if (HorarioEEMartes.IdEE != 0)
                 {
                     this.ExisteHorario_Martes = true;
-                    this.Value_HoraInicio_Martes = horarioEEMartes.HoraInicio;
-                    this.Value_HoraFin_Martes = horarioEEMartes.HoraFin;
-                    //this.CBox_Aula_Martes_Index = horarioEEMartes.IdAula;
+                    this.ChkBox_Martes = true;
+                    this.Value_HoraInicio_Martes = HorarioEEMartes.HoraInicio;
+                    this.Value_HoraFin_Martes = HorarioEEMartes.HoraFin;
+                    this.CBox_Aula_Martes_Index = ObtenerIndexCBoxAulas(HorarioEEMartes.IdAula);
                 }
                 else { this.ExisteHorario_Martes = false; }
 
@@ -687,13 +731,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEEMiercoles = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MIERCOLES, eeSeleccionada.IdEE);
-                if (horarioEEMiercoles.IdEE != 0)
+                HorarioEEMiercoles = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MIERCOLES, eeSeleccionada.IdEE);
+                if (HorarioEEMiercoles.IdEE != 0)
                 {
                     this.ExisteHorario_Miercoles = true;
-                    this.Value_HoraInicio_Miercoles = horarioEEMiercoles.HoraInicio;
-                    this.Value_HoraFin_Miercoles = horarioEEMiercoles.HoraFin;
-                    //this.CBox_Aula_Miercoles_Index = horarioEEMiercoles.IdAula;
+                    this.ChkBox_Miercoles = true;
+                    this.Value_HoraInicio_Miercoles = HorarioEEMiercoles.HoraInicio;
+                    this.Value_HoraFin_Miercoles = HorarioEEMiercoles.HoraFin;
+                    this.CBox_Aula_Miercoles_Index = ObtenerIndexCBoxAulas(HorarioEEMiercoles.IdAula);
                 }
                 else { this.ExisteHorario_Miercoles = false; }
             }
@@ -703,13 +748,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEEJueves = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, JUEVES, eeSeleccionada.IdEE);
-                if (horarioEEJueves.IdEE != 0)
+                HorarioEEJueves = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, JUEVES, eeSeleccionada.IdEE);
+                if (HorarioEEJueves.IdEE != 0)
                 {
                     this.ExisteHorario_Jueves = true;
-                    this.Value_HoraInicio_Jueves = horarioEEJueves.HoraInicio;
-                    this.Value_HoraFin_Jueves = horarioEEJueves.HoraFin;
-                    //this.CBox_Aula_Jueves_Index = horarioEEJueves.IdAula;
+                    this.ChkBox_Jueves = true;
+                    this.Value_HoraInicio_Jueves = HorarioEEJueves.HoraInicio;
+                    this.Value_HoraFin_Jueves = HorarioEEJueves.HoraFin;
+                    this.CBox_Aula_Jueves_Index = ObtenerIndexCBoxAulas(HorarioEEJueves.IdAula);
                 }
                 else { this.ExisteHorario_Jueves = false; }
             }
@@ -719,13 +765,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEEViernes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, VIERNES, eeSeleccionada.IdEE);
-                if (horarioEEViernes.IdEE != 0)
+                HorarioEEViernes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, VIERNES, eeSeleccionada.IdEE);
+                if (HorarioEEViernes.IdEE != 0)
                 {
                     this.ExisteHorario_Viernes = true;
-                    this.Value_HoraInicio_Viernes = horarioEEViernes.HoraInicio;
-                    this.Value_HoraFin_Viernes = horarioEEViernes.HoraFin;
-                    //this.CBox_Aula_Viernes_Index = horarioEEViernes.IdAula;
+                    this.ChkBox_Viernes = true;
+                    this.Value_HoraInicio_Viernes = HorarioEEViernes.HoraInicio;
+                    this.Value_HoraFin_Viernes = HorarioEEViernes.HoraFin;
+                    this.CBox_Aula_Viernes_Index = ObtenerIndexCBoxAulas(HorarioEEViernes.IdAula);
                 }
                 else { this.ExisteHorario_Viernes = false; }
             }
@@ -735,13 +782,14 @@ namespace SGHE.LogicaNegocio
         {
             if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
             {
-                HorarioEE horarioEESabado = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, SABADO, eeSeleccionada.IdEE);
-                if (horarioEESabado.IdEE != 0)
+                HorarioEESabado = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, SABADO, eeSeleccionada.IdEE);
+                if (HorarioEESabado.IdEE != 0)
                 {
                     this.ExisteHorario_Sabado = true;
-                    this.Value_HoraInicio_Sabado = horarioEESabado.HoraInicio;
-                    this.Value_HoraFin_Sabado = horarioEESabado.HoraFin;
-                    //this.CBox_Aula_Sabado_Index = horarioEESabado.IdAula;
+                    this.ChkBox_Sabado = true;
+                    this.Value_HoraInicio_Sabado = HorarioEESabado.HoraInicio;
+                    this.Value_HoraFin_Sabado = HorarioEESabado.HoraFin;
+                    this.CBox_Aula_Sabado_Index = ObtenerIndexCBoxAulas(HorarioEESabado.IdAula);
                 }
                 else { this.ExisteHorario_Sabado = false; }
             }
@@ -755,73 +803,164 @@ namespace SGHE.LogicaNegocio
 
         public void Registrar()
         {
-            if (this.ChkBox_Lunes == true) { RegistrarHorarioLunes(); }
-            if (this.ChkBox_Martes == true) { RegistrarHorarioMartes(); }
-            if (this.ChkBox_Miercoles == true) { RegistrarHorarioMiercoles(); }
-            if (this.ChkBox_Jueves == true) { RegistrarHorarioJueves(); }
-            if (this.ChkBox_Viernes == true) { RegistrarHorarioViernes(); }
-            if (this.ChkBox_Sabado == true) { RegistrarHorarioViernes(); }
+            if (ChkBox_Lunes == true) { CrearHorarioLunes(); }
+            if (ChkBox_Martes == true) { CrearHorarioMartes(); }
+            if (ChkBox_Miercoles == true) { CrearHorarioMiercoles(); }
+            if (ChkBox_Jueves == true) { CrearHorarioJueves(); }
+            if (ChkBox_Viernes == true) { CrearHorarioViernes(); }
+            if (ChkBox_Sabado == true) { CrearHorarioViernes(); }
+
+            MessageBox.Show("Todos los horarios registrados. Cerrando Ventana...","Aviso");
         }
 
-        private void RegistrarHorarioLunes()
+        private void CrearHorarioLunes()
         {
-            /*
-            if(!value_HoraInicio_Lunes != null)
-            {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Lunes;
+            horario.HoraFin = Value_HoraFin_Lunes;
+            horario.DiaSemana = LUNES;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Lunes_Selected.IdAula;
 
-            }*/
-            /*
-            if (!this.Modelo.Equals("") &&
-                !this.Procesador.Equals("") &&
-                !this.TarjetaVideo.Equals("") &&
-                !this.MemoriaRam.Equals("") &&
-                !this.Almacenamiento.Equals("") &&
-                !this.Pantalla.Equals(""))
+            bool respuestaBD;
+            if (ExisteHorario_Lunes == true) //Actualizar Horario Existente
             {
-                Laptop laptop = new();
-                laptop.idRegistro = "r";
-                laptop.modelo = this.Modelo;
-                laptop.procesador = this.Procesador;
-                laptop.tarjetaVideo = this.TarjetaVideo;
-                laptop.memoriaRam = this.MemoriaRam;
-                laptop.almacenamiento = this.Almacenamiento;
-                laptop.pantalla = this.Pantalla;
-
-                string response = await apirest.PostLaptop(laptop);
-                if (response != "500")
-                {
-                    MessageBox.Show("Laptop Registrada con Exito", "Aviso");
-                    RegistrarComponentes(response);
-                    Cerrar();
-                }
-                else { MessageBox.Show("No se registró la laptop", "Aviso"); }
+                horario.IdHorario = HorarioEELunes.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del lunes", "Error"); }
             }
-            else { MessageBox.Show("Hay campos vacios", "Alerta"); }*/
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del Lunes", "Error"); }
+            }
         }
 
-        private void RegistrarHorarioMartes() 
-        { 
+        private void CrearHorarioMartes() 
+        {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Martes;
+            horario.HoraFin = Value_HoraFin_Martes;
+            horario.DiaSemana = MARTES;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Martes_Selected.IdAula;
 
+            bool respuestaBD;
+            if (ExisteHorario_Martes == true) //Actualizar Horario Existente
+            {
+                horario.IdHorario = HorarioEEMartes.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del martes Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del martes", "Error"); }
+            }
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del martes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del martes", "Error"); }
+            }
         }
 
-        private void RegistrarHorarioMiercoles() 
-        { 
+        private void CrearHorarioMiercoles() 
+        {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Miercoles;
+            horario.HoraFin = Value_HoraFin_Miercoles;
+            horario.DiaSemana = MIERCOLES;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Miercoles_Selected.IdAula;
 
+            bool respuestaBD;
+            if (ExisteHorario_Miercoles == true) //Actualizar Horario Existente
+            {
+                horario.IdHorario = HorarioEEMiercoles.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del miercoles", "Error"); }
+            }
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del miercoles", "Error"); }
+            }
         }
 
-        private void RegistrarHorarioJueves() 
-        { 
+        private void CrearHorarioJueves() 
+        {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Jueves;
+            horario.HoraFin = Value_HoraFin_Jueves;
+            horario.DiaSemana = JUEVES;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Jueves_Selected.IdAula;
 
+            bool respuestaBD;
+            if (ExisteHorario_Jueves == true) //Actualizar Horario Existente
+            {
+                horario.IdHorario = HorarioEEJueves.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del jueves Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del jueves", "Error"); }
+            }
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del miercoles", "Error"); }
+            }
         }
 
-        private void RegistrarHorarioViernes() 
-        { 
+        private void CrearHorarioViernes() 
+        {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Viernes;
+            horario.HoraFin = Value_HoraFin_Viernes;
+            horario.DiaSemana = VIERNES;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Viernes_Selected.IdAula;
 
+            bool respuestaBD;
+            if (ExisteHorario_Viernes == true) //Actualizar Horario Existente
+            {
+                horario.IdHorario = HorarioEEViernes.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del viernes", "Error"); }
+            }
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del viernes", "Error"); }
+            }
         }
 
-        private void RegistrarHorarioSabado()
-        { 
+        private void CrearHorarioSabado()
+        {
+            HorarioEE horario = new HorarioEE();
+            horario.HoraInicio = Value_HoraInicio_Sabado;
+            horario.HoraFin = Value_HoraFin_Sabado;
+            horario.DiaSemana = SABADO;
+            horario.IdEE = CBox_EE_Selected.IdEE;
+            horario.IdAula = CBox_Aula_Sabado_Selected.IdAula;
 
+            bool respuestaBD;
+            if (ExisteHorario_Sabado == true) //Actualizar Horario Existente
+            {
+                horario.IdHorario = HorarioEESabado.IdHorario;
+                respuestaBD = HorarioDao.ActualizarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Registrado con exito"); }
+                else { MessageBox.Show("No se registro el horario del sabado", "Error"); }
+            }
+            else //Crear Nuevo
+            {
+                respuestaBD = HorarioDao.RegistrarHorario(horario);
+                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del sabado", "Error"); }
+            }
         }
 
         #endregion Registrar Datos
@@ -931,8 +1070,17 @@ namespace SGHE.LogicaNegocio
 
         #endregion Activar y Desactivar Dias
 
+        #region Utilidades
+
         private void ResetearHorasYAulas()
         {
+            this.ChkBox_Lunes = false;
+            this.ChkBox_Martes = false;
+            this.ChkBox_Miercoles = false;
+            this.ChkBox_Jueves = false;
+            this.ChkBox_Viernes = false;
+            this.ChkBox_Sabado = false;
+
             this.Value_HoraInicio_Lunes = DateTime.Parse("12:00:00");
             this.Value_HoraInicio_Martes = DateTime.Parse("12:00:00");
             this.Value_HoraInicio_Miercoles = DateTime.Parse("12:00:00");
@@ -954,6 +1102,14 @@ namespace SGHE.LogicaNegocio
             this.CBox_Aula_Viernes_Selected = null;
             this.CBox_Aula_Sabado_Selected = null;
         }
+
+        private int ObtenerIndexCBoxAulas(int idAula)
+        {
+            return this.CBox_Aula_Items.IndexOf(
+                            this.CBox_Aula_Items.Where<Aula>(x => x.IdAula == idAula).FirstOrDefault());
+        }
+
+        #endregion Utilidades
 
         #endregion METHODS
     }
