@@ -22,6 +22,10 @@ namespace SGHE.LogicaNegocio.DAO
             "INSERT INTO experienciaeducativa(nRC, nombre, creditos, modalidad, idPeriodo, idDocente) " +
             "VALUES (@idEE, @nRC, @nombre, @creditos, @modalidad, @idPeriodo, @idDocente)";
 
+        private static readonly string QUERY_RECUPERAR_EE_PERIODO_IDDOCENTE =
+            "SELECT idEE, NRC, nombre, creditos, modalidad, idPeriodo, idDocente, idCarrera " +
+            "FROM experienciaeducativa WHERE idPeriodo = @idPeriodo AND idDocente = @idDocente";
+
         #endregion QUERYS
 
         public List<ExperienciaEducativa> RecuperarExperienciasEducativas()
@@ -103,6 +107,41 @@ namespace SGHE.LogicaNegocio.DAO
                     MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_EE_PERIODO_CARRERA, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@idPeriodo", idPeriodo);
                     mySqlCommand.Parameters.AddWithValue("@idCarrera", idCarrera);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        ExperienciaEducativa ee = new();
+                        ee.IdEE = respuestaBD.GetInt32(0);
+                        ee.NRC = respuestaBD.GetString(1);
+                        ee.Nombre = respuestaBD.GetString(2);
+                        ee.Creditos = respuestaBD.GetInt32(3);
+                        ee.Modalidad = respuestaBD.GetString(4);
+                        ee.IdPeriodo = respuestaBD.GetInt32(5);
+                        ee.IdDocente = respuestaBD.GetInt32(6);
+                        ee.IdCarrera = respuestaBD.GetInt32(7);
+
+                        listaEEs.Add(ee);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return listaEEs;
+        }
+
+        public List<ExperienciaEducativa> RecuperarExperienciasPorIdDocente(int idPeriodo, int idDocente)
+        {
+            List<ExperienciaEducativa> listaEEs = new List<ExperienciaEducativa>();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_EE_PERIODO_IDDOCENTE, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idPeriodo", idPeriodo);
+                    mySqlCommand.Parameters.AddWithValue("@idDocente", idDocente);
                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
                     while (respuestaBD.Read())
                     {
