@@ -10,6 +10,10 @@ namespace SGHE.LogicaNegocio.POCO
         private int idDocente;
         private String numDocente;
 
+        public Docente()
+        {
+        }
+
         public Docente(int idUsuario, string nombre, string apellidoPaterno, string apellidoMaterno, DateTime fechaNacimiento, string telefono, string email, string domicilio, string password, int idTipoUusario) : base(idUsuario, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, telefono, email, domicilio, password, idTipoUusario)
         {
 

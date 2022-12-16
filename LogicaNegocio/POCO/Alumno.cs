@@ -31,6 +31,10 @@ namespace SGHE.LogicaNegocio.POCO
             this.idCarrera = idCarrera;
         }
 
+        public Alumno()
+        {
+        }
+
         public int IdAlumno { get => idAlumno; set => idAlumno = value; }
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public string Matricula { get => matricula; set => matricula = value; }

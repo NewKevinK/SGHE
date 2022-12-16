@@ -238,5 +238,78 @@ namespace SGHE.LogicaNegocio.DAO
 
             return null;
         }
+
+
+        public Docente RecuperarDocentePorId(int idUsuario)
+        {
+            Docente docente = new Docente();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT * FROM usuario WHERE idUsuario=@idUsuario";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        docente.IdUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        docente.Nombre = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        docente.ApellidoPaterno = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
+                        docente.ApellidoMaterno = ((respuestaBD.IsDBNull(3)) ? "" : respuestaBD.GetString(3));
+                        docente.FechaNacimiento = DateTime.Parse((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
+                        docente.Telefono = ((respuestaBD.IsDBNull(5)) ? "" : respuestaBD.GetString(5));
+                        docente.Email = ((respuestaBD.IsDBNull(6)) ? "" : respuestaBD.GetString(6));
+                        docente.Domicilio = ((respuestaBD.IsDBNull(7)) ? "" : respuestaBD.GetString(7));
+                        string password = ((respuestaBD.IsDBNull(8)) ? "" : respuestaBD.GetString(8));
+                        docente.IdTipoUusario = ((respuestaBD.IsDBNull(9)) ? 0 : respuestaBD.GetInt32(9));
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return docente;
+        }
+
+        public Alumno RecuperarAlumnoPorId(int idUsuario)
+        {
+            Alumno alumno = new Alumno();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT * FROM usuario WHERE idUsuario=@idUsuario";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        alumno.IdUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        alumno.Nombre = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        alumno.ApellidoPaterno = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
+                        alumno.ApellidoMaterno = ((respuestaBD.IsDBNull(3)) ? "" : respuestaBD.GetString(3));
+                        alumno.FechaNacimiento = DateTime.Parse((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
+                        alumno.Telefono = ((respuestaBD.IsDBNull(5)) ? "" : respuestaBD.GetString(5));
+                        alumno.Email = ((respuestaBD.IsDBNull(6)) ? "" : respuestaBD.GetString(6));
+                        alumno.Domicilio = ((respuestaBD.IsDBNull(7)) ? "" : respuestaBD.GetString(7));
+                        string password = ((respuestaBD.IsDBNull(8)) ? "" : respuestaBD.GetString(8));
+                        alumno.IdTipoUusario = ((respuestaBD.IsDBNull(9)) ? 0 : respuestaBD.GetInt32(9));
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return alumno;
+        }
     }
 }
