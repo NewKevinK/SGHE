@@ -45,7 +45,7 @@ namespace SGHE.Cliente
 
         private void Button_Perfil(object sender, RoutedEventArgs e)
         {
-            PerfilUsuario abrirPerfil = new PerfilUsuario();
+            PerfilUsuario abrirPerfil = new PerfilUsuario(docenteConseguidol);
             abrirPerfil.Show();
         }
     }

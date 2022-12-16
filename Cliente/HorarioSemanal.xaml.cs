@@ -17,7 +17,7 @@ namespace SGHE.Cliente
     {
         List<HoraSemanalUs> listaArreglo = new List<HoraSemanalUs>();
         List<HorarioDiaEE> horarioSemanal;
-        public HorarioSemanal(Alumno alumnorecuperado, int idPeriodo)
+        public HorarioSemanal(int alumnoRecuperadoo, int idPeriodo)
         {
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
@@ -27,7 +27,7 @@ namespace SGHE.Cliente
 
             IniciarGridHorario();
             cargarElementosHorario();
-            cargarClaseHorario(alumnorecuperado, idPeriodo);
+            cargarClaseHorario(alumnoRecuperadoo, idPeriodo);
         }
         public HorarioSemanal()
         {
@@ -42,11 +42,11 @@ namespace SGHE.Cliente
             //cargarClaseHorario();
         }
 
-        private void cargarClaseHorario(Alumno alumnoRecuperado, int idperiodo)
+        private void cargarClaseHorario(int alumnoRecuperado, int idperiodo)
         {
             HorarioDao horarioConsulta = new HorarioDao();
             
-            horarioSemanal = HorarioDao.RecuperarHorarioSemanal(idperiodo, alumnoRecuperado.IdAlumno);
+            horarioSemanal = HorarioDao.RecuperarHorarioSemanal(idperiodo, alumnoRecuperado);
             cargarLunes(horarioSemanal);
             cargarMartes(horarioSemanal);
             cargarMiercoles(horarioSemanal);
@@ -57,7 +57,14 @@ namespace SGHE.Cliente
 
         private void cargarViernes(List<HorarioDiaEE> horarioSemanal)
         {
-            HorarioDatos horarioDatos = new HorarioDatos();
+            List<HorarioDatos> listtem = new List<HorarioDatos>();
+            HorarioDatos horarioDatos;
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                listtem.Add(horarioDatos = new HorarioDatos());
+            }
+
+
             for (int i = 0; i < horarioSemanal.Count; i++)
             {
                 if (horarioSemanal[i].DiaSemana == 5)
@@ -68,24 +75,42 @@ namespace SGHE.Cliente
                         {
                             horarioDatos = new HorarioDatos();
                             horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.cajadeDetalles.Background = Brushes.Gray;
                             horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
                             horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
-
+                            listtem[z] = horarioDatos;
                         }
                         else
                         {
-                            horarioDatos = new HorarioDatos();
-                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                            if (listtem[z].ExperienciaEducativa.Text == "")
+                            {
+                                horarioDatos = new HorarioDatos();
+                                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                                listtem[z] = horarioDatos;
+                            }
+
                         }
-                        GridElementosViernes.Children.Add(horarioDatos);
+
                     }
+
                 }
+            }
+            for (int z = 0; z < listtem.Count; z++)
+            {
+                GridElementosViernes.Children.Add(listtem[z]);
             }
         }
 
         private void cargarJueves(List<HorarioDiaEE> horarioSemanal)
         {
-            HorarioDatos horarioDatos = new HorarioDatos();
+            List<HorarioDatos> listtem = new List<HorarioDatos>();
+            HorarioDatos horarioDatos;
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                listtem.Add(horarioDatos = new HorarioDatos());
+            }
+
+
             for (int i = 0; i < horarioSemanal.Count; i++)
             {
                 if (horarioSemanal[i].DiaSemana == 4)
@@ -96,24 +121,42 @@ namespace SGHE.Cliente
                         {
                             horarioDatos = new HorarioDatos();
                             horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.cajadeDetalles.Background = Brushes.Gray;
                             horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
                             horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
-
+                            listtem[z] = horarioDatos;
                         }
                         else
                         {
-                            horarioDatos = new HorarioDatos();
-                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                            if (listtem[z].ExperienciaEducativa.Text == "")
+                            {
+                                horarioDatos = new HorarioDatos();
+                                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                                listtem[z] = horarioDatos;
+                            }
+
                         }
-                        GridElementosJueves.Children.Add(horarioDatos);
+
                     }
+
                 }
+            }
+            for (int z = 0; z < listtem.Count; z++)
+            {
+                GridElementosJueves.Children.Add(listtem[z]);
             }
         }
 
         private void cargarMiercoles(List<HorarioDiaEE> horarioSemanal)
         {
-            HorarioDatos horarioDatos = new HorarioDatos();
+            List<HorarioDatos> listtem = new List<HorarioDatos>();
+            HorarioDatos horarioDatos;
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                listtem.Add(horarioDatos = new HorarioDatos());
+            }
+
+
             for (int i = 0; i < horarioSemanal.Count; i++)
             {
                 if (horarioSemanal[i].DiaSemana == 3)
@@ -124,24 +167,42 @@ namespace SGHE.Cliente
                         {
                             horarioDatos = new HorarioDatos();
                             horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.cajadeDetalles.Background = Brushes.Gray;
                             horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
                             horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
-
+                            listtem[z] = horarioDatos;
                         }
                         else
                         {
-                            horarioDatos = new HorarioDatos();
-                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                            if (listtem[z].ExperienciaEducativa.Text == "")
+                            {
+                                horarioDatos = new HorarioDatos();
+                                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                                listtem[z] = horarioDatos;
+                            }
+
                         }
-                        GridElementosMiercoles.Children.Add(horarioDatos);
+
                     }
+
                 }
+            }
+            for (int z = 0; z < listtem.Count; z++)
+            {
+                GridElementosMiercoles.Children.Add(listtem[z]);
             }
         }
 
         private void cargarMartes(List<HorarioDiaEE> horarioSemanal)
         {
-            HorarioDatos horarioDatos = new HorarioDatos();
+            List<HorarioDatos> listtem = new List<HorarioDatos>();
+            HorarioDatos horarioDatos;
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                listtem.Add(horarioDatos = new HorarioDatos());
+            }
+
+
             for (int i = 0; i < horarioSemanal.Count; i++)
             {
                 if (horarioSemanal[i].DiaSemana == 2)
@@ -152,24 +213,41 @@ namespace SGHE.Cliente
                         {
                             horarioDatos = new HorarioDatos();
                             horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.cajadeDetalles.Background = Brushes.Gray;
                             horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
                             horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
-
+                            listtem[z] = horarioDatos;
                         }
                         else
                         {
-                            horarioDatos = new HorarioDatos();
-                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                            if (listtem[z].ExperienciaEducativa.Text == "")
+                            {
+                                horarioDatos = new HorarioDatos();
+                                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                                listtem[z] = horarioDatos;
+                            }
+
                         }
-                        GridElementosMartes.Children.Add(horarioDatos);
+
                     }
+
                 }
+            }
+            for (int z = 0; z < listtem.Count; z++)
+            {
+                GridElementosMartes.Children.Add(listtem[z]);
             }
         }
 
         private void cargarLunes(List<HorarioDiaEE> horarioSemanal)
         {
+            List<HorarioDatos> listtem= new List<HorarioDatos>();
             HorarioDatos horarioDatos;
+            for (int i = 0; i < listaArreglo.Count; i++)
+            {
+                listtem.Add(horarioDatos=new HorarioDatos());
+            }
+            
 
             for (int i = 0; i < horarioSemanal.Count; i++)
             {
@@ -177,23 +255,33 @@ namespace SGHE.Cliente
                 {
                     for (int z = 0; z < listaArreglo.Count; z++)
                     {
-                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text+":00"))
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text + ":00"))
                         {
                             horarioDatos = new HorarioDatos();
                             horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
-                            horarioDatos.salonClases.Text = "SALON: "+horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.cajadeDetalles.Background = Brushes.Gray;
+                            horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
                             horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
-
+                            listtem[z] = horarioDatos;
                         }
                         else
                         {
-                            horarioDatos = new HorarioDatos();
-                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                            if (listtem[z].ExperienciaEducativa.Text == "")
+                            {
+                                horarioDatos = new HorarioDatos();
+                                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                                listtem[z] = horarioDatos;
+                            }
+
                         }
-                        GridElementoslunes.Children.Add(horarioDatos);
+                       
                     }
                     
                 }
+            }
+            for(int z = 0; z < listtem.Count; z++)
+            {
+                GridElementoslunes.Children.Add(listtem[z]);
             }
         }
 

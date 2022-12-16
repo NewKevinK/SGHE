@@ -24,6 +24,7 @@
     <None Remove="Cliente\IconoRegresar.png" />
     <None Remove="Cliente\left_arrow.png" />
     <None Remove="Cliente\Recursos\Iconos\IconoIr.png" />
+    <None Remove="Cliente\Recursos\Iconos\pato_1.jpg" />
     <None Remove="Cliente\right_arrow.png" />
   </ItemGroup>
 
@@ -47,6 +48,7 @@
     <Resource Include="Cliente\IconoRegresar.png" />
     <Resource Include="Cliente\left_arrow.png" />
     <Resource Include="Cliente\Recursos\Iconos\IconoIr.png" />
+    <Resource Include="Cliente\Recursos\Iconos\pato_1.jpg" />
     <Resource Include="Cliente\right_arrow.png" />
   </ItemGroup>
 

@@ -693,7 +693,7 @@ namespace SGHE.LogicaNegocio
 
         private void RegistrarHorarioLunes()
         {
-            Horario horarioLunes = new();
+            //Horario horarioLunes = new();
         }
 
         private void RegistrarHorarioMartes() 

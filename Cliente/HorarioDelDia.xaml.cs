@@ -23,6 +23,8 @@ namespace SGHE.Cliente
     {
 
         #region CONSTRUCTOR
+        int idperiodo = 0;
+        Alumno alumnorecuperado;
 
         public HorarioDelDia()
         {
@@ -40,6 +42,8 @@ namespace SGHE.Cliente
 
         public HorarioDelDia(int idPeriodo, Alumno alumnoActual, int diaSemanaActual)
         {
+            this.idperiodo = idPeriodo;
+            alumnorecuperado = alumnoActual;
             InitializeComponent();
 
             DataContext = new HorarioDelDiaViewModel(idPeriodo, alumnoActual, diaSemanaActual);
@@ -94,24 +98,16 @@ namespace SGHE.Cliente
 
         private void Click_Volver(object sender, RoutedEventArgs e)
         {
-
-            InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
             this.Close();
-            System.Threading.Thread.Sleep(1000);
-            inicioAdministrativo.Show();
         }
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-            /*HorarioSemanal horarioSemanal = new HorarioSemanal(datospersona);
-            this.Close();
-            System.Threading.Thread.Sleep(1000);
-            horarioSemanal.Show();*/
-
-            HorarioSemanal horarioSemanal=new HorarioSemanal();
-            this.Close();
-            System.Threading.Thread.Sleep(1000);
+            UsuarioDao horarioID = new UsuarioDao();
+            int idAlumno = horarioID.RecuperarIdAlumnoDeUsuario(alumnorecuperado.IdUsuario);
+            HorarioSemanal horarioSemanal=new HorarioSemanal(idAlumno, idperiodo);
             horarioSemanal.Show();
+            this.Close();
         }
 
         #endregion BUTTONS

@@ -56,24 +56,20 @@ namespace SGHE.Cliente
 
         private void Click_HorarioDelDia(object sender, RoutedEventArgs e)
         {
-
-            HorarioDelDia actividadesDiarias = new HorarioDelDia(idPeriodo, alumnoActual, diaSemanaActual);
+            PeriodoDAO newPeriodo = new PeriodoDAO();
+            Periodo periodo= newPeriodo.RecuperarPeriodoActual();
+            HorarioDelDia actividadesDiarias = new HorarioDelDia(periodo.IdPeriodo, alumnoActual, diaSemanaActual);
             actividadesDiarias.Show();
-
-            /*if (identificador = "ALUMNO")
-            {
-                HorarioDelDia horarioAlumno= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioAlumno.Show();
-            }*/
 
         }
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-
-            HorarioSemanal horarioSemanal = new HorarioSemanal(alumnoActual, idPeriodo);
+            PeriodoDAO newPeriodo = new PeriodoDAO();
+            Periodo periodo = newPeriodo.RecuperarPeriodoActual();
+            UsuarioDao horarioID = new UsuarioDao();
+            int idAlumno=horarioID.RecuperarIdAlumnoDeUsuario(alumnoActual.IdUsuario);
+            HorarioSemanal horarioSemanal = new HorarioSemanal(idAlumno, periodo.IdPeriodo);
             horarioSemanal.Show();
         }
 

@@ -19,18 +19,22 @@ namespace SGHE.LogicaNegocio
 
         public HorarioDelDiaViewModel(int idPeriodo, Alumno alumnoActual, int diaSemanaActual)
         {
-            RecuperarHorariosAlumno();
+            
 
             this.idPeriodoActual = idPeriodo;
             this.alumnoActual = alumnoActual;
             this.diaSemanaActual = diaSemanaActual;
+            RecuperarHorariosAlumno();
         }
 
         private void RecuperarHorariosAlumno()
         {
             ExperienciasEducativasDAB = new ObservableCollection<HorarioDiaEE>();
             List<HorarioDiaEE> listaHorarios = new List<HorarioDiaEE>();
-            listaHorarios = HorarioDao.RecuperarHorariosAlumnoPorDia(1, 1, 1);
+            UsuarioDao horarioID = new UsuarioDao();
+            int idAlumno = horarioID.RecuperarIdAlumnoDeUsuario(alumnoActual.IdUsuario);
+
+            listaHorarios = HorarioDao.RecuperarHorariosAlumnoPorDia(idPeriodoActual, diaSemanaActual, idAlumno);
 
             foreach (HorarioDiaEE horarioDia in listaHorarios)
             {

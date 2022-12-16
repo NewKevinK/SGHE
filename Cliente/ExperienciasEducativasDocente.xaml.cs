@@ -33,7 +33,9 @@ namespace SGHE.Cliente
         {
             List<ExperienciaEducativa> experienciasEducativas = new List<ExperienciaEducativa>();
             ActividadDao actividadDao = new ActividadDao();
-            experienciasEducativas = actividadDao.RecuperarExperienciasPorIdDocente(idPeriodo,docenteRecuperado.IdUsuario);
+            PeriodoDAO newPeriodo = new PeriodoDAO();
+            Periodo periodo = newPeriodo.RecuperarPeriodoActual();
+            experienciasEducativas = actividadDao.RecuperarExperienciasPorIdDocente(periodo.IdPeriodo, docenteRecuperado.IdUsuario);
             MostrarExperienciasEducativas(experienciasEducativas);
         }
 
