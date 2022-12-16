@@ -16,6 +16,7 @@ namespace SGHE.Cliente
     public partial class HorarioSemanal : Window
     {
         List<HoraSemanalUs> listaArreglo = new List<HoraSemanalUs>();
+        List<HorarioDiaEE> horarioSemanal;
         public HorarioSemanal(Persona datospersona)
         {
             InitializeComponent();
@@ -43,79 +44,157 @@ namespace SGHE.Cliente
 
         private void cargarClaseHorario()
         {
-            cargarLunes();
-            cargarMartes();
-            cargarMiercoles();
-            cargarJueves();
-            cargarViernes();
+            HorarioDao horarioConsulta = new HorarioDao();
+            
+            horarioSemanal = HorarioDao.RecuperarHorarioSemanal(1, 1);
+            cargarLunes(horarioSemanal);
+            cargarMartes(horarioSemanal);
+            cargarMiercoles(horarioSemanal);
+            cargarJueves(horarioSemanal);
+            cargarViernes(horarioSemanal);
 
         }
 
-        private void cargarViernes()
+        private void cargarViernes(List<HorarioDiaEE> horarioSemanal)
         {
-            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
-
-            for (int i = 0; i < listaArreglo.Count; i++)
+            HorarioDatos horarioDatos = new HorarioDatos();
+            for (int i = 0; i < horarioSemanal.Count; i++)
             {
-                GridElementosViernes.Children.Add(crearElemento(i));
+                if (horarioSemanal[i].DiaSemana == 5)
+                {
+                    for (int z = 0; z < listaArreglo.Count; z++)
+                    {
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text + ":00"))
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
+
+                        }
+                        else
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        GridElementosViernes.Children.Add(horarioDatos);
+                    }
+                }
             }
         }
 
-        private void cargarJueves()
+        private void cargarJueves(List<HorarioDiaEE> horarioSemanal)
         {
-            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
-
-            for (int i = 0; i < listaArreglo.Count; i++)
+            HorarioDatos horarioDatos = new HorarioDatos();
+            for (int i = 0; i < horarioSemanal.Count; i++)
             {
-                GridElementosJueves.Children.Add(crearElemento(i));
+                if (horarioSemanal[i].DiaSemana == 4)
+                {
+                    for (int z = 0; z < listaArreglo.Count; z++)
+                    {
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text + ":00"))
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
+
+                        }
+                        else
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        GridElementosJueves.Children.Add(horarioDatos);
+                    }
+                }
             }
         }
 
-        private void cargarMiercoles()
+        private void cargarMiercoles(List<HorarioDiaEE> horarioSemanal)
         {
-            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
-
-            for (int i = 0; i < listaArreglo.Count; i++)
+            HorarioDatos horarioDatos = new HorarioDatos();
+            for (int i = 0; i < horarioSemanal.Count; i++)
             {
-                GridElementosMiercoles.Children.Add(crearElemento(i));
+                if (horarioSemanal[i].DiaSemana == 3)
+                {
+                    for (int z = 0; z < listaArreglo.Count; z++)
+                    {
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text + ":00"))
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
+
+                        }
+                        else
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        GridElementosMiercoles.Children.Add(horarioDatos);
+                    }
+                }
             }
         }
 
-        private void cargarMartes()
+        private void cargarMartes(List<HorarioDiaEE> horarioSemanal)
         {
-            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
-
-            for (int i = 0; i < listaArreglo.Count; i++)
+            HorarioDatos horarioDatos = new HorarioDatos();
+            for (int i = 0; i < horarioSemanal.Count; i++)
             {
-                GridElementosMartes.Children.Add(crearElemento(i));
+                if (horarioSemanal[i].DiaSemana == 2)
+                {
+                    for (int z = 0; z < listaArreglo.Count; z++)
+                    {
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text + ":00"))
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.salonClases.Text = "SALON: " + horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
+
+                        }
+                        else
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        GridElementosMartes.Children.Add(horarioDatos);
+                    }
+                }
             }
         }
 
-        private void cargarLunes()
+        private void cargarLunes(List<HorarioDiaEE> horarioSemanal)
         {
-            List<HorarioDatos> horarioDatos = new List<HorarioDatos>();
+            HorarioDatos horarioDatos;
 
-            for(int i = 0; i < listaArreglo.Count; i++)
+            for (int i = 0; i < horarioSemanal.Count; i++)
             {
-                GridElementoslunes.Children.Add(crearElemento(i));
-            }
-    
-        }
+                if (horarioSemanal[i].DiaSemana == 1)
+                {
+                    for (int z = 0; z < listaArreglo.Count; z++)
+                    {
+                        if (horarioSemanal[i].HoraInicio == (listaArreglo[z].HoraInicio.Text+":00"))
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.ExperienciaEducativa.Text = horarioSemanal[i].NombreEE.ToString();
+                            horarioDatos.salonClases.Text = "SALON: "+horarioSemanal[i].CodigoAula.ToString();
+                            horarioDatos.Profesor.Text = horarioSemanal[i].NombreCompletoDocente.ToString();
 
-        private HorarioDatos crearElemento(int i)
-        {
-            HorarioDatos horarioDatos = new HorarioDatos(); 
-            if((i % 2) == 0)
-            {
-                horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        else
+                        {
+                            horarioDatos = new HorarioDatos();
+                            horarioDatos.cajadeDetalles.Background = Brushes.White;
+                        }
+                        GridElementoslunes.Children.Add(horarioDatos);
+                    }
+                    
+                }
             }
-            else
-            {
-                horarioDatos.ExperienciaEducativa.Text = "CLASE DE PRUEBA";
-                horarioDatos.salonClases.Text = "SALON" + "201";
-            }
-            return horarioDatos;
-
         }
 
         private void cargarElementosHorario()
