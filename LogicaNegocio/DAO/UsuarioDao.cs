@@ -140,26 +140,29 @@ namespace SGHE.LogicaNegocio.DAO
             return idUsuario;
         }
 
-        
 
-        public int Autenticacion(string password, string email)
+
+        public Persona Autenticacion(string password, string email)
         {
-            int idUsuario=0;
+            Persona personaAuth = new Persona();
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            //MessageBox.Show(password + email);
             if (conexionBD != null)
             {
                 try
                 {
-                    string sql = "SELECT idUsuario FROM usuario WHERE email = '@email' AND PASSWORD =@password";
+                    string sql = "SELECT idUsuario, idTipoUsuario FROM usuario WHERE email = @email AND PASSWORD =@password";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@email",email);
+                    mySqlCommand.Parameters.AddWithValue("@email", email);
                     mySqlCommand.Parameters.AddWithValue("@password", password);
 
                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
                     while (respuestaBD.Read())
                     {
-                        idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
-                        
+                        personaAuth.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        personaAuth.idTipoUsuario = ((respuestaBD.IsDBNull(1)) ? 0 : respuestaBD.GetInt32(1));
+
+
 
                     }
                 }
@@ -169,26 +172,63 @@ namespace SGHE.LogicaNegocio.DAO
                 }
 
             }
-            return idUsuario;
+            return personaAuth;
         }
 
-        public Usuario ObtenerUsuario(int id)
+        public Usuario ObtenerUsuario(Persona personaAuth)
         {
             Persona persona = new Persona();
-           //Usuario usuario = new Usuario();
+            int id = personaAuth.idUsuario;
             MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            string sql;
             if (conexionBD != null)
             {
                 try
                 {
-                    string sql = "";
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                   // mySqlCommand.Parameters.AddWithValue();
-                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
-                    while (respuestaBD.Read())
+                    if (id == 1)
                     {
-                        
+
+
+
                     }
+                    else if ((id == 2) || (id == 3))
+                    {
+
+
+
+                    }
+                    else
+                    {
+                        string sqll = "SELECT  tipousuario, alumno.idAlumno, usuario.nombre FROM usuario " +
+                            "LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario" +
+                            "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario " +
+                            "WHERE usuario.idUsuario = @id";
+                        MySqlCommand mySqlCommandd = new MySqlCommand(sqll, conexionBD);
+                        mySqlCommandd.Parameters.AddWithValue("@id", id);
+                        MySqlDataReader respuestaBDD = mySqlCommandd.ExecuteReader();
+                        while (respuestaBDD.Read())
+                        {
+                            persona.idUsuario = ((respuestaBDD.IsDBNull(0)) ? 0 : respuestaBDD.GetInt32(0));
+                            persona.tipoUsuario = ((respuestaBDD.IsDBNull(1)) ? "" : respuestaBDD.GetString(1));
+                            persona.idPersona = ((respuestaBDD.IsDBNull(2)) ? 0 : respuestaBDD.GetInt32(2));
+                        }
+
+
+                    }
+                    /* string sql = "SELECT usuario.idUsuario, tipousuario, idAlumno FROM usuario" +
+                         " LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario " +
+                         "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario WHERE usuario.idUsuario = @id" ;
+                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                     mySqlCommand.Parameters.AddWithValue("@id",id);
+                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                     while (respuestaBD.Read())
+                     {
+                         persona.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                         persona.tipoUsuario = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                         persona.idPersona = ((respuestaBD.IsDBNull(2)) ? 0 : respuestaBD.GetInt32(2));
+
+
+                     } */
                 }
                 catch (Exception e)
                 {
