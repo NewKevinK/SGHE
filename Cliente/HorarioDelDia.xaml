@@ -7,7 +7,6 @@
         xmlns:WPFCarouselControl="clr-namespace:SGHE.Cliente.Recursos.WPFCarouselControl"
         mc:Ignorable="d"
         Title="ActividadesDiarias" Height="450" Width="800"
-        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         >
     <Grid>

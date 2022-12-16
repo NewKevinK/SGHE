@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SGHE.Client" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="RegistroHorario" Height="650" Width="1200"
         Background="White">
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -42,19 +44,18 @@
             <!-- Combo Box Carrera-->
             <Label Grid.Row="0" Grid.Column="1" Content="PROGRAMA EDUCATIVO (Carrera)" FontSize="20"  VerticalAlignment="Bottom" Margin="40,0,40,0" />
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbxCarrera" Margin="40,5" 
-                      IsEnabled="{Binding CBox_CarreraEnabled}" 
+                      IsEnabled="{Binding CBox_CarreraEnabled}"
                       ItemsSource="{Binding CBox_Carrera_Items}"
                       SelectedItem="{Binding CBox_Carrera_Selected}"
-                      DisplayMemberPath="Nombre"
-                      
+                      DisplayMemberPath="Nombre"                    
                       FontSize="15" VerticalContentAlignment="Center"/>
-
+            
             <!-- Combo Box Experiencia Educativa-->
             <Label Grid.Row="0" Grid.Column="2"  Content="EXPERIENCIA EDUCATIVA" FontSize="20"  VerticalAlignment="Bottom" Margin="40,0,40,0"/>
             <ComboBox Grid.Row="1" Grid.Column="2"  x:Name="cbxExperienciaEducativa" Margin="40,5" 
                       IsEnabled="{Binding CBox_ExperienciaEducativaEnabled}" 
                       ItemsSource="{Binding CBox_EE_Items}"
-                      SelectedItem="{Binding CBox_EE_Selected}"
+                      SelectedItem="{Binding CBox_EE_Selected}"                      
                       DisplayMemberPath="Nombre"
                       FontSize="15" VerticalContentAlignment="Center"/>
 
@@ -147,7 +148,9 @@
             <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbxAula_Lunes" Margin="5"
                       IsEnabled="{Binding CBox_Aula_Lunes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"
                       ItemsSource="{Binding CBox_Aula_Items}"
-                      SelectedItem="{Binding CBox_Aula_Lunes_Selected}"/>
+                      SelectedItem="{Binding CBox_Aula_Lunes_Selected}"
+                      SelectedIndex="{Binding CBox_Aula_Lunes_Index}"
+                      />
             
             <ComboBox Grid.Row="2" Grid.Column="3" x:Name="cbxAula_Martes" Margin="5"
                       IsEnabled="{Binding CBox_Aula_Martes_Enabled}" DisplayMemberPath="CodigoAula" FontSize="15" VerticalContentAlignment="Center"

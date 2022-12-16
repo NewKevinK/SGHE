@@ -29,14 +29,14 @@ namespace SGHE.LogicaNegocio
 
         private void RecuperarHorariosAlumno()
         {
-            ExperienciasEducativasDAB = new ObservableCollection<HorarioDiaEE>();
-            List<HorarioDiaEE> listaHorarios = new List<HorarioDiaEE>();
+            ExperienciasEducativasDAB = new ObservableCollection<DetalleHorario>();
+            List<DetalleHorario> listaHorarios = new List<DetalleHorario>();
             UsuarioDao horarioID = new UsuarioDao();
             int idAlumno = horarioID.RecuperarIdAlumnoDeUsuario(alumnoActual.IdUsuario);
 
             listaHorarios = HorarioDao.RecuperarHorariosAlumnoPorDia(idPeriodoActual, diaSemanaActual, idAlumno);
 
-            foreach (HorarioDiaEE horarioDia in listaHorarios)
+            foreach (DetalleHorario horarioDia in listaHorarios)
             {
                 ExperienciasEducativasDAB.Add(horarioDia);
             }
@@ -59,8 +59,8 @@ namespace SGHE.LogicaNegocio
 
         //Colección de Experiencias Educativas
 
-        private ObservableCollection<HorarioDiaEE> _experienciasEducativasDAB;
-        public ObservableCollection<HorarioDiaEE> ExperienciasEducativasDAB
+        private ObservableCollection<DetalleHorario> _experienciasEducativasDAB;
+        public ObservableCollection<DetalleHorario> ExperienciasEducativasDAB
         {
             get
             {
@@ -76,8 +76,8 @@ namespace SGHE.LogicaNegocio
         // Experiencia Educativa (Seleccionada)
 
 
-        private HorarioDiaEE _selectedExperienciaEducativaDAB;
-        public HorarioDiaEE SelectedExperienciaEducativaDAB
+        private DetalleHorario _selectedExperienciaEducativaDAB;
+        public DetalleHorario SelectedExperienciaEducativaDAB
         {
             get
             {

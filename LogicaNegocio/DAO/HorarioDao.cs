@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using SGHE.ConexionBaseDatos;
 using SGHE.LogicaNegocio.POCO;
 using System;
@@ -74,12 +75,28 @@ namespace SGHE.LogicaNegocio.DAO
             " ON experienciaeducativa.idPeriodo = periodo.idPeriodo" +
             " WHERE experienciaeducativa.idPeriodo = @idPeriodo AND participantes.idAlumno = @idAlumno";
         #endregion QUERY_RECUPERAR_HORARIO_ALUMNO_DIASEMANA
+
+        #region QUERY_RECUPERAR_HORARIO_EXACTO
+        private static readonly string QUERY_RECUPERAR_HORARIO_EXACTO =
+            "SELECT" +
+            " idHorario," +
+            " horaInicio," +
+            " horaFin," +
+            " diaSemana," +
+            " horario.idEE," +
+            " idAula," +
+            " nombre " +
+            "FROM horario " +
+            "INNER JOIN experienciaeducativa " +
+            "ON horario.idEE = experienciaeducativa.idEE " +
+            "WHERE idPeriodo = @idPeriodo AND diaSemana = @diaSemana AND horario.idEE = @idEE";
+        #endregion QUERY_RECUPERAR_HORARIO_EXACTO
+
         #endregion QUERYS
 
-
-        public static List<HorarioDiaEE> RecuperarHorariosAlumnoPorDia(int idperiodo, int diaSemana, int idAlumno)
+        public static List<DetalleHorario> RecuperarHorariosAlumnoPorDia(int idperiodo, int diaSemana, int idAlumno)
         {
-            List<HorarioDiaEE> listaHorariosEEDia = null;
+            List<DetalleHorario> listaHorariosEEDia = null;
 
             MySqlConnection connection = ConexionBD.ObtenerConexion();
             if (connection != null)
@@ -92,18 +109,18 @@ namespace SGHE.LogicaNegocio.DAO
                     command.Parameters.AddWithValue("@idAlumno", idAlumno);
                     MySqlDataReader respuesta = command.ExecuteReader();
 
-                    listaHorariosEEDia = new List<HorarioDiaEE>();
+                    listaHorariosEEDia = new List<DetalleHorario>();
                     while (respuesta.Read())
                     {
-                        HorarioDiaEE horarioDiaEE = new HorarioDiaEE();
+                        DetalleHorario horarioDiaEE = new DetalleHorario();
                         horarioDiaEE.IdEE = respuesta.GetInt32(0);
                         horarioDiaEE.NRC = respuesta.GetString(1);
                         horarioDiaEE.NombreEE = respuesta.GetString(2);
                         horarioDiaEE.Creditos = respuesta.GetInt32(3);
                         horarioDiaEE.Modalidad = respuesta.GetString(4);
                         horarioDiaEE.NombreCompletoDocente = respuesta.GetString(5) + " " + respuesta.GetString(6) + " " + respuesta.GetString(7);
-                        horarioDiaEE.HoraInicio = respuesta.GetTimeSpan(8).ToString();
-                        horarioDiaEE.HoraFin = respuesta.GetTimeSpan(9).ToString();
+                        horarioDiaEE.HoraInicio = respuesta.GetDateTime(8).ToString("hh:mm");
+                        horarioDiaEE.HoraFin = respuesta.GetDateTime(9).ToString("hh:mm");
                         horarioDiaEE.DiaSemana = respuesta.GetInt32(10);
                         horarioDiaEE.CodigoAula = respuesta.GetString(11);
 
@@ -119,9 +136,10 @@ namespace SGHE.LogicaNegocio.DAO
 
             return listaHorariosEEDia;
         }
-        public static List<HorarioDiaEE> RecuperarHorarioSemanal(int idperiodo, int idAlumno)
+
+        public static List<DetalleHorario> RecuperarHorarioSemanal(int idperiodo, int idAlumno)
         {
-            List<HorarioDiaEE> listaHorariosEEDia = null;
+            List<DetalleHorario> listaHorariosEEDia = null;
 
             MySqlConnection connection = ConexionBD.ObtenerConexion();
             if (connection != null)
@@ -133,18 +151,18 @@ namespace SGHE.LogicaNegocio.DAO
                     command.Parameters.AddWithValue("@idAlumno", idAlumno);
                     MySqlDataReader respuesta = command.ExecuteReader();
 
-                    listaHorariosEEDia = new List<HorarioDiaEE>();
+                    listaHorariosEEDia = new List<DetalleHorario>();
                     while (respuesta.Read())
                     {
-                        HorarioDiaEE horarioDiaEE = new HorarioDiaEE();
+                        DetalleHorario horarioDiaEE = new DetalleHorario();
                         horarioDiaEE.IdEE = respuesta.GetInt32(0);
                         horarioDiaEE.NRC = respuesta.GetString(1);
                         horarioDiaEE.NombreEE = respuesta.GetString(2);
                         horarioDiaEE.Creditos = respuesta.GetInt32(3);
                         horarioDiaEE.Modalidad = respuesta.GetString(4);
                         horarioDiaEE.NombreCompletoDocente = respuesta.GetString(5) + " " + respuesta.GetString(6) + " " + respuesta.GetString(7);
-                        horarioDiaEE.HoraInicio = respuesta.GetTimeSpan(8).ToString();
-                        horarioDiaEE.HoraFin = respuesta.GetTimeSpan(9).ToString();
+                        horarioDiaEE.HoraInicio = respuesta.GetDateTime(8).ToString("HH:mm:ss");
+                        horarioDiaEE.HoraFin = respuesta.GetDateTime(9).ToString("HH:mm:ss");
                         horarioDiaEE.DiaSemana = respuesta.GetInt32(10);
                         horarioDiaEE.CodigoAula = respuesta.GetString(11);
 
@@ -159,6 +177,38 @@ namespace SGHE.LogicaNegocio.DAO
             }
 
             return listaHorariosEEDia;
+        }
+
+        public static HorarioEE RecuperarHorarioEE(int idPeriodo, int diaSemana, int idEE)
+        {
+            HorarioEE horario = null;
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    MySqlCommand mySqlCommand = new MySqlCommand(QUERY_RECUPERAR_HORARIO_EXACTO, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idPeriodo", idPeriodo);
+                    mySqlCommand.Parameters.AddWithValue("@diaSemana", diaSemana);
+                    mySqlCommand.Parameters.AddWithValue("@idEE", idEE);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    horario = new HorarioEE();
+                    while (respuestaBD.Read())
+                    {
+                        horario.IdHorario = respuestaBD.GetInt32(0);
+                        horario.HoraInicio = (DateTime) respuestaBD.GetMySqlDateTime(1);
+                        horario.HoraFin = (DateTime) respuestaBD.GetMySqlDateTime(2);
+                        horario.DiaSemana = respuestaBD.GetInt32(3);
+                        horario.IdEE = respuestaBD.GetInt32(4);
+                        horario.IdAula = respuestaBD.GetInt32(5);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return horario;
         }
     }
 }

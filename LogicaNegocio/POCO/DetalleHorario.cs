@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SGHE.LogicaNegocio.POCO
 {
-    public class HorarioDiaEE
+    public class DetalleHorario
     {
         public int IdEE { get; set; }
         public string NRC { get; set; }

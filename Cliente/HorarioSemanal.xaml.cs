@@ -16,7 +16,7 @@ namespace SGHE.Cliente
     public partial class HorarioSemanal : Window
     {
         List<HoraSemanalUs> listaArreglo = new List<HoraSemanalUs>();
-        List<HorarioDiaEE> horarioSemanal;
+        List<DetalleHorario> horarioSemanal;
         public HorarioSemanal(int alumnoRecuperadoo, int idPeriodo)
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace SGHE.Cliente
 
         }
 
-        private void cargarViernes(List<HorarioDiaEE> horarioSemanal)
+        private void cargarViernes(List<DetalleHorario> horarioSemanal)
         {
             List<HorarioDatos> listtem = new List<HorarioDatos>();
             HorarioDatos horarioDatos;
@@ -101,7 +101,7 @@ namespace SGHE.Cliente
             }
         }
 
-        private void cargarJueves(List<HorarioDiaEE> horarioSemanal)
+        private void cargarJueves(List<DetalleHorario> horarioSemanal)
         {
             List<HorarioDatos> listtem = new List<HorarioDatos>();
             HorarioDatos horarioDatos;
@@ -147,7 +147,7 @@ namespace SGHE.Cliente
             }
         }
 
-        private void cargarMiercoles(List<HorarioDiaEE> horarioSemanal)
+        private void cargarMiercoles(List<DetalleHorario> horarioSemanal)
         {
             List<HorarioDatos> listtem = new List<HorarioDatos>();
             HorarioDatos horarioDatos;
@@ -193,7 +193,7 @@ namespace SGHE.Cliente
             }
         }
 
-        private void cargarMartes(List<HorarioDiaEE> horarioSemanal)
+        private void cargarMartes(List<DetalleHorario> horarioSemanal)
         {
             List<HorarioDatos> listtem = new List<HorarioDatos>();
             HorarioDatos horarioDatos;
@@ -239,7 +239,7 @@ namespace SGHE.Cliente
             }
         }
 
-        private void cargarLunes(List<HorarioDiaEE> horarioSemanal)
+        private void cargarLunes(List<DetalleHorario> horarioSemanal)
         {
             List<HorarioDatos> listtem= new List<HorarioDatos>();
             HorarioDatos horarioDatos;
@@ -329,7 +329,7 @@ namespace SGHE.Cliente
 
         void timer_Tick(object sender, EventArgs e)
         {
-            lblTime.Content = DateTime.Now.ToString("hh:mm tt");
+            lblTime.Content = DateTime.Now.ToString("HH:mm") +" hrs."; 
             lblFechaActual.Content = DateTime.Now.ToString("dddd dd MMMM yyyy");
         }
 

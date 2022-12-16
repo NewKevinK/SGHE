@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Org.BouncyCastle.Asn1.X509;
 using SGHE.LogicaNegocio.DAO;
 using SGHE.LogicaNegocio.POCO;
 using System;
@@ -23,11 +24,22 @@ namespace SGHE.LogicaNegocio
 
         #region ATTRIBUTES
 
+        #region Constantes
+
+        private static readonly int LUNES = 1;
+        private static readonly int MARTES = 2;
+        private static readonly int MIERCOLES = 3;
+        private static readonly int JUEVES = 4;
+        private static readonly int VIERNES = 5;
+        private static readonly int SABADO = 6;
+
+        #endregion Constantes
+
         #region General
 
-        private List<Periodo> periodos = new List<Periodo>();
-        private List<Carrera> carreras = new List<Carrera>();
-        private List<ExperienciaEducativa> experienciasEducativas = new List<ExperienciaEducativa>();
+        private ObservableCollection<Periodo> periodos = new ObservableCollection<Periodo>();
+        private ObservableCollection<Carrera> carreras = new ObservableCollection<Carrera>();
+        private ObservableCollection<ExperienciaEducativa> experienciasEducativas = new ObservableCollection<ExperienciaEducativa>();
         private List<Aula> aulasInstitucion = new List<Aula>();
 
         private Periodo periodoSeleccionado = null;
@@ -63,6 +75,17 @@ namespace SGHE.LogicaNegocio
         private Aula aulaSabado = null;
 
         #endregion Datos Ingresados y Seleccionados
+
+        #region Datos Recuperados
+
+        private bool ExisteHorario_Lunes = false;
+        private bool ExisteHorario_Martes = false;
+        private bool ExisteHorario_Miercoles = false;
+        private bool ExisteHorario_Jueves = false;
+        private bool ExisteHorario_Viernes = false;
+        private bool ExisteHorario_Sabado = false;
+
+        #endregion Datos Recuperados
 
         #region Enabled
 
@@ -107,6 +130,19 @@ namespace SGHE.LogicaNegocio
         #endregion Enabled
 
         #endregion ATRIBUTES
+        private int cBox_Aula_Lunes_Index = 0;
+        private int cBox_Aula_Martes_Index = 0;
+        public int CBox_Aula_Lunes_Index
+        {
+            get { return this.cBox_Aula_Lunes_Index; }
+            set { SetValue(ref this.cBox_Aula_Lunes_Index, value); }
+        }
+
+        public int CBox_Aula_Martes_Index
+        {
+            get { return this.cBox_Aula_Martes_Index; }
+            set { SetValue(ref this.cBox_Aula_Martes_Index, value); }
+        }
 
         #region PROPERTIES
 
@@ -238,19 +274,19 @@ namespace SGHE.LogicaNegocio
         #region Datos Iniciales
 
         //ITEMS
-        public List<Periodo> CBox_Periodo_Items
+        public ObservableCollection<Periodo> CBox_Periodo_Items
         {
             get { return this.periodos; }
             set { SetValue(ref this.periodos, value); }
         }
 
-        public List<Carrera> CBox_Carrera_Items
+        public ObservableCollection<Carrera> CBox_Carrera_Items
         {
             get { return this.carreras; }
             set { SetValue(ref this.carreras, value); }
         }
 
-        public List<ExperienciaEducativa> CBox_EE_Items
+        public ObservableCollection<ExperienciaEducativa> CBox_EE_Items
         {
             get { return this.experienciasEducativas; }
             set { SetValue(ref this.experienciasEducativas, value); }
@@ -261,6 +297,7 @@ namespace SGHE.LogicaNegocio
         {
             get { return this.periodoSeleccionado; }
             set { SetValue(ref this.periodoSeleccionado, value);
+                this.CBox_Carrera_Items.Clear(); //Al cambiar de valor se activa el Set y por lo tanto el metodo Recuperar Experiencias Educativas (Ocurre una excepción)
                 RecuperarCarreras();           
             }
         }
@@ -269,6 +306,8 @@ namespace SGHE.LogicaNegocio
         {
             get { return this.carreraSeleccionada; }
             set { SetValue(ref this.carreraSeleccionada, value);
+                this.CBox_EE_Items.Clear(); //Limpiando la lista de Experiencias Educativas
+                this.CBox_Aula_Lunes_Selected = null; //Limpiando horas y aulas
                 RecuperarExperienciasEducativas();               
             }
         }
@@ -277,7 +316,9 @@ namespace SGHE.LogicaNegocio
         {
             get { return this.eeSeleccionada; }
             set { SetValue(ref this.eeSeleccionada, value);
+                ResetearHorasYAulas();
                 RecuperarAulas();
+                RecuperarHorarios();
             }
         }
 
@@ -530,6 +571,7 @@ namespace SGHE.LogicaNegocio
 
         private void RecuperarCarreras()
         {
+            this.GridHorarioEnabled = false;
             CarreraDAO carreraDAO = new CarreraDAO();
             List<Carrera> carreras = carreraDAO.RecuperarCarreras();
             if(carreras != null)
@@ -537,47 +579,257 @@ namespace SGHE.LogicaNegocio
                 foreach (Carrera carrera in carreras)
                 {
                     this.CBox_Carrera_Items.Add(carrera);
-                }               
-                this.CBox_CarreraEnabled = true; //Activando Combo Box de Carreras
+                }
+
+                if (this.CBox_ExperienciaEducativaEnabled == false)
+                {
+                    this.CBox_CarreraEnabled = true; //Activando Combo Box de Carreras
+                } //Activando Combo Box de Experiencias Educativas
+                
             }
             else { MessageBox.Show("No se recuperarón las carreras", "Error de conexión"); }
         }
 
         private void RecuperarExperienciasEducativas()
         {
-            ActividadDao experienciaEducativaDAO = new ActividadDao();
-            List<ExperienciaEducativa> experienciasEducativas = 
-                experienciaEducativaDAO.RecuperarExperienciasEducativasPorPeriodoCarrera(this.CBox_Periodo_Selected.IdPeriodo, this.CBox_Carrera_Selected.IdCarrera);
-
-            if(experienciasEducativas != null)
+            this.GridHorarioEnabled = false;
+            if (this.CBox_Periodo_Selected != null && this.CBox_Carrera_Selected != null)
             {
-                foreach (ExperienciaEducativa ee in experienciasEducativas)
-                 {
-                     this.CBox_EE_Items.Add(ee);
-                 }                 
-                 this.CBox_ExperienciaEducativaEnabled = true; //Activando Combo Box de Experiencias Educativas
+                //this.GridHorarioEnabled = false; //Desactivando Grid al cambiar de carrera
+                ActividadDao experienciaEducativaDAO = new ActividadDao();
+                List<ExperienciaEducativa> experienciasEducativas =
+                    experienciaEducativaDAO.RecuperarExperienciasEducativasPorPeriodoCarrera(this.CBox_Periodo_Selected.IdPeriodo, this.CBox_Carrera_Selected.IdCarrera);
+
+                if (experienciasEducativas != null)
+                {
+                    this.CBox_EE_Items.Clear();
+                    foreach (ExperienciaEducativa ee in experienciasEducativas)
+                    {
+                        this.CBox_EE_Items.Add(ee);
+                    }
+
+                    if (this.CBox_ExperienciaEducativaEnabled == false)
+                    {
+                        this.CBox_ExperienciaEducativaEnabled = true;
+                    } //Activando Combo Box de Experiencias Educativas
+                }
+                else { MessageBox.Show("No se recuperarón las Experiencias Educativas", "Error de conexión"); }
             }
-            else { MessageBox.Show("No se recuperarón las Experiencias Educativas", "Error de conexión"); }
+            
         }
 
         private void RecuperarAulas()
         {
-            AulaDao aulaDao = new();
-            List<Aula> aulas = new List<Aula>();
-            aulas = aulaDao.RecuperarAulasPorInstitucion(this.carreraSeleccionada.IdInstitucion);
-            foreach(Aula aula in aulas)
+            if(this.carreraSeleccionada != null)
             {
-                this.CBox_Aula_Items.Add(aula);
-            }
-            this.GridHorarioEnabled = true; //Activando Grid para configurar los horarios
+                AulaDao aulaDao = new();
+                List<Aula> aulas = new List<Aula>();
+                aulas = aulaDao.RecuperarAulasPorInstitucion(this.carreraSeleccionada.IdInstitucion);
+                foreach (Aula aula in aulas)
+                {
+                    this.CBox_Aula_Items.Add(aula);
+                }
+                this.GridHorarioEnabled = true; //Activando Grid para configurar los horarios
+            }   
         }
 
         #endregion Datos Iniciales
 
+        #region Datos Obtenidos
+
+        private void RecuperarHorarios()
+        {
+            MessageBox.Show("Recuperando Horarios Por favor espere...", "Aviso");
+            RecuperarHorarioLunes();
+            RecuperarHorarioMartes();
+            RecuperarHorarioMiercoles();
+            RecuperarHorarioJueves();
+            RecuperarHorarioViernes();
+            //RecuperarHorarioSabado();
+        }
+
+        #region Recuperar Horarios Existentes
+
+        private void RecuperarHorarioLunes()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEELunes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, LUNES, eeSeleccionada.IdEE);
+                if(horarioEELunes.IdEE != 0)
+                {
+                    this.ExisteHorario_Lunes = true;
+                    this.Value_HoraInicio_Lunes = horarioEELunes.HoraInicio;
+                    this.Value_HoraFin_Lunes = horarioEELunes.HoraFin;
+                    this.CBox_Aula_Lunes_Index = horarioEELunes.IdAula;
+                }
+                else { this.ExisteHorario_Lunes = false; }
+            }
+        }
+
+        private void RecuperarHorarioMartes()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEEMartes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MARTES, eeSeleccionada.IdEE);
+                if (horarioEEMartes.IdEE != 0)
+                {
+                    this.ExisteHorario_Martes = true;
+                    this.Value_HoraInicio_Martes = horarioEEMartes.HoraInicio;
+                    this.Value_HoraFin_Martes = horarioEEMartes.HoraFin;
+                    //this.CBox_Aula_Martes_Index = horarioEEMartes.IdAula;
+                }
+                else { this.ExisteHorario_Martes = false; }
+
+            }
+        }
+
+        private void RecuperarHorarioMiercoles()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEEMiercoles = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, MIERCOLES, eeSeleccionada.IdEE);
+                if (horarioEEMiercoles.IdEE != 0)
+                {
+                    this.ExisteHorario_Miercoles = true;
+                    this.Value_HoraInicio_Miercoles = horarioEEMiercoles.HoraInicio;
+                    this.Value_HoraFin_Miercoles = horarioEEMiercoles.HoraFin;
+                    //this.CBox_Aula_Miercoles_Index = horarioEEMiercoles.IdAula;
+                }
+                else { this.ExisteHorario_Miercoles = false; }
+            }
+        }
+
+        private void RecuperarHorarioJueves()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEEJueves = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, JUEVES, eeSeleccionada.IdEE);
+                if (horarioEEJueves.IdEE != 0)
+                {
+                    this.ExisteHorario_Jueves = true;
+                    this.Value_HoraInicio_Jueves = horarioEEJueves.HoraInicio;
+                    this.Value_HoraFin_Jueves = horarioEEJueves.HoraFin;
+                    //this.CBox_Aula_Jueves_Index = horarioEEJueves.IdAula;
+                }
+                else { this.ExisteHorario_Jueves = false; }
+            }
+        }
+
+        private void RecuperarHorarioViernes()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEEViernes = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, VIERNES, eeSeleccionada.IdEE);
+                if (horarioEEViernes.IdEE != 0)
+                {
+                    this.ExisteHorario_Viernes = true;
+                    this.Value_HoraInicio_Viernes = horarioEEViernes.HoraInicio;
+                    this.Value_HoraFin_Viernes = horarioEEViernes.HoraFin;
+                    //this.CBox_Aula_Viernes_Index = horarioEEViernes.IdAula;
+                }
+                else { this.ExisteHorario_Viernes = false; }
+            }
+        }
+
+        private void RecuperarHorarioSabado()
+        {
+            if (this.periodoSeleccionado != null && this.eeSeleccionada != null)
+            {
+                HorarioEE horarioEESabado = HorarioDao.RecuperarHorarioEE(periodoSeleccionado.IdPeriodo, SABADO, eeSeleccionada.IdEE);
+                if (horarioEESabado.IdEE != 0)
+                {
+                    this.ExisteHorario_Sabado = true;
+                    this.Value_HoraInicio_Sabado = horarioEESabado.HoraInicio;
+                    this.Value_HoraFin_Sabado = horarioEESabado.HoraFin;
+                    //this.CBox_Aula_Sabado_Index = horarioEESabado.IdAula;
+                }
+                else { this.ExisteHorario_Sabado = false; }
+            }
+        }
+
+        #endregion Recuperar Horarios Existentes
+
+        #endregion Datos Obtenidos
+
+        #region Registrar Datos
+
+        public void Registrar()
+        {
+            if (this.ChkBox_Lunes == true) { RegistrarHorarioLunes(); }
+            if (this.ChkBox_Martes == true) { RegistrarHorarioMartes(); }
+            if (this.ChkBox_Miercoles == true) { RegistrarHorarioMiercoles(); }
+            if (this.ChkBox_Jueves == true) { RegistrarHorarioJueves(); }
+            if (this.ChkBox_Viernes == true) { RegistrarHorarioViernes(); }
+            if (this.ChkBox_Sabado == true) { RegistrarHorarioViernes(); }
+        }
+
+        private void RegistrarHorarioLunes()
+        {
+            /*
+            if(!value_HoraInicio_Lunes != null)
+            {
+
+            }*/
+            /*
+            if (!this.Modelo.Equals("") &&
+                !this.Procesador.Equals("") &&
+                !this.TarjetaVideo.Equals("") &&
+                !this.MemoriaRam.Equals("") &&
+                !this.Almacenamiento.Equals("") &&
+                !this.Pantalla.Equals(""))
+            {
+                Laptop laptop = new();
+                laptop.idRegistro = "r";
+                laptop.modelo = this.Modelo;
+                laptop.procesador = this.Procesador;
+                laptop.tarjetaVideo = this.TarjetaVideo;
+                laptop.memoriaRam = this.MemoriaRam;
+                laptop.almacenamiento = this.Almacenamiento;
+                laptop.pantalla = this.Pantalla;
+
+                string response = await apirest.PostLaptop(laptop);
+                if (response != "500")
+                {
+                    MessageBox.Show("Laptop Registrada con Exito", "Aviso");
+                    RegistrarComponentes(response);
+                    Cerrar();
+                }
+                else { MessageBox.Show("No se registró la laptop", "Aviso"); }
+            }
+            else { MessageBox.Show("Hay campos vacios", "Alerta"); }*/
+        }
+
+        private void RegistrarHorarioMartes() 
+        { 
+
+        }
+
+        private void RegistrarHorarioMiercoles() 
+        { 
+
+        }
+
+        private void RegistrarHorarioJueves() 
+        { 
+
+        }
+
+        private void RegistrarHorarioViernes() 
+        { 
+
+        }
+
+        private void RegistrarHorarioSabado()
+        { 
+
+        }
+
+        #endregion Registrar Datos
+
         #region Activar y Desactivar Dias
         public void ActivarDesactivarElementosLunes()
         {
-            if(this.ChkBox_Lunes == true)
+            if (this.ChkBox_Lunes == true)
             {
                 this.TPHoraInicio_Lunes_Enabled = true;
                 this.TPHoraFin_Lunes_Enabled = true;
@@ -679,49 +931,29 @@ namespace SGHE.LogicaNegocio
 
         #endregion Activar y Desactivar Dias
 
-        #region Registrar Datos
-
-        public void Registrar()
+        private void ResetearHorasYAulas()
         {
-            if (this.ChkBox_Lunes == true) { RegistrarHorarioLunes(); }
-            if (this.ChkBox_Martes == true) { RegistrarHorarioMartes(); }
-            if (this.ChkBox_Miercoles == true) { RegistrarHorarioMiercoles(); }
-            if (this.ChkBox_Jueves == true) { RegistrarHorarioJueves(); }
-            if (this.ChkBox_Viernes == true) { RegistrarHorarioViernes(); }
-            if (this.ChkBox_Sabado == true) { RegistrarHorarioViernes(); }
+            this.Value_HoraInicio_Lunes = DateTime.Parse("12:00:00");
+            this.Value_HoraInicio_Martes = DateTime.Parse("12:00:00");
+            this.Value_HoraInicio_Miercoles = DateTime.Parse("12:00:00");
+            this.Value_HoraInicio_Jueves = DateTime.Parse("12:00:00");
+            this.Value_HoraInicio_Viernes = DateTime.Parse("12:00:00");
+            this.Value_HoraInicio_Sabado = DateTime.Parse("12:00:00");
+
+            this.Value_HoraFin_Lunes = DateTime.Parse("12:00:00");
+            this.Value_HoraFin_Martes = DateTime.Parse("12:00:00");
+            this.Value_HoraFin_Miercoles = DateTime.Parse("12:00:00");
+            this.Value_HoraFin_Jueves = DateTime.Parse("12:00:00");
+            this.Value_HoraFin_Viernes = DateTime.Parse("12:00:00");
+            this.Value_HoraFin_Sabado = DateTime.Parse("12:00:00");
+
+            this.CBox_Aula_Lunes_Selected = null;
+            this.CBox_Aula_Martes_Selected = null;
+            this.CBox_Aula_Miercoles_Selected = null;
+            this.CBox_Aula_Jueves_Selected = null;
+            this.CBox_Aula_Viernes_Selected = null;
+            this.CBox_Aula_Sabado_Selected = null;
         }
-
-        private void RegistrarHorarioLunes()
-        {
-            //Horario horarioLunes = new();
-        }
-
-        private void RegistrarHorarioMartes() 
-        { 
-
-        }
-
-        private void RegistrarHorarioMiercoles() 
-        { 
-
-        }
-
-        private void RegistrarHorarioJueves() 
-        { 
-
-        }
-
-        private void RegistrarHorarioViernes() 
-        { 
-
-        }
-
-        private void RegistrarHorarioSabado()
-        { 
-
-        }
-
-        #endregion Registrar Datos
 
         #endregion METHODS
     }
