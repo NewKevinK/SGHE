@@ -49,4 +49,10 @@
     <Resource Include="Cliente\right_arrow.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Cliente\PerfilUsuario.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

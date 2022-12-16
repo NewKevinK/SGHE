@@ -1,4 +1,5 @@
 ﻿using SGHE.Client;
+using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,21 +19,21 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class InicioDocente : Window
     {
+        Docente docenteConseguidol;
         public InicioDocente()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public InicioDocente(Docente docenteRecuperado)
         {
-
+            docenteConseguidol=docenteRecuperado;
+            InitializeComponent();
         }
 
         private void Button_Experiencias(object sender, RoutedEventArgs e)
         {
-            ExperienciasEducativasDocente experienciasEducativasDocente = new ExperienciasEducativasDocente();
+            ExperienciasEducativasDocente experienciasEducativasDocente = new ExperienciasEducativasDocente(docenteConseguidol);
             experienciasEducativasDocente.Show();
-            this.Close();
         }
 
         private void Click_CerrarSesion(object sender, RoutedEventArgs e)
@@ -40,6 +41,12 @@ namespace SGHE.Cliente
             InicioSesion inicioSesion = new InicioSesion();
             inicioSesion.Show();
             this.Close();
+        }
+
+        private void Button_Perfil(object sender, RoutedEventArgs e)
+        {
+            PerfilUsuario abrirPerfil = new PerfilUsuario();
+            abrirPerfil.Show();
         }
     }
 }

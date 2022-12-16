@@ -38,7 +38,7 @@ namespace SGHE.Cliente
             timer.Start();
         }
 
-        public HorarioDelDia(int idPeriodo, Persona alumnoActual, int diaSemanaActual)
+        public HorarioDelDia(int idPeriodo, Alumno alumnoActual, int diaSemanaActual)
         {
             InitializeComponent();
 
@@ -94,27 +94,6 @@ namespace SGHE.Cliente
 
         private void Click_Volver(object sender, RoutedEventArgs e)
         {
-            //string identificador=Persona.tipoUsuario;
-            /*if (identificador = "ADMINISTRADOR")
-            {
-                InicioAdministrativo inicioAdministrativo= new InicioAdministrativo(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                inicioAdministrativo.Show();
-            }
-            if(identificador = "DOCENTE"){
-                InicioDocente inicioDocente= new InicioDocente(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                inicioDocente.Show();
-            }
-            if (identificador = "ALUMNO")
-            {
-                InicioAlumno inicioAlumno= new InicioAlumno(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                inicioAlumno.Show();
-            }*/
 
             InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
             this.Close();

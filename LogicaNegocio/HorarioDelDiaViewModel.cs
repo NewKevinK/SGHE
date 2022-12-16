@@ -17,7 +17,7 @@ namespace SGHE.LogicaNegocio
             RecuperarHorariosAlumno();
         }
 
-        public HorarioDelDiaViewModel(int idPeriodo, Persona alumnoActual, int diaSemanaActual)
+        public HorarioDelDiaViewModel(int idPeriodo, Alumno alumnoActual, int diaSemanaActual)
         {
             RecuperarHorariosAlumno();
 
@@ -46,7 +46,7 @@ namespace SGHE.LogicaNegocio
 
         #endregion ATTRIBUTES
 
-        private Persona alumnoActual;
+        private Alumno alumnoActual;
         private int idPeriodoActual;
         private int diaSemanaActual;
 

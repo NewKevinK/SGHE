@@ -121,7 +121,7 @@
         <Button Grid.Row="3" Content="Volver" FontSize="15" FontWeight="SemiBold" Foreground="White" Background="Black"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Margin="20,0,0,0" Height="30" Width="110"
+               Margin="20,0,0,0" Height="30" Width="110" Click="clic_volver"
                
                />
         <!--#endregion-->

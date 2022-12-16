@@ -1,5 +1,6 @@
 ﻿using SGHE.Cliente;
 using SGHE.LogicaNegocio.DAO;
+using SGHE.LogicaNegocio.POCO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,13 +21,6 @@ namespace SGHE.Client
     /// </summary>
     public partial class InicioSesion : Window
     {
-        //Alumno
-        public String EmailUsuario1 = "S19001100";
-        public String ContraseñaUsuario1 = "abc123";
-
-        //Administrativo
-        public String EmailUsuario2 = "PF1604";
-        public String ContraseñaUsuario2 = "abc123";
 
         public InicioSesion()
         {
@@ -43,31 +37,38 @@ namespace SGHE.Client
             //MessageBox.Show(personaAuthh.idUsuario + "y el otro es: "+personaAuthh.idTipoUsuario);
             if (personaAuthh.idTipoUsuario == 1)//ADMINISTRADOR
             {
-                usuariodao.ObtenerUsuario(personaAuthh);
+                
+                
                 InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
                 this.Close();
                 inicioAdministrativo.Show();
             }
-            if (personaAuthh.idTipoUsuario == 2)
+            if (personaAuthh.idTipoUsuario == 2)//DOCENTE
             {
-
+                Docente docenteRecuperado = usuariodao.RecuperarDocentePorId(personaAuthh.idUsuario);
+                InicioDocente inicioDocente = new InicioDocente(docenteRecuperado);
+                this.Close();
+                inicioDocente.Show();
             }
             if (personaAuthh.idTipoUsuario == 3)
             {
-
+                Docente docenteRecuperado = usuariodao.RecuperarDocentePorId(personaAuthh.idUsuario);
+                InicioDocente inicioDocente = new InicioDocente(docenteRecuperado);
+                this.Close();
+                inicioDocente.Show();
             }
-            if (personaAuthh.idTipoUsuario == 4)
+            if (personaAuthh.idTipoUsuario == 4)//ALUMNO
             {
-                InicioAlumno inicioAlumno = new InicioAlumno();
+                Alumno alumnorecuperado =usuariodao.RecuperarAlumnoPorId(personaAuthh.idUsuario);
+                InicioAlumno inicioAlumno = new InicioAlumno(alumnorecuperado);
                 this.Close();
                 inicioAlumno.Show();
             }
             if (personaAuthh.idTipoUsuario == 5)
             {
-
-                InicioAlumno inicioAlumno = new InicioAlumno();
+                Alumno alumnorecuperado = usuariodao.RecuperarAlumnoPorId(personaAuthh.idUsuario);
+                InicioAlumno inicioAlumno = new InicioAlumno(alumnorecuperado);
                 this.Close();
-                System.Threading.Thread.Sleep(1000);
                 inicioAlumno.Show();
             }
             if (personaAuthh.idTipoUsuario == 0)

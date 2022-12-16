@@ -28,10 +28,10 @@ namespace SGHE.Cliente
             InitializeComponent();
         }
 
-        public InicioAlumno(Persona alumno)
+        public InicioAlumno(Alumno alumnoobtenido)
         {
             InitializeComponent();
-            this.alumnoActual = alumno;
+            this.alumnoActual = alumnoobtenido;
             this.diaSemanaActual = (int)DateTime.Now.DayOfWeek;
         }
 
@@ -39,7 +39,7 @@ namespace SGHE.Cliente
 
         #region ATTRIBUTES
 
-        private Persona alumnoActual;
+        public Alumno alumnoActual;
         private int diaSemanaActual;
 
         #endregion ATTRIBUTES
@@ -48,47 +48,19 @@ namespace SGHE.Cliente
 
         private void Click_MiPerfil(object sender, RoutedEventArgs e)
         {
-            //string identificador=Persona.tipoUsuario;
-            /*if (identificador = "ADMINISTRADOR")
-            {
-                DatosUsuario datosAdministrativo= new DatosUsuario(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                datosAdministrativo.Show();
-            }
-            if(identificador = "DOCENTE"){
-                InicioDocente datosDocente= new DatosUsuario(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                datosDocente.Show();
-            }
-            if (identificador = "ALUMNO")
-            {
-                DatosUsuario datosAlumno= new DatosUsuario(datospersona);
-                this.Close();
+                PerfilUsuario datosAlumno= new PerfilUsuario(alumnoActual);
                 System.Threading.Thread.Sleep(1000);
                 datosAlumno.Show();
-            }*/
+          
         }
 
         private void Click_HorarioDelDia(object sender, RoutedEventArgs e)
         {
-            HorarioDelDia actividadesDiarias = new HorarioDelDia(1, alumnoActual, diaSemanaActual);
+
+            HorarioDelDia actividadesDiarias = new HorarioDelDia(idPeriodo, alumnoActual, diaSemanaActual);
             actividadesDiarias.Show();
-            /*if (identificador = "ADMINISTRADOR")
-            {
-                HorarioDelDia horarioAdministrativo= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioAdministrativo.Show();
-            }
-            if(identificador = "DOCENTE"){
-                HorarioDelDia horarioDocente= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioDocente.Show();
-            }
-            if (identificador = "ALUMNO")
+
+            /*if (identificador = "ALUMNO")
             {
                 HorarioDelDia horarioAlumno= new HorarioDelDia(datospersona);
                 this.Close();
@@ -100,37 +72,14 @@ namespace SGHE.Cliente
 
         private void Click_HorarioCompleto(object sender, RoutedEventArgs e)
         {
-            /*if (identificador = "ADMINISTRADOR")
-            {
-                HorarioDelDia horarioAdministrativo= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioAdministrativo.Show();
-            }
-            if(identificador = "DOCENTE"){
-                HorarioDelDia horarioDocente= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioDocente.Show();
-            }
-            if (identificador = "ALUMNO")
-            {
-                HorarioDelDia horarioAlumno= new HorarioDelDia(datospersona);
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                horarioAlumno.Show();
-            }*/
-            //MessageBox.Show("En Desarrollo...", "Aviso");
 
-            HorarioSemanal horarioSemanal = new HorarioSemanal();
-            this.Close();
-            System.Threading.Thread.Sleep(1000);
+            HorarioSemanal horarioSemanal = new HorarioSemanal(alumnoActual, idPeriodo);
             horarioSemanal.Show();
         }
 
         private void Click_Calificaciones(object sender, RoutedEventArgs e)
         {
-            CalificacionesAlumno calificacionesAlumno = new CalificacionesAlumno();
+            CalificacionesAlumno calificacionesAlumno = new CalificacionesAlumno(alumnoActual);
             calificacionesAlumno.Show();
         }
 

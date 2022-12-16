@@ -20,8 +20,10 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class CalificacionesAlumno : Window
     {
-        public CalificacionesAlumno()
+        Alumno alumnoConseguido;
+        public CalificacionesAlumno(Alumno alumnoRecuperado)
         {
+            alumnoConseguido=alumnoRecuperado;
             InitializeComponent();
             DataContext = new CalificacionesAlumnoViewModel();
 

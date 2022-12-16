@@ -162,8 +162,6 @@ namespace SGHE.LogicaNegocio.DAO
                         personaAuth.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
                         personaAuth.idTipoUsuario = ((respuestaBD.IsDBNull(1)) ? 0 : respuestaBD.GetInt32(1));
 
-
-
                     }
                 }
                 catch (Exception e)
@@ -173,70 +171,6 @@ namespace SGHE.LogicaNegocio.DAO
 
             }
             return personaAuth;
-        }
-
-        public Usuario ObtenerUsuario(Persona personaAuth)
-        {
-            Persona persona = new Persona();
-            int id = personaAuth.idUsuario;
-            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
-            string sql;
-            if (conexionBD != null)
-            {
-                try
-                {
-                    if(id == 1)
-                    {
-
-
-
-                    }else if ((id == 2) || (id == 3) )
-                    {
-
-
-
-                    }
-                    else
-                    {
-                        string sqll = "SELECT  tipousuario, alumno.idAlumno, usuario.nombre FROM usuario " +
-                            "LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario" +
-                            "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario " +
-                            "WHERE usuario.idUsuario = @id";
-                        MySqlCommand mySqlCommandd = new MySqlCommand(sqll, conexionBD);
-                        mySqlCommandd.Parameters.AddWithValue("@id", id);
-                        MySqlDataReader respuestaBDD = mySqlCommandd.ExecuteReader();
-                        while (respuestaBDD.Read())
-                        {
-                            persona.idUsuario = ((respuestaBDD.IsDBNull(0)) ? 0 : respuestaBDD.GetInt32(0));
-                            persona.tipoUsuario = ((respuestaBDD.IsDBNull(1)) ? "" : respuestaBDD.GetString(1));
-                            persona.idPersona = ((respuestaBDD.IsDBNull(2)) ? 0 : respuestaBDD.GetInt32(2));
-                        }
-
-
-                    }
-                   /* string sql = "SELECT usuario.idUsuario, tipousuario, idAlumno FROM usuario" +
-                        " LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario " +
-                        "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario WHERE usuario.idUsuario = @id" ;
-                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@id",id);
-                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
-                    while (respuestaBD.Read())
-                    {
-                        persona.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
-                        persona.tipoUsuario = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
-                        persona.idPersona = ((respuestaBD.IsDBNull(2)) ? 0 : respuestaBD.GetInt32(2));
-                        
-
-                    } */
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            //return aula;
-
-            return null;
         }
 
 

@@ -17,7 +17,7 @@ namespace SGHE.Cliente
     {
         List<HoraSemanalUs> listaArreglo = new List<HoraSemanalUs>();
         List<HorarioDiaEE> horarioSemanal;
-        public HorarioSemanal(Persona datospersona)
+        public HorarioSemanal(Alumno alumnorecuperado, int idPeriodo)
         {
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
@@ -27,7 +27,7 @@ namespace SGHE.Cliente
 
             IniciarGridHorario();
             cargarElementosHorario();
-            cargarClaseHorario();
+            cargarClaseHorario(alumnorecuperado, idPeriodo);
         }
         public HorarioSemanal()
         {
@@ -39,14 +39,14 @@ namespace SGHE.Cliente
 
             IniciarGridHorario();
             cargarElementosHorario();
-            cargarClaseHorario();
+            //cargarClaseHorario();
         }
 
-        private void cargarClaseHorario()
+        private void cargarClaseHorario(Alumno alumnoRecuperado, int idperiodo)
         {
             HorarioDao horarioConsulta = new HorarioDao();
             
-            horarioSemanal = HorarioDao.RecuperarHorarioSemanal(1, 1);
+            horarioSemanal = HorarioDao.RecuperarHorarioSemanal(idperiodo, alumnoRecuperado.IdAlumno);
             cargarLunes(horarioSemanal);
             cargarMartes(horarioSemanal);
             cargarMiercoles(horarioSemanal);
@@ -243,6 +243,11 @@ namespace SGHE.Cliente
         {
             lblTime.Content = DateTime.Now.ToString("hh:mm tt");
             lblFechaActual.Content = DateTime.Now.ToString("dddd dd MMMM yyyy");
+        }
+
+        private void clic_volver(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

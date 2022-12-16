@@ -20,8 +20,10 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class ExperienciasEducativasDocente : Window
     {
-        public ExperienciasEducativasDocente()
+        Docente docenteRecuperado;
+        public ExperienciasEducativasDocente( Docente docenteConseguidol)
         {
+            docenteRecuperado = docenteConseguidol;
             InitializeComponent();
             RecuperarExperienciasDocente();
         }
@@ -31,7 +33,7 @@ namespace SGHE.Cliente
         {
             List<ExperienciaEducativa> experienciasEducativas = new List<ExperienciaEducativa>();
             ActividadDao actividadDao = new ActividadDao();
-            experienciasEducativas = actividadDao.RecuperarExperienciasPorIdDocente(1,5);
+            experienciasEducativas = actividadDao.RecuperarExperienciasPorIdDocente(idPeriodo,docenteRecuperado.IdUsuario);
             MostrarExperienciasEducativas(experienciasEducativas);
         }
 
