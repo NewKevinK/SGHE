@@ -185,13 +185,12 @@ namespace SGHE.LogicaNegocio.DAO
             {
                 try
                 {
-                    if (id == 1)
+                    if(id == 1)
                     {
 
 
 
-                    }
-                    else if ((id == 2) || (id == 3))
+                    }else if ((id == 2) || (id == 3) )
                     {
 
 
@@ -215,20 +214,20 @@ namespace SGHE.LogicaNegocio.DAO
 
 
                     }
-                    /* string sql = "SELECT usuario.idUsuario, tipousuario, idAlumno FROM usuario" +
-                         " LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario " +
-                         "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario WHERE usuario.idUsuario = @id" ;
-                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                     mySqlCommand.Parameters.AddWithValue("@id",id);
-                     MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
-                     while (respuestaBD.Read())
-                     {
-                         persona.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
-                         persona.tipoUsuario = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
-                         persona.idPersona = ((respuestaBD.IsDBNull(2)) ? 0 : respuestaBD.GetInt32(2));
+                   /* string sql = "SELECT usuario.idUsuario, tipousuario, idAlumno FROM usuario" +
+                        " LEFT JOIN alumno ON usuario.idUsuario = alumno.idUsuario " +
+                        "LEFT JOIN tipousuario ON usuario.idTipoUsuario = tipousuario.idTipoUsuario WHERE usuario.idUsuario = @id" ;
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@id",id);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        persona.idUsuario = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        persona.tipoUsuario = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        persona.idPersona = ((respuestaBD.IsDBNull(2)) ? 0 : respuestaBD.GetInt32(2));
+                        
 
-
-                     } */
+                    } */
                 }
                 catch (Exception e)
                 {

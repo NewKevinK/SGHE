@@ -36,59 +36,33 @@ namespace SGHE.Client
 
         private async void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            string email = txtEmail.Text;
-            string password = txtPass.Password.ToString();
             UsuarioDao usuariodao = new UsuarioDao();
             Persona personaAuthh = new Persona();
-            personaAuthh = usuariodao.Autenticacion(password, email);
+            personaAuthh = usuariodao.Autenticacion(txtPass.Password.ToString(), txtEmail.Text);
+
             //MessageBox.Show(personaAuthh.idUsuario + "y el otro es: "+personaAuthh.idTipoUsuario);
-
-            switch (personaAuthh.idTipoUsuario)
+            if (personaAuthh.idTipoUsuario == 1)//ADMINISTRADOR
             {
-                case 1:
-                    //personaAuthh = usuariodao.ObtenerUsuario(personaAuthh);
-                    InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
-                    this.Close();
-                    inicioAdministrativo.Show();
-
-
-
-                    break;
-
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
-
-                case 4:
-
-                    InicioAlumno inicioAlumno = new InicioAlumno();
-                    this.Close();
-                    System.Threading.Thread.Sleep(1000);
-                    inicioAlumno.Show();
-
-                    break;
-
-                case 5:
-
-                    InicioAlumno inicioAlumnoo = new InicioAlumno();
-                    this.Close();
-                    System.Threading.Thread.Sleep(1000);
-                    inicioAlumnoo.Show();
-
-                    break;
-
-                default:
-                    MessageBox.Show("Credenciales Incorrectas");
-                    break;
+                usuariodao.ObtenerUsuario(personaAuthh);
+                InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
+                this.Close();
+                inicioAdministrativo.Show();
             }
+            if (personaAuthh.idTipoUsuario == 2)
+            {
 
-            //Validación Usuario 1
-            //email.Equals(EmailUsuario1) && password.Equals(ContraseñaUsuario1)
-            /*if (validarCorreo().tipoUsuario)
+            }
+            if (personaAuthh.idTipoUsuario == 3)
+            {
+
+            }
+            if (personaAuthh.idTipoUsuario == 4)
+            {
+                InicioAlumno inicioAlumno = new InicioAlumno();
+                this.Close();
+                inicioAlumno.Show();
+            }
+            if (personaAuthh.idTipoUsuario == 5)
             {
 
                 InicioAlumno inicioAlumno = new InicioAlumno();
@@ -96,48 +70,13 @@ namespace SGHE.Client
                 System.Threading.Thread.Sleep(1000);
                 inicioAlumno.Show();
             }
-            if (email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
+            if (personaAuthh.idTipoUsuario == 0)
             {
-
-                InicioAlumno inicioAlumno = new InicioAlumno();
-                this.Close();
-                System.Threading.Thread.Sleep(1000);
-                inicioAlumno.Show();
+                MessageBox.Show("Credenciales Incorrectas");
             }
-            else
-            {
-                //Validación Usuario 2
-                if(email.Equals(EmailUsuario2) && password.Equals(ContraseñaUsuario2))
-                {
-                    InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
-                    this.Close();
-                    inicioAdministrativo.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Credenciales Incorrectas");
-                }
-            }
-            */
-
 
         }
 
-
-
-
-
-        /*private Persona validarCorreo()
-        {
-            Persona respuest;
-             UsuarioDao usuarioValidacion=new UsuarioDao();
-
-            int idUsuarui=usuarioValidacion.Autenticacion(txtEmail.Text,txtPass.Password.ToString());
-            Persona UsuarioAutenticado = new Persona();
-            UsuarioAutenticado=usuarioValidacion.ObtenerUsuario(idUsuarui);
-            respuesta = UsuarioAutenticado.tipoUsuario;
-            return respuesta;
-        }*/
         private void btnCrearCuenta_Click
 (object sender, RoutedEventArgs e)
         {
