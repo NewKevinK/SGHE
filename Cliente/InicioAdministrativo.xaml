@@ -37,9 +37,9 @@
             <TextBlock Text="Alumnos" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
         <Button Grid.Row="3" Grid.Column="0" Margin="25,25,25,25" Click="Click_OfertaEducativa">
-            <TextBlock Text="Oferta Educativa" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Text=" --- " FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="3" Grid.Column="1" Margin="25,25,25,25" Content="Inscribir" FontSize="20" Click="Click_Inscribir"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="25,25,25,25" Content=" --- " FontSize="20" Click="Click_Inscribir"/>
         <Button Grid.Row="3" Grid.Column="2" Margin="25,25,25,25" Click="Click_RegistrarNuevaAula" >
             <TextBlock Text="Registrar Nueva Aula" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>

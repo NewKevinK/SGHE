@@ -76,6 +76,7 @@ namespace SGHE.LogicaNegocio
             else
             {
                 MessageBox.Show("No hay actividades para hoy", "Aviso");
+                Application.Current.MainWindow.Close();
             }            
         }
 
