@@ -22,6 +22,7 @@ namespace SGHE.Cliente
     {
         Alumno alumnoobtenidol;
         Docente Docenterecuperado ;
+        Persona AdministrativoObtenidol;
         public PerfilUsuario()
         {
             InitializeComponent();
@@ -40,6 +41,12 @@ namespace SGHE.Cliente
             Docenterecuperado = docenteRecuperado;
             RecuperarDatosDocente(Docenterecuperado);
 
+        }
+        public PerfilUsuario(Persona administrativoRecuperado)
+        {
+            InitializeComponent();
+            AdministrativoObtenidol = administrativoRecuperado;
+            RecuperarDatosDocente(AdministrativoObtenidol);
         }
         private void RecuperarDatosAlumno(Alumno AlumnoRecuperado)
         {
@@ -62,7 +69,16 @@ namespace SGHE.Cliente
             tbEmail.Text = docenterecuperado.Email;
             tbDomicilio.Text = docenterecuperado.Domicilio;
         }
-
+        private void RecuperarDatosDocente(Persona AdministrativoObtenidol)
+        {
+            tbNombre.Text = AdministrativoObtenidol.nombre;
+            tbApellidoPaterno.Text = AdministrativoObtenidol.ApellidoPaterno;
+            tbApellidoMaterno.Text = AdministrativoObtenidol.ApellidoMaterno;
+            tbFechaNacimiento.Text = AdministrativoObtenidol.FechaNacimiento.ToString();
+            tbTelefono.Text = AdministrativoObtenidol.Telefono;
+            tbEmail.Text = AdministrativoObtenidol.Email;
+            tbDomicilio.Text = AdministrativoObtenidol.Domicilio;
+        }
         private void btRegresar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

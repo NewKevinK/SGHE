@@ -49,7 +49,6 @@ namespace SGHE.Cliente
         private void Click_MiPerfil(object sender, RoutedEventArgs e)
         {
                 PerfilUsuario datosAlumno= new PerfilUsuario(alumnoActual);
-                System.Threading.Thread.Sleep(1000);
                 datosAlumno.Show();
           
         }

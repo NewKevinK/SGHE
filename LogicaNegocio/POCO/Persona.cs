@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SGHE.LogicaNegocio.POCO;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SGHE.LogicaNegocio.DAO
 {
-    public class Persona
+    public class Persona : Usuario
     {
         public int idUsuario;
         public int idTipoUsuario;

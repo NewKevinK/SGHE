@@ -38,8 +38,8 @@ namespace SGHE.Client
             if (personaAuthh.idTipoUsuario == 1)//ADMINISTRADOR
             {
                 
-                
-                InicioAdministrativo inicioAdministrativo = new InicioAdministrativo();
+                Persona personaAdministrativa = usuariodao.RecuperarAdministradorPorId(personaAuthh.idUsuario);
+                InicioAdministrativo inicioAdministrativo = new InicioAdministrativo(personaAdministrativa);
                 this.Close();
                 inicioAdministrativo.Show();
             }

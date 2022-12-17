@@ -19,9 +19,11 @@ namespace SGHE.Cliente
     /// </summary>
     public partial class InicioAdministrativo : Window
     {
+        Persona personaObtenida;
         //Inicio Con datos
         public InicioAdministrativo(Persona datosPersona)
         {
+            personaObtenida = datosPersona;
             InitializeComponent();
         }
 
@@ -71,7 +73,8 @@ namespace SGHE.Cliente
 
         private void Click_MiPerfil(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("En desarrollo...", "Aviso");
+            PerfilUsuario datosAlumno = new PerfilUsuario(personaObtenida);
+            datosAlumno.Show();
         }
 
         private void Click_Inscribir(object sender, RoutedEventArgs e)

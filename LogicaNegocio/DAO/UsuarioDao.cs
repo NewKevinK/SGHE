@@ -268,5 +268,40 @@ namespace SGHE.LogicaNegocio.DAO
 
             return alumno;
         }
+        public Persona RecuperarAdministradorPorId(int idUsuario)
+        {
+            Persona usuario = new Persona();
+            MySqlConnection conexionBD = ConexionBD.ObtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT * FROM usuario WHERE idUsuario=@idUsuario";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    while (respuestaBD.Read())
+                    {
+                        usuario.idPersona = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        usuario.nombre = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        usuario.ApellidoPaterno = ((respuestaBD.IsDBNull(2)) ? "" : respuestaBD.GetString(2));
+                        usuario.ApellidoMaterno = ((respuestaBD.IsDBNull(3)) ? "" : respuestaBD.GetString(3));
+                        usuario.FechaNacimiento = DateTime.Parse((respuestaBD.IsDBNull(4)) ? "" : respuestaBD.GetString(4));
+                        usuario.Domicilio = ((respuestaBD.IsDBNull(5)) ? "" : respuestaBD.GetString(5));
+                        usuario.Telefono = ((respuestaBD.IsDBNull(6)) ? "" : respuestaBD.GetString(6));
+                        usuario.Email = ((respuestaBD.IsDBNull(7)) ? "" : respuestaBD.GetString(7));
+                        string password = ((respuestaBD.IsDBNull(8)) ? "" : respuestaBD.GetString(8));
+                        usuario.IdTipoUusario = ((respuestaBD.IsDBNull(9)) ? 0 : respuestaBD.GetInt32(9));
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return usuario;
+        }
     }
 }
