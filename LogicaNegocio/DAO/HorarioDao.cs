@@ -134,8 +134,8 @@ namespace SGHE.LogicaNegocio.DAO
                         horarioDiaEE.Creditos = respuesta.GetInt32(3);
                         horarioDiaEE.Modalidad = respuesta.GetString(4);
                         horarioDiaEE.NombreCompletoDocente = respuesta.GetString(5) + " " + respuesta.GetString(6) + " " + respuesta.GetString(7);
-                        horarioDiaEE.HoraInicio = respuesta.GetDateTime(8).ToString("hh:mm");
-                        horarioDiaEE.HoraFin = respuesta.GetDateTime(9).ToString("hh:mm");
+                        horarioDiaEE.HoraInicio = respuesta.GetDateTime(8).ToString("hh:mm tt");
+                        horarioDiaEE.HoraFin = respuesta.GetDateTime(9).ToString("hh:mm tt");
                         horarioDiaEE.DiaSemana = respuesta.GetInt32(10);
                         horarioDiaEE.CodigoAula = respuesta.GetString(11);
 

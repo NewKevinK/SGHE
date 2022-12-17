@@ -5,27 +5,58 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 
 namespace SGHE.LogicaNegocio
 {
-    public class HorarioDelDiaViewModel : INotifyPropertyChanged
+    public class HorarioDelDiaViewModel : BaseViewModel
     {
+
         #region CONSTRUCTOR
         public HorarioDelDiaViewModel()
         {
-
             RecuperarHorariosAlumno();
         }
 
         public HorarioDelDiaViewModel(int idPeriodo, Alumno alumnoActual, int diaSemanaActual)
         {
-            
-
             this.idPeriodoActual = idPeriodo;
             this.alumnoActual = alumnoActual;
             this.diaSemanaActual = diaSemanaActual;
             RecuperarHorariosAlumno();
         }
+
+        #endregion CONSTRUCTOR
+
+        #region ATTRIBUTES
+
+        private Alumno alumnoActual;
+        private int idPeriodoActual;
+        private int diaSemanaActual;
+        private ObservableCollection<DetalleHorario> _experienciasEducativasDAB;
+        private DetalleHorario _selectedExperienciaEducativaDAB;
+
+        #endregion ATTRIBUTES
+
+        #region PROPERTIES
+
+        //Colección de Experiencias Educativas
+        public ObservableCollection<DetalleHorario> ExperienciasEducativasDAB
+        {
+            get { return this._experienciasEducativasDAB; }
+            set { SetValue(ref this._experienciasEducativasDAB, value); }
+        }
+
+        // Experiencia Educativa (Seleccionada)
+        public DetalleHorario SelectedExperienciaEducativaDAB
+        {
+            get { return this._selectedExperienciaEducativaDAB; }
+            set { SetValue(ref this._selectedExperienciaEducativaDAB, value); }
+        }
+
+        #endregion PROPERTIES
+
+        #region METHODS
 
         private void RecuperarHorariosAlumno()
         {
@@ -35,85 +66,19 @@ namespace SGHE.LogicaNegocio
             int idAlumno = horarioID.RecuperarIdAlumnoDeUsuario(alumnoActual.IdUsuario);
 
             listaHorarios = HorarioDao.RecuperarHorariosAlumnoPorDia(idPeriodoActual, diaSemanaActual, idAlumno);
-
-            foreach (DetalleHorario horarioDia in listaHorarios)
+            if(listaHorarios.Count > 0)
             {
-                ExperienciasEducativasDAB.Add(horarioDia);
+                foreach (DetalleHorario horarioDia in listaHorarios)
+                {
+                    ExperienciasEducativasDAB.Add(horarioDia);
+                }
             }
-
-
+            else
+            {
+                MessageBox.Show("No hay actividades para hoy", "Aviso");
+            }            
         }
 
-        #endregion CONSTRUCTOR
-
-        #region ATTRIBUTES
-
-        #endregion ATTRIBUTES
-
-        private Alumno alumnoActual;
-        private int idPeriodoActual;
-        private int diaSemanaActual;
-
-        #region PROPERTIES
-
-
-        //Colección de Experiencias Educativas
-
-        private ObservableCollection<DetalleHorario> _experienciasEducativasDAB;
-        public ObservableCollection<DetalleHorario> ExperienciasEducativasDAB
-        {
-            get
-            {
-                return _experienciasEducativasDAB;
-            }
-            set
-            {
-                _experienciasEducativasDAB = value;
-                NotifyPropertyChanged("ExperienciasEducativasDAB");
-            }
-        }
-
-        // Experiencia Educativa (Seleccionada)
-
-
-        private DetalleHorario _selectedExperienciaEducativaDAB;
-        public DetalleHorario SelectedExperienciaEducativaDAB
-        {
-            get
-            {
-                return _selectedExperienciaEducativaDAB;
-            }
-            set
-            {
-                _selectedExperienciaEducativaDAB = value;
-                NotifyPropertyChanged("SelectedExperienciaEducativaDAB");
-            }
-        }
-
-        #endregion PROPERTIES
-
-
-
-        #region Otros Delete the selected item
-
-        //Metodo Delete para eliminar items del carrucel
-        public void Delete()
-        {
-            ExperienciasEducativasDAB.Remove(SelectedExperienciaEducativaDAB);
-            SelectedExperienciaEducativaDAB = ExperienciasEducativasDAB[0];
-        }
-
-        //Manejador de eventos para los cambios en el carrucel - Sustituir por BaseViewModel
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion Otros
+        #endregion
     }
 }

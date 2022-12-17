@@ -78,8 +78,6 @@ namespace SGHE.Cliente
             {
                 return;
             }
-
-            //viewModel.SelectedExperienciaEducativaDAB = selectedElement.DataContext as ExperienciaEducativa1;
         }
 
         #endregion 
