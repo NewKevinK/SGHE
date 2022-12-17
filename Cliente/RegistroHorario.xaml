@@ -191,7 +191,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Cancelar" FontSize="15" Background="#FFFFFCFC" Command="{Binding ClickCancelar}" Margin="40,10,420,10" />
+            <Button Grid.Column="0" Content="Cancelar" FontSize="15" Background="#FFFFFCFC" Command="{Binding ClickCancelar}" Margin="40,10,420,10" Click="Cancelar" />
             <Button Grid.Column="1" Content="Registrar" FontSize="15" Background="#FFFFFCFC" Command="{Binding ClickRegistrar}" Margin="420,10,40,10"/>
 
         </Grid>

@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Inicio" FontSize="40" FontWeight="DemiBold" VerticalContentAlignment="Center" Margin="20,0,20,0"/>
-        <Label Grid.Row="1" Content="Bienvenido Usuario A" VerticalContentAlignment="Bottom" FontSize="15" Margin="20,0,110,0" FontWeight="Bold" Grid.ColumnSpan="2" />
+        <Label Grid.Row="1" Content="Bienvenido Alumno " VerticalContentAlignment="Bottom" FontSize="15" Margin="20,0,110,0" FontWeight="Bold" Grid.ColumnSpan="2" />
 
         <Button Grid.Row="2" Grid.Column="0" Margin="25,25,25,25" Content="Mi Perfil" FontSize="20" Click="Click_MiPerfil"/>
         <Button Grid.Row="2" Grid.Column="1" Margin="25,25,25,25" Click="Click_HorarioDelDia">

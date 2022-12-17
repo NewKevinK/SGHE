@@ -811,6 +811,7 @@ namespace SGHE.LogicaNegocio
             if (ChkBox_Sabado == true) { CrearHorarioViernes(); }
 
             MessageBox.Show("Todos los horarios registrados. Cerrando Ventana...","Aviso");
+            Application.Current.MainWindow.Close();
         }
 
         private void CrearHorarioLunes()
@@ -827,14 +828,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEELunes.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del lunes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del lunes", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del Lunes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del Lunes Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del Lunes", "Error"); }
             }
         }
 
@@ -852,14 +853,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEEMartes.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del martes Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del martes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del martes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del martes", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del martes Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del martes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del martes Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del martes", "Error"); }
             }
         }
 
@@ -877,14 +878,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEEMiercoles.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del miercoles", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del miercoles", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del miercoles", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del miercoles", "Error"); }
             }
         }
 
@@ -902,14 +903,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEEJueves.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del jueves Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del jueves", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del jueves Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del jueves", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del miercoles", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del miercoles Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del miercoles", "Error"); }
             }
         }
 
@@ -927,14 +928,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEEViernes.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del viernes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del viernes", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del viernes", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del viernes Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del viernes", "Error"); }
             }
         }
 
@@ -952,14 +953,14 @@ namespace SGHE.LogicaNegocio
             {
                 horario.IdHorario = HorarioEESabado.IdHorario;
                 respuestaBD = HorarioDao.ActualizarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Registrado con exito"); }
-                else { MessageBox.Show("No se registro el horario del sabado", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Actualizado con exito"); }
+                else { MessageBox.Show("No se actualizó el horario del sabado", "Error"); }
             }
             else //Crear Nuevo
             {
                 respuestaBD = HorarioDao.RegistrarHorario(horario);
-                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Actualizado con exito"); }
-                else { MessageBox.Show("No se actualizó el horario del sabado", "Error"); }
+                if (respuestaBD != false) { MessageBox.Show("Horario del sabado Registrado con exito"); }
+                else { MessageBox.Show("No se registró el horario del sabado", "Error"); }
             }
         }
 

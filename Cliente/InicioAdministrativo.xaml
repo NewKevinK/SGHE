@@ -24,26 +24,26 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Inicio" FontSize="40" FontWeight="DemiBold" VerticalContentAlignment="Center" Margin="20,0,20,0"/>
-        <Label Grid.Row="1" Content="Bienvenido Usuario B" VerticalContentAlignment="Bottom" FontSize="15" Margin="20,0,110,0" FontWeight="Bold" Grid.ColumnSpan="2" />
+        <Label Grid.Row="1" Content="Bienvenido Administrativo" VerticalContentAlignment="Bottom" FontSize="15" Margin="20,0,110,0" FontWeight="Bold" Grid.ColumnSpan="2" />
 
-        <Button Grid.Row="2" Grid.Column="0" Margin="25,25,25,25" Content="Mi Perfil" FontSize="20"/>
+        <Button Grid.Row="2" Grid.Column="0" Margin="25,25,25,25" Content="Mi Perfil" FontSize="20" Click="Click_MiPerfil"/>
         <Button Grid.Row="2" Grid.Column="1" Margin="25,25,25,25" Click="Click_Aulas">
             <TextBlock Text="Aulas" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="2" Grid.Column="2" Margin="25,25,25,25">
-            <TextBlock Text="Horarios" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+        <Button Grid.Row="2" Grid.Column="2" Margin="25,25,25,25" Click="Click_RegistroDeHorarios">
+            <TextBlock Text="Registro de Horarios" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="2" Grid.Column="3" Margin="25,25,25,25">
-            <TextBlock Text="Asignación de Tutores" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+        <Button Grid.Row="2" Grid.Column="3" Margin="25,25,25,25" Click="Click_Alumnos">
+            <TextBlock Text="Alumnos" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="3" Grid.Column="0" Margin="25,25,25,25">
+        <Button Grid.Row="3" Grid.Column="0" Margin="25,25,25,25" Click="Click_OfertaEducativa">
             <TextBlock Text="Oferta Educativa" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="3" Grid.Column="1" Margin="25,25,25,25" Content="Inscribir" FontSize="20"/>
+        <Button Grid.Row="3" Grid.Column="1" Margin="25,25,25,25" Content="Inscribir" FontSize="20" Click="Click_Inscribir"/>
         <Button Grid.Row="3" Grid.Column="2" Margin="25,25,25,25" Click="Click_RegistrarNuevaAula" >
             <TextBlock Text="Registrar Nueva Aula" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
         </Button>
-        <Button Grid.Row="3" Grid.Column="3" Margin="25,25,25,25" Content="" FontSize="20" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="3" Margin="25,25,25,25" Content="" FontSize="20" Click="Click_ExperienciasEducativas"/>
             <TextBlock Text="Experiencias Educativas" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Grid.Column="3" Margin="25,39,20,38" Grid.Row="3"/>
         <Button Grid.Row="4" Grid.Column="0" Margin="25,15,25,15" Content="Cerrar Sesión" FontSize="15" Background="Orange" Click="Click_CerrarSesion" />
 

@@ -47,10 +47,36 @@ namespace SGHE.Cliente
             registrarAula.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Click_ExperienciasEducativas(object sender, RoutedEventArgs e)
         {
             ExperienciasEducativas experienciasEducativas = new ExperienciasEducativas();
             experienciasEducativas.Show();
+        }
+
+        private void Click_RegistroDeHorarios(object sender, RoutedEventArgs e)
+        {
+            RegistroHorario registroHorario = new RegistroHorario();
+            registroHorario.Show();
+        }
+
+        private void Click_Alumnos(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("En desarrollo...", "Aviso");
+        }
+
+        private void Click_OfertaEducativa(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("En desarrollo...", "Aviso");
+        }
+
+        private void Click_MiPerfil(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("En desarrollo...", "Aviso");
+        }
+
+        private void Click_Inscribir(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("En desarrollo...", "Aviso");
         }
     }
 }

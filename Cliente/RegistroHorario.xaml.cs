@@ -23,5 +23,10 @@ namespace SGHE.Client
             InitializeComponent();
             DataContext = new RegistroHorarioViewModel();
         }
+
+        private void Cancelar(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
