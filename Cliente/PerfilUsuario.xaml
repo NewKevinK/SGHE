@@ -25,8 +25,9 @@
 
 
         <Button x:Name="btRegresar" Content="Regresar" HorizontalAlignment="Left" Margin="44,369,0,0" VerticalAlignment="Top" Height="29" Width="119" Click="btRegresar_Click"/>
-        <Image Margin="485,178,113,80" Source="/Cliente/Recursos/Iconos/pato_1.jpg"/>
+        <!--<Image Margin="485,178,113,80" Source="/Cliente/Recursos/Iconos/pato_1.jpg"/>
         <Label Content="Habla con el pato" HorizontalAlignment="Left" Margin="507,345,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        -->
 
 
 
